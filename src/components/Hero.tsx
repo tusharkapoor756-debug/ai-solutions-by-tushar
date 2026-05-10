@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Star, Clock, BarChart3, Users } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
+import Image from "next/image";
 
 const Hero = () => {
   const scrollToContact = (e: React.MouseEvent) => {
@@ -73,9 +74,11 @@ const Hero = () => {
                   key={i}
                   className="w-12 h-12 rounded-full border-2 border-background bg-zinc-800 flex items-center justify-center overflow-hidden"
                 >
-                  <img
+                  <Image
                     src={`https://i.pravatar.cc/150?u=${i + 10}`}
                     alt="User"
+                    width={48}
+                    height={48}
                     className="w-full h-full object-cover"
                   />
                 </div>

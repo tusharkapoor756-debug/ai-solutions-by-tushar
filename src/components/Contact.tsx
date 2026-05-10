@@ -66,7 +66,7 @@ const Contact = () => {
         <div className="text-center mb-16">
           <h2 className="text-primary text-xs font-bold uppercase tracking-[0.3em] mb-4">Get In Touch</h2>
           <h3 className="text-4xl lg:text-5xl font-bold font-heading">
-            Let's Build Your <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent-purple">AI Future</span>
+            Let&apos;s Build Your <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent-purple">AI Future</span>
           </h3>
         </div>
 

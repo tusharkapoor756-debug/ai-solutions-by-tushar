@@ -28,7 +28,7 @@ const CTASection = () => {
           </h2>
           
           <p className="text-muted-foreground text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
-            Let's build smart AI systems that save time and generate more revenue for you. 
+            Let&apos;s build smart AI systems that save time and generate more revenue for you. 
             Join the future of business automation today.
           </p>
 
