@@ -1,221 +1,110 @@
-"use client";
-
 import React from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, Star, Clock, BarChart3, Users } from "lucide-react";
-import { siteConfig } from "@/config/site";
 import Link from "next/link";
-import Image from "next/image";
+import { ArrowUpRight, ArrowDown } from "lucide-react";
 
 const Hero = () => {
-  const scrollToContact = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const contactElem = document.getElementById("contact");
-    contactElem?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <section id="home" className="relative pt-32 pb-20 overflow-hidden scroll-mt-24">
-      {/* Background Orbs */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -z-10 animate-pulse-slow" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-secondary/20 rounded-full blur-[100px] -z-10 animate-pulse-slow" />
+    <section className="relative pt-12 pb-14 sm:pt-20 sm:pb-20 md:pt-24 md:pb-24 overflow-hidden border-b border-zinc-800/80">
+      {/* Background editorial grid */}
+      <div className="absolute inset-0 editorial-grid pointer-events-none opacity-40" />
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Left Content */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-primary text-xs font-bold uppercase tracking-wider mb-6">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-            </span>
-            AI Automation Experts
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+        {/* Studio Eyebrow metadata */}
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-5 mb-8 md:mb-10 border-b border-zinc-800/80 font-mono text-[11px] sm:text-xs tracking-eyebrow uppercase text-zinc-500">
+          <div className="flex items-center gap-2.5">
+            <span className="w-2 h-2 rounded-full bg-studio-orange" />
+            <span className="text-zinc-300 font-semibold">Independent Studio</span>
+            <span className="text-zinc-600">/</span>
+            <span>Est. 2024</span>
+          </div>
+          <div className="flex items-center gap-4 text-zinc-400">
+            <span className="hidden sm:inline">Design &bull; Systems &bull; Code</span>
+            <span className="text-studio-orange/90 font-medium">Available For Selected Projects</span>
+          </div>
+        </div>
+
+        {/* Hero Main Editorial Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* Main Title & Lead Text */}
+          <div className="lg:col-span-8 space-y-6">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-heading tracking-editorial text-white leading-[1.04] sm:leading-[1.0] break-words">
+              We turn ambitious ideas into{" "}
+              <span className="underline decoration-studio-orange decoration-4 sm:decoration-6 underline-offset-4 sm:underline-offset-8">
+                digital reality
+              </span>
+              .
+            </h1>
+
+            <p className="text-base sm:text-lg md:text-xl text-zinc-400 font-light leading-relaxed max-w-2xl">
+              We design and build websites, custom software and intelligent digital systems that help businesses move forward.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-3 pt-2 sm:pt-4">
+              <Link
+                href="/contact"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:px-7 sm:py-3.5 bg-studio-orange text-white text-xs font-mono tracking-widest uppercase font-bold hover:bg-studio-orange-hover transition-colors"
+              >
+                <span>Start a Project</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/work"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:px-7 sm:py-3.5 bg-zinc-900 border border-zinc-800 text-white text-xs font-mono tracking-widest uppercase hover:bg-zinc-800 transition-colors"
+              >
+                <span>Explore Our Work</span>
+                <ArrowDown className="w-4 h-4 text-zinc-500" />
+              </Link>
+            </div>
           </div>
 
-          <h1 className="text-5xl lg:text-7xl font-bold leading-tight mb-6 font-heading">
-            AI Systems That Help Businesses{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-              Grow Faster
-            </span>
-            <span className="inline-block ml-2 text-primary">⚡</span>
-          </h1>
+          {/* Right Asymmetrical Editorial Sidebar */}
+          <div className="lg:col-span-4 space-y-5 lg:border-l lg:border-zinc-800/80 lg:pl-8 pt-4 lg:pt-0">
+            <div className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 pb-2 border-b border-zinc-900 flex justify-between items-center">
+              <span>Core Specializations</span>
+              <span className="text-zinc-600">03 Areas</span>
+            </div>
 
-          <p className="text-lg text-muted-foreground mb-10 max-w-lg leading-relaxed">
-            {siteConfig.description}
-          </p>
-
-          <div className="flex flex-wrap gap-4 mb-12">
-            <Link 
-              href={siteConfig.cta.bookDemo}
-              target="_blank"
-              className="px-8 py-4 rounded-xl bg-primary text-white font-bold flex items-center gap-2 hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] transition-all transform hover:-translate-y-1"
-            >
-              Book Free AI Demo
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link 
-              href="#contact"
-              onClick={scrollToContact}
-              className="px-8 py-4 rounded-xl bg-white/5 border border-white/10 text-white font-bold flex items-center gap-2 hover:bg-white/10 transition-all transform hover:-translate-y-1"
-            >
-              Discuss Your Project
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
-
-          {/* Trust Section */}
-          <div className="flex items-center gap-6">
-            <div className="flex -space-x-4">
-              {[1, 2, 3, 4].map((i) => (
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-2.5">
+              {[
+                {
+                  code: "01 / WEB",
+                  title: "Bespoke Flagship Platforms",
+                  desc: "Next.js & modern headless architecture.",
+                },
+                {
+                  code: "02 / SYS",
+                  title: "Custom Software & SaaS",
+                  desc: "Full-stack apps, dashboards & portals.",
+                },
+                {
+                  code: "03 / INT",
+                  title: "AI Workflows & Automation",
+                  desc: "Deterministic integrations & pipelines.",
+                },
+              ].map((item) => (
                 <div
-                  key={i}
-                  className="w-12 h-12 rounded-full border-2 border-background bg-zinc-800 flex items-center justify-center overflow-hidden"
+                  key={item.code}
+                  className="p-3.5 bg-zinc-900/60 border border-zinc-800/70 hover:border-zinc-700 transition-colors"
                 >
-                  <Image
-                    src={`https://i.pravatar.cc/150?u=${i + 10}`}
-                    alt="User"
-                    width={48}
-                    height={48}
-                    className="w-full h-full object-cover"
-                  />
+                  <div className="text-[10px] font-mono text-studio-orange mb-1">{item.code}</div>
+                  <div className="text-xs sm:text-sm font-bold text-white mb-0.5">{item.title}</div>
+                  <div className="text-xs text-zinc-400">{item.desc}</div>
                 </div>
               ))}
             </div>
-            <div>
-              <div className="flex gap-0.5 mb-1">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Star key={i} className="w-4 h-4 fill-yellow-500 text-yellow-500" />
-                ))}
-              </div>
-              <p className="text-sm text-white font-medium">
-                Trusted by {siteConfig.stats.trustedBusinesses} businesses
+
+            {/* Studio ethos card */}
+            <div className="p-4 bg-white/[0.02] border border-zinc-800/80">
+              <p className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider mb-1.5">
+                Our Stance
               </p>
-              <p className="text-xs text-muted-foreground">to automate & grow</p>
+              <p className="text-xs text-zinc-300 italic leading-relaxed">
+                &ldquo;No superficial templates. No inflated jargon. Only precision engineering, clear communication, and deliberate digital craftsmanship.&rdquo;
+              </p>
             </div>
           </div>
-        </motion.div>
-
-        {/* Right Mockup */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="relative mt-12 lg:mt-0"
-        >
-          {/* Main Dashboard Mockup */}
-          <div className="relative z-10 glass-card p-4 md:p-6 border-white/20 shadow-2xl scale-90 md:scale-100 origin-center">
-            <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <div className="w-6 h-6 rounded-full bg-primary animate-pulse" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-white">AI Assistant</h3>
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                    <span className="text-[10px] text-green-500 font-bold uppercase tracking-tighter">Online</span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex gap-1">
-                <div className="w-1 h-1 rounded-full bg-white/40" />
-                <div className="w-1 h-1 rounded-full bg-white/40" />
-                <div className="w-1 h-1 rounded-full bg-white/40" />
-              </div>
-            </div>
-
-            <div className="space-y-4 mb-8">
-              <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-white/10 shrink-0" />
-                <div className="bg-white/5 p-3 rounded-2xl rounded-tl-none max-w-[80%] border border-white/10">
-                  <p className="text-sm text-white/80 leading-relaxed">
-                    Hi! 👋 How can I help you today?
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-3 justify-end">
-                <div className="bg-primary/20 p-3 rounded-2xl rounded-tr-none max-w-[80%] border border-primary/30">
-                  <p className="text-sm text-white leading-relaxed">
-                    I need help with your services.
-                  </p>
-                  <span className="text-[10px] text-white/40 mt-1 block">10:30 AM</span>
-                </div>
-                <div className="w-8 h-8 rounded-full bg-primary shrink-0" />
-              </div>
-              <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-white/10 shrink-0" />
-                <div className="bg-white/5 p-3 rounded-2xl rounded-tl-none max-w-[80%] border border-white/10">
-                  <p className="text-sm text-white/80 leading-relaxed">
-                    Sure! I can help you with AI solutions for your business. Would you like to book a demo?
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Type your message..."
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary/50"
-              />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <ArrowRight className="w-4 h-4 text-white" />
-              </button>
-            </div>
-          </div>
-
-          {/* Floating Cards */}
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-10 -left-10 z-20 glass-card p-4 border-white/20 shadow-xl"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-orange-500/20 flex items-center justify-center">
-                <Clock className="w-6 h-6 text-orange-500" />
-              </div>
-              <div>
-                <h4 className="text-lg font-bold text-white">24/7</h4>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">AI Support</p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/2 -right-12 z-20 glass-card p-4 border-white/20 shadow-xl"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center">
-                <BarChart3 className="w-6 h-6 text-green-500" />
-              </div>
-              <div>
-                <h4 className="text-lg font-bold text-white">{siteConfig.stats.leadsIncrease}</h4>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">More Leads</p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            animate={{ y: [0, -15, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-10 left-10 z-20 glass-card p-4 border-white/20 shadow-xl"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center">
-                <Users className="w-6 h-6 text-blue-500" />
-              </div>
-              <div>
-                <h4 className="text-lg font-bold text-white">{siteConfig.stats.clientSatisfaction}</h4>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">Client Satisfaction</p>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -9,51 +9,45 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)"],
-        heading: ["var(--font-outfit)"],
+        sans: ["var(--font-inter)", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+        heading: ["var(--font-outfit)", "var(--font-inter)", "sans-serif"],
+        mono: ["JetBrains Mono", "SFMono-Regular", "Menlo", "monospace"],
       },
       colors: {
-        background: "#030014",
-        primary: {
-          DEFAULT: "#8B5CF6",
-          foreground: "#FFFFFF",
+        background: "#0C0D0E", // Deep studio charcoal-black
+        canvas: "#131518",     // Dark tone card/canvas
+        paper: "#F7F5F0",      // Warm off-white
+        "paper-muted": "#EBE8DF",
+        ink: {
+          900: "#0C0D0E",
+          800: "#17191C",
+          700: "#24272C",
+          600: "#3D4148",
+          400: "#707682",
+          200: "#B4B9C2",
+          100: "#E3E5E8",
         },
-        secondary: {
-          DEFAULT: "#0EA5E9",
-          foreground: "#FFFFFF",
-        },
-        accent: {
-          purple: "#A855F7",
-          blue: "#3B82F6",
-          cyan: "#06B6D4",
-        },
-        muted: {
-          DEFAULT: "rgba(255, 255, 255, 0.1)",
-          foreground: "rgba(255, 255, 255, 0.6)",
+        studio: {
+          orange: "#FF5500",    // Electric orange controlled accent
+          "orange-hover": "#E64D00",
+          "orange-tint": "rgba(255, 85, 0, 0.08)",
+          sand: "#EFECE6",
+          stone: "#2B2E33",
+          border: "#1F2329",
+          "border-light": "#E5E1D8",
         },
       },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "glow-conic": "conic-gradient(from 180deg at 50% 50%, #8B5CF6 0deg, #3B82F6 180deg, #8B5CF6 360deg)",
+      letterSpacing: {
+        editorial: "-0.035em",
+        tightest: "-0.05em",
+        eyebrow: "0.18em",
       },
-      animation: {
-        "pulse-slow": "pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        "float": "float 6s ease-in-out infinite",
-        "glow": "glow 2s ease-in-out infinite alternate",
-      },
-      keyframes: {
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-20px)" },
-        },
-        glow: {
-          "0%": { boxShadow: "0 0 5px rgba(139, 92, 246, 0.5), 0 0 10px rgba(139, 92, 246, 0.3)" },
-          "100%": { boxShadow: "0 0 20px rgba(139, 92, 246, 0.8), 0 0 40px rgba(139, 92, 246, 0.5)" },
-        },
+      borderWidth: {
+        '1.5': '1.5px',
       },
     },
   },
   plugins: [],
 };
+
 export default config;

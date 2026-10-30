@@ -1,56 +1,58 @@
 import { siteConfig } from "./site";
 
 export const seoConfig = {
+  metadataBase: new URL("https://tusharlabs.vercel.app"),
   title: {
-    default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
+    default: "TUSHAR LABS — Independent Digital Solutions & Technology Studio",
+    template: "%s | TUSHAR LABS",
   },
-  description: siteConfig.description,
+  description:
+    "We design and build websites, custom software, and intelligent digital systems that help businesses move forward. An independent studio based in New Delhi, operating globally.",
   keywords: [
-    "AI Chatbots",
-    "WhatsApp Automation",
-    "Website Development",
-    "AI Automation Agency",
-    "AI Solutions",
-    "Business Automation",
-    "Lead Generation AI",
+    "Tushar Labs",
+    "Digital Studio",
+    "Website Design and Development",
+    "Custom Software Studio",
+    "AI Systems Architecture",
+    "SaaS Development",
+    "Full-Stack TypeScript",
+    "Next.js Development Studio",
+    "Independent Technology Studio",
   ],
   authors: [
     {
       name: "Tushar Kapoor",
-      url: "https://tusharkapoor.com",
+      url: "https://tusharlabs.vercel.app",
     },
   ],
-  creator: "Tushar Kapoor",
+  creator: "Tushar Kapoor — Tushar Labs",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    siteName: siteConfig.name,
+    title: "TUSHAR LABS — Independent Digital Solutions & Technology Studio",
+    description:
+      "We design and build websites, custom software, and intelligent digital systems that help businesses move forward.",
+    siteName: "TUSHAR LABS",
     images: [
       {
-        url: siteConfig.ogImage,
+        url: "/og.jpg",
         width: 1200,
         height: 630,
-        alt: siteConfig.name,
+        alt: "TUSHAR LABS — Independent Digital Studio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-    creator: "@tushar",
+    title: "TUSHAR LABS — Independent Digital Solutions & Technology Studio",
+    description:
+      "We design and build websites, custom software, and intelligent digital systems that help businesses move forward.",
+    creator: "@tusharlabs",
   },
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
   },
-  manifest: `${siteConfig.url}/site.webmanifest`,
 };
 
 export type SeoConfig = typeof seoConfig;

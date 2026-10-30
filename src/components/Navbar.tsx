@@ -2,142 +2,138 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, Zap } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/config/site";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-      
-      // Active section highlighting
-      const sections = siteConfig.navigation.map(nav => nav.href.replace("#", ""));
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top >= 0 && rect.top <= 200) {
-            setActiveSection(sectionId);
-            break;
-          }
-        }
-      }
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith("#")) {
-      e.preventDefault();
-      const targetId = href.replace("#", "");
-      const elem = document.getElementById(targetId);
-      elem?.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
     }
+    return pathname.startsWith(href);
   };
 
   return (
-    <nav
+    <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4",
-        isScrolled ? "bg-background/80 backdrop-blur-lg border-b border-white/10" : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-200",
+        isScrolled
+          ? "bg-[#0C0D0E]/95 backdrop-blur-md border-b border-white/[0.08] py-3.5"
+          : "bg-[#0C0D0E]/80 backdrop-blur-sm sm:bg-transparent py-4 sm:py-5"
       )}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Logo */}
-        <Link 
-          href="/" 
-          onClick={(e) => handleNavClick(e, "#home")}
-          className="flex items-center gap-2 group"
-        >
-          <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all">
-            <Zap className="text-white w-6 h-6 fill-white" />
-          </div>
-          <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
-            {siteConfig.name.split(" ").slice(0, 2).join(" ")} <span className="text-primary">{siteConfig.name.split(" ").slice(2).join(" ")}</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between">
+        {/* Brand Wordmark */}
+        <Link href="/" className="group flex items-center gap-2.5">
+          <span className="font-heading font-black text-lg sm:text-xl tracking-tight text-white uppercase group-hover:text-studio-orange transition-colors">
+            Tushar Labs
+          </span>
+          <span className="hidden sm:inline-block text-[10px] font-mono text-zinc-500 uppercase tracking-widest pl-2.5 border-l border-zinc-800">
+            Studio
           </span>
         </Link>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
-          {siteConfig.navigation.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-white",
-                activeSection === link.href.replace("#", "") ? "text-primary" : "text-muted-foreground"
-              )}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </div>
-
-        {/* CTA Button */}
-        <div className="hidden md:block">
-          <Link
-            href={siteConfig.cta.bookDemo}
-            target="_blank"
-            className="relative group overflow-hidden px-6 py-2.5 rounded-full bg-primary text-white font-medium flex items-center gap-2 transition-all hover:shadow-[0_0_20px_rgba(139,92,246,0.4)]"
-          >
-            <span className="relative z-10">Book Free AI Demo</span>
-            <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent-purple opacity-0 group-hover:opacity-100 transition-opacity" />
-          </Link>
-        </div>
-
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-white p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? <X /> : <Menu />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="absolute top-full left-0 right-0 bg-background border-b border-white/10 p-6 md:hidden flex flex-col gap-4 overflow-hidden"
-          >
-            {siteConfig.navigation.map((link) => (
+        {/* Desktop Nav Items */}
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+          {siteConfig.navigation.map((link) => {
+            const active = isActive(link.href);
+            return (
               <Link
                 key={link.name}
                 href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
                 className={cn(
-                  "text-lg font-medium transition-colors hover:text-white py-2",
-                  activeSection === link.href.replace("#", "") ? "text-primary" : "text-muted-foreground"
+                  "text-xs font-mono tracking-widest uppercase transition-colors py-1 relative",
+                  active
+                    ? "text-white font-bold after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-studio-orange"
+                    : "text-zinc-400 hover:text-white"
                 )}
               >
                 {link.name}
               </Link>
-            ))}
-            <Link 
-              href={siteConfig.cta.bookDemo}
-              target="_blank"
-              className="w-full mt-4 bg-primary text-white py-3 rounded-xl font-medium text-center"
+            );
+          })}
+        </nav>
+
+        {/* Action Button */}
+        <div className="hidden md:flex items-center gap-4">
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest px-4 py-2 bg-white text-zinc-950 font-bold hover:bg-studio-orange hover:text-white transition-colors"
+          >
+            Start a Project
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        {/* Mobile menu trigger - 44px min touch target */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden text-white p-2.5 -mr-2 hover:text-studio-orange transition-colors focus:outline-none"
+          aria-label="Toggle menu"
+          aria-expanded={isMobileMenuOpen}
+        >
+          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu Drawer */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-[#0C0D0E] border-b border-zinc-800 px-5 py-6 flex flex-col gap-3 animate-in fade-in slide-in-from-top-2 duration-150">
+          <nav className="flex flex-col gap-1">
+            <Link
+              href="/"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={cn(
+                "text-sm font-mono uppercase tracking-wider py-2.5 border-b border-zinc-900 flex items-center justify-between",
+                pathname === "/" ? "text-studio-orange font-bold" : "text-zinc-300"
+              )}
             >
-              Book Free AI Demo
+              <span>Home</span>
+              <span className="text-zinc-600 text-xs">&rarr;</span>
             </Link>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+            {siteConfig.navigation.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "text-sm font-mono uppercase tracking-wider py-2.5 border-b border-zinc-900 flex items-center justify-between",
+                    active ? "text-studio-orange font-bold" : "text-zinc-300 hover:text-studio-orange"
+                  )}
+                >
+                  <span>{link.name}</span>
+                  <span className="text-zinc-600 text-xs">&rarr;</span>
+                </Link>
+              );
+            })}
+          </nav>
+          <Link
+            href="/contact"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="inline-flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest px-5 py-3.5 bg-studio-orange text-white font-bold mt-3"
+          >
+            Start a Project
+            <ArrowUpRight className="w-4 h-4" />
+          </Link>
+        </div>
+      )}
+    </header>
   );
 };
 
