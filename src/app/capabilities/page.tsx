@@ -81,101 +81,116 @@ export default function CapabilitiesPage() {
   ];
 
   return (
-    <main className="min-h-screen py-12 sm:py-16 md:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-12 sm:space-y-16">
-        {/* Header */}
-        <div className="border-b border-zinc-800 pb-8 space-y-4">
-          <span className="text-[11px] font-mono tracking-eyebrow uppercase text-studio-orange block">
-            Technical Depth
-          </span>
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-heading text-white tracking-editorial">
-            Engineering Capabilities.
+    <main className="min-h-screen bg-void">
+
+      {/* Hero */}
+      <section className="relative py-20 sm:py-24 md:py-28 border-b border-white/[0.07] overflow-hidden">
+        <div className="absolute inset-0 ambient-bg pointer-events-none" />
+        <div className="absolute inset-0 orange-grid pointer-events-none opacity-60" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 space-y-5">
+          <span className="eyebrow">Technical Depth</span>
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold text-prose-primary tracking-editorial leading-none">
+            Engineering<br />
+            <span className="gradient-text">Capabilities.</span>
           </h1>
-          <p className="text-sm sm:text-base text-zinc-400 font-light max-w-2xl leading-relaxed">
+          <p className="text-sm sm:text-base text-prose-secondary font-light max-w-2xl leading-relaxed">
             We reject the vanity wall of floating corporate logos. Below is an honest, production-verified inventory of the tools, frameworks, and architecture patterns we employ to deliver real systems.
           </p>
         </div>
+      </section>
 
-        {/* Capability Groups Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {capabilityGroups.map((group, idx) => (
-            <div
-              key={idx}
-              className="p-6 sm:p-8 bg-[#141619] border border-zinc-800/80 hover:border-zinc-700 transition-colors flex flex-col justify-between space-y-6"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
-                  <span className="text-xs font-mono text-studio-orange font-bold">
-                    DOMAIN [0{idx + 1}]
-                  </span>
-                  <span className="text-[10px] font-mono uppercase text-zinc-500">
-                    Production Verified
-                  </span>
-                </div>
+      {/* Capability Groups */}
+      <section className="py-14 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.05] border border-white/[0.05] rounded-sm overflow-hidden">
+            {capabilityGroups.map((group, idx) => (
+              <div
+                key={idx}
+                className="p-6 sm:p-8 bg-surface hover:bg-raised transition-colors flex flex-col justify-between space-y-5 relative group"
+              >
+                {/* Orange top accent on hover */}
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-brand-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
 
-                <h2 className="text-xl font-bold text-white font-heading">
-                  {group.title}
-                </h2>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between border-b border-white/[0.07] pb-3">
+                    <span className="text-[9px] font-mono text-brand-orange font-bold tracking-eyebrow uppercase">
+                      DOMAIN [0{idx + 1}]
+                    </span>
+                    <span className="text-[9px] font-mono uppercase text-prose-muted">
+                      Production Verified
+                    </span>
+                  </div>
 
-                <p className="text-xs text-zinc-400 font-light leading-relaxed">
-                  {group.tagline}
-                </p>
+                  <h2 className="text-lg font-display font-bold text-prose-primary">
+                    {group.title}
+                  </h2>
 
-                {/* Primary Tools */}
-                <div className="pt-2">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 block mb-2">
-                    Core Stack
-                  </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {group.items.map((tech, tIdx) => (
-                      <span
-                        key={tIdx}
-                        className="text-xs font-mono px-2.5 py-1 bg-zinc-900 text-zinc-300 border border-zinc-800"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  <p className="text-xs text-prose-dim font-light leading-relaxed">
+                    {group.tagline}
+                  </p>
+
+                  {/* Tech badges */}
+                  <div>
+                    <span className="text-[9px] font-mono uppercase tracking-eyebrow text-prose-muted block mb-2.5">
+                      Core Stack
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {group.items.map((tech, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="text-[10px] font-mono px-2.5 py-1 bg-void text-prose-secondary border border-white/[0.07] rounded-sm"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Practices */}
+                  <div>
+                    <span className="text-[9px] font-mono uppercase tracking-eyebrow text-prose-muted block mb-2.5">
+                      Standards & Practices
+                    </span>
+                    <ul className="space-y-1.5">
+                      {group.practices.map((p, pIdx) => (
+                        <li key={pIdx} className="flex items-start gap-2 text-[11px] text-prose-secondary font-mono">
+                          <span className="text-brand-orange mt-0.5">▸</span>
+                          <span>{p}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-
-                {/* Specific Engineering Practices */}
-                <div className="pt-2">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 block mb-2">
-                    Standards &amp; Practices
-                  </span>
-                  <ul className="space-y-1.5 text-xs text-zinc-400 font-mono">
-                    {group.practices.map((p, pIdx) => (
-                      <li key={pIdx} className="flex items-start gap-2">
-                        <span className="text-studio-orange">&bull;</span>
-                        <span>{p}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom Banner */}
-        <div className="p-8 bg-[#141619] border border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-          <div className="space-y-1">
-            <h3 className="text-lg font-bold text-white font-heading">
-              Have unique architectural requirements?
-            </h3>
-            <p className="text-xs sm:text-sm text-zinc-400 font-light">
-              We frequently integrate specialized APIs, self-hosted LLM endpoints, and legacy databases.
-            </p>
+            ))}
           </div>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-studio-orange text-white text-xs font-mono tracking-widest uppercase font-bold hover:bg-studio-orange-hover transition-colors shrink-0"
-          >
-            <span>Discuss Architecture</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </Link>
         </div>
-      </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="py-12 sm:py-16 border-t border-white/[0.07] bg-surface relative overflow-hidden">
+        <div className="absolute inset-0 ambient-bg pointer-events-none opacity-50" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+          <div className="p-8 sm:p-10 bg-void border border-brand-orange/20 rounded-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+            <div className="space-y-2">
+              <h3 className="text-lg sm:text-xl font-display font-bold text-prose-primary">
+                Have unique architectural requirements?
+              </h3>
+              <p className="text-sm text-prose-secondary font-light">
+                We frequently integrate specialized APIs, self-hosted LLM endpoints, and legacy databases.
+              </p>
+            </div>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-7 py-4 bg-brand-orange text-white text-xs font-mono tracking-widest uppercase font-bold hover:bg-brand-hover transition-colors shrink-0 rounded-sm shadow-lg shadow-brand-orange/20"
+            >
+              <span>Discuss Architecture</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
     </main>
   );
 }

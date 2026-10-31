@@ -177,7 +177,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-20 md:py-24 border-b border-zinc-800/80 bg-[#0F1012] relative">
+    <section id="contact" className="py-16 sm:py-20 md:py-24 border-b border-white/[0.07] bg-surface relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Metadata / Details */}
@@ -240,10 +240,10 @@ const Contact = () => {
           </div>
 
           {/* Right Form */}
-          <div className="lg:col-span-7 bg-[#141619] border border-zinc-800 p-5 sm:p-8">
+          <div className="lg:col-span-7 bg-raised border border-white/[0.09] rounded-sm p-5 sm:p-8">
             {submitted ? (
               <div className="py-8 sm:py-10 text-center space-y-3">
-                <div className="w-10 h-10 mx-auto bg-studio-orange/20 border border-studio-orange flex items-center justify-center text-studio-orange">
+                <div className="w-10 h-10 mx-auto bg-brand-dim border border-brand-orange/40 flex items-center justify-center text-brand-orange rounded-sm">
                   <CheckCircle2 className="w-5 h-5" />
                 </div>
                 <h3 className="text-xl font-bold text-white">Inquiry Forwarded</h3>
@@ -271,7 +271,7 @@ const Contact = () => {
                       placeholder="e.g. Alex Mercer"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-[#0C0D0E] border border-zinc-800 px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-studio-orange transition-colors"
+                      className="w-full bg-void border border-white/[0.09] rounded-sm px-3.5 py-2.5 text-sm text-prose-primary placeholder:text-prose-muted focus:outline-none focus:border-brand-orange transition-colors"
                     />
                   </div>
 
@@ -284,7 +284,7 @@ const Contact = () => {
                       placeholder="Company name or URL"
                       value={formData.businessName}
                       onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
-                      className="w-full bg-[#0C0D0E] border border-zinc-800 px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-studio-orange transition-colors"
+                      className="w-full bg-void border border-white/[0.09] rounded-sm px-3.5 py-2.5 text-sm text-prose-primary placeholder:text-prose-muted focus:outline-none focus:border-brand-orange transition-colors"
                     />
                   </div>
                 </div>
@@ -301,7 +301,7 @@ const Contact = () => {
                       placeholder="alex@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-[#0C0D0E] border border-zinc-800 px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-studio-orange transition-colors"
+                      className="w-full bg-void border border-white/[0.09] rounded-sm px-3.5 py-2.5 text-sm text-prose-primary placeholder:text-prose-muted focus:outline-none focus:border-brand-orange transition-colors"
                     />
                   </div>
 
@@ -317,7 +317,7 @@ const Contact = () => {
                           setCountryCode(e.target.value);
                           setPhoneError("");
                         }}
-                        className="w-28 sm:w-32 shrink-0 bg-[#0C0D0E] border border-zinc-800 px-2.5 py-2.5 text-xs text-white focus:outline-none focus:border-studio-orange transition-colors font-mono"
+                        className="w-28 sm:w-32 shrink-0 bg-void border border-white/[0.09] rounded-sm px-2.5 py-2.5 text-xs text-prose-primary focus:outline-none focus:border-brand-orange transition-colors font-mono"
                         aria-label="Country calling code"
                       >
                         {COUNTRY_CALLING_CODES.map((c) => (
@@ -335,9 +335,9 @@ const Contact = () => {
                           placeholder={selectedCountry.placeholder}
                           value={phone}
                           onChange={(e) => handlePhoneChange(e.target.value)}
-                          className={`w-full bg-[#0C0D0E] border ${
-                            phoneError ? "border-red-500/80 focus:border-red-500" : "border-zinc-800 focus:border-studio-orange"
-                          } px-3.5 py-2.5 text-sm text-white focus:outline-none transition-colors font-mono`}
+                          className={`w-full bg-void border rounded-sm ${
+                            phoneError ? "border-red-500/80 focus:border-red-500" : "border-white/[0.09] focus:border-brand-orange"
+                          } px-3.5 py-2.5 text-sm text-prose-primary placeholder:text-prose-muted focus:outline-none transition-colors font-mono`}
                         />
                       </div>
                     </div>
@@ -360,7 +360,7 @@ const Contact = () => {
                     <select
                       value={currency}
                       onChange={(e) => handleCurrencyChange(e.target.value as CurrencyCode)}
-                      className="w-full bg-[#0C0D0E] border border-zinc-800 px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-studio-orange transition-colors font-mono"
+                      className="w-full bg-void border border-white/[0.09] rounded-sm px-3.5 py-2.5 text-sm text-prose-primary focus:outline-none focus:border-brand-orange transition-colors font-mono"
                     >
                       {Object.values(CURRENCIES).map((c) => (
                         <option key={c.code} value={c.code}>
@@ -377,7 +377,7 @@ const Contact = () => {
                     <select
                       value={budget}
                       onChange={(e) => setBudget(e.target.value)}
-                      className="w-full bg-[#0C0D0E] border border-zinc-800 px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-studio-orange transition-colors font-mono"
+                      className="w-full bg-void border border-white/[0.09] rounded-sm px-3.5 py-2.5 text-sm text-prose-primary focus:outline-none focus:border-brand-orange transition-colors font-mono"
                     >
                       {CURRENCIES[currency].budgets.map((b) => (
                         <option key={b} value={b}>
@@ -396,7 +396,7 @@ const Contact = () => {
                   <select
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    className="w-full bg-[#0C0D0E] border border-zinc-800 px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-studio-orange transition-colors"
+                    className="w-full bg-void border border-white/[0.09] rounded-sm px-3.5 py-2.5 text-sm text-prose-primary focus:outline-none focus:border-brand-orange transition-colors"
                   >
                     <option value="Website Design & Development">Website Design & Development</option>
                     <option value="Custom Software Development">Custom Software Development</option>
@@ -417,7 +417,7 @@ const Contact = () => {
                     placeholder="Tell us about your objectives, key requirements, target timeline, or reference systems..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-[#0C0D0E] border border-zinc-800 px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-studio-orange transition-colors resize-none"
+                    className="w-full bg-void border border-white/[0.09] rounded-sm px-3.5 py-2.5 text-sm text-prose-primary placeholder:text-prose-muted focus:outline-none focus:border-brand-orange transition-colors resize-none"
                   />
                 </div>
 

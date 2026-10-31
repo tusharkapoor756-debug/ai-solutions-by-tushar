@@ -10,17 +10,20 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen py-6 sm:py-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 mb-6">
-        <span className="text-[11px] font-mono tracking-eyebrow uppercase text-studio-orange block mb-1">
-          Direct Engagement
-        </span>
-        <h1 className="text-3xl sm:text-5xl font-black font-heading text-white tracking-editorial">
-          Start a Project.
-        </h1>
-        <p className="text-xs sm:text-sm text-zinc-400 font-light max-w-xl leading-relaxed mt-2">
-          Tell us about your objectives, timeline, and budget. Every brief is reviewed directly by our engineering leads with a response guaranteed within 24 hours.
-        </p>
+    <main className="min-h-screen bg-void">
+      {/* Hero header */}
+      <div className="relative border-b border-white/[0.07] py-16 sm:py-20 overflow-hidden">
+        <div className="absolute inset-0 ambient-bg pointer-events-none" />
+        <div className="absolute inset-0 editorial-grid pointer-events-none opacity-50" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 space-y-4">
+          <span className="eyebrow">Direct Engagement</span>
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold text-prose-primary tracking-editorial leading-none">
+            Start a Project.
+          </h1>
+          <p className="text-sm sm:text-base text-prose-secondary font-light max-w-xl leading-relaxed">
+            Tell us about your objectives, timeline, and budget. Every brief is reviewed directly by our engineering leads with a response guaranteed within 24 hours.
+          </p>
+        </div>
       </div>
 
       {/* Embedded Contact Component with Currency + Phone + WhatsApp */}

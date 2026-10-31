@@ -14,41 +14,49 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 24);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
   const isActive = (href: string) => {
-    if (href === "/") {
-      return pathname === "/";
-    }
+    if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   };
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-200",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-[#0C0D0E]/95 backdrop-blur-md border-b border-white/[0.08] py-3.5"
-          : "bg-[#0C0D0E]/80 backdrop-blur-sm sm:bg-transparent py-4 sm:py-5"
+          ? "bg-void/95 backdrop-blur-xl border-b border-white/[0.07] py-3"
+          : "bg-transparent py-4 sm:py-5"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between">
+
         {/* Brand Wordmark */}
-        <Link href="/" className="group flex items-center gap-2.5">
-          <span className="font-heading font-black text-lg sm:text-xl tracking-tight text-white uppercase group-hover:text-studio-orange transition-colors">
+        <Link href="/" className="group flex items-center gap-2.5 shrink-0">
+          {/* Orange mark */}
+          <div className="w-7 h-7 bg-brand-orange flex items-center justify-center shrink-0 group-hover:bg-brand-bright transition-colors duration-200">
+            <span className="text-white font-heading font-black text-xs leading-none">TL</span>
+          </div>
+          <span className="font-heading font-black text-base sm:text-lg tracking-tight text-prose-primary uppercase group-hover:text-brand-orange transition-colors duration-200">
             Tushar Labs
           </span>
-          <span className="hidden sm:inline-block text-[10px] font-mono text-zinc-500 uppercase tracking-widest pl-2.5 border-l border-zinc-800">
+          <span className="hidden sm:inline-block text-[9px] font-mono text-prose-dim uppercase tracking-widest pl-2.5 border-l border-white/10">
             Studio
           </span>
         </Link>
 
-        {/* Desktop Nav Items */}
-        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-5 lg:gap-7">
           {siteConfig.navigation.map((link) => {
             const active = isActive(link.href);
             return (
@@ -56,10 +64,10 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "text-xs font-mono tracking-widest uppercase transition-colors py-1 relative",
+                  "text-[11px] font-mono tracking-widest uppercase transition-all duration-200 py-1 relative",
                   active
-                    ? "text-white font-bold after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-studio-orange"
-                    : "text-zinc-400 hover:text-white"
+                    ? "text-prose-primary font-bold after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-brand-orange"
+                    : "text-prose-secondary hover:text-prose-primary"
                 )}
               >
                 {link.name}
@@ -68,42 +76,42 @@ const Navbar = () => {
           })}
         </nav>
 
-        {/* Action Button */}
-        <div className="hidden md:flex items-center gap-4">
+        {/* CTA Button */}
+        <div className="hidden md:flex items-center gap-3">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest px-4 py-2 bg-white text-zinc-950 font-bold hover:bg-studio-orange hover:text-white transition-colors"
+            className="inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-widest px-4 py-2.5 bg-brand-orange text-white font-bold hover:bg-brand-hover transition-colors duration-200 rounded-sm shadow-md shadow-brand-orange/20"
           >
             Start a Project
             <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
-        {/* Mobile menu trigger - 44px min touch target */}
+        {/* Mobile toggle */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-white p-2.5 -mr-2 hover:text-studio-orange transition-colors focus:outline-none"
+          className="md:hidden text-prose-primary p-2.5 -mr-2 hover:text-brand-orange transition-colors focus:outline-none"
           aria-label="Toggle menu"
           aria-expanded={isMobileMenuOpen}
         >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Drawer */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-[#0C0D0E] border-b border-zinc-800 px-5 py-6 flex flex-col gap-3 animate-in fade-in slide-in-from-top-2 duration-150">
-          <nav className="flex flex-col gap-1">
+        <div className="md:hidden bg-surface/98 backdrop-blur-xl border-b border-white/[0.07] px-4 py-6 flex flex-col gap-3 animate-slide-in-top">
+          <nav className="flex flex-col gap-0.5">
             <Link
               href="/"
               onClick={() => setIsMobileMenuOpen(false)}
               className={cn(
-                "text-sm font-mono uppercase tracking-wider py-2.5 border-b border-zinc-900 flex items-center justify-between",
-                pathname === "/" ? "text-studio-orange font-bold" : "text-zinc-300"
+                "text-sm font-mono uppercase tracking-wider py-3 border-b border-white/[0.06] flex items-center justify-between",
+                pathname === "/" ? "text-brand-orange font-bold" : "text-prose-secondary"
               )}
             >
               <span>Home</span>
-              <span className="text-zinc-600 text-xs">&rarr;</span>
+              <span className="text-prose-dim text-xs">→</span>
             </Link>
             {siteConfig.navigation.map((link) => {
               const active = isActive(link.href);
@@ -113,12 +121,12 @@ const Navbar = () => {
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={cn(
-                    "text-sm font-mono uppercase tracking-wider py-2.5 border-b border-zinc-900 flex items-center justify-between",
-                    active ? "text-studio-orange font-bold" : "text-zinc-300 hover:text-studio-orange"
+                    "text-sm font-mono uppercase tracking-wider py-3 border-b border-white/[0.06] flex items-center justify-between",
+                    active ? "text-brand-orange font-bold" : "text-prose-secondary hover:text-prose-primary"
                   )}
                 >
                   <span>{link.name}</span>
-                  <span className="text-zinc-600 text-xs">&rarr;</span>
+                  <span className="text-prose-dim text-xs">→</span>
                 </Link>
               );
             })}
@@ -126,7 +134,7 @@ const Navbar = () => {
           <Link
             href="/contact"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="inline-flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest px-5 py-3.5 bg-studio-orange text-white font-bold mt-3"
+            className="inline-flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest px-5 py-3.5 bg-brand-orange text-white font-bold mt-3 hover:bg-brand-hover transition-colors rounded-sm"
           >
             Start a Project
             <ArrowUpRight className="w-4 h-4" />

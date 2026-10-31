@@ -330,7 +330,7 @@ export const studioProjects: ProjectDetail[] = [
     category: "AI Business Operating System",
     year: "2024",
     status: "Concept / Architecture",
-    statusColor: "text-purple-400 bg-purple-950/40 border-purple-800/40",
+    statusColor: "text-zinc-400 bg-zinc-900/60 border-zinc-700/50",
     summary:
       "A conceptual AI-powered business workspace unifying multi-channel client inquiries, project task automation, and central database architecture.",
     problem:
@@ -348,7 +348,7 @@ export const studioProjects: ProjectDetail[] = [
     tech: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "n8n Architecture"],
     challenges:
       "Synthesizing high-density data visualization with an un-cluttered, high-contrast studio interface.",
-    accent: "#A855F7",
+    accent: "#FF6B00",
     nextProject: { id: "kitchenzap", title: "KitchenZap" },
   },
 ];

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowUpRight, ArrowLeft, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, ArrowLeft, CheckCircle2, ChevronRight } from "lucide-react";
 import { studioServices } from "@/config/site";
 
 interface PageProps {
@@ -29,123 +29,210 @@ export default function ServiceDetailPage({ params }: PageProps) {
   const service = studioServices.find((s) => s.slug === params.slug);
   if (!service) notFound();
 
+  const otherServices = studioServices.filter((s) => s.slug !== service.slug);
+
   return (
-    <main className="min-h-screen py-12 sm:py-16 md:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-12 sm:space-y-16">
-        {/* Navigation Breadcrumb */}
-        <div>
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-zinc-500 hover:text-white transition-colors"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to All Services</span>
-          </Link>
-        </div>
+    <main className="min-h-screen bg-void">
 
-        {/* Hero Header */}
-        <div className="border-b border-zinc-800 pb-8 space-y-4">
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-mono text-studio-orange">SERVICE {service.index}</span>
-            <span className="text-zinc-600 font-mono text-xs">/</span>
-            <span className="text-xs font-mono text-zinc-400 uppercase">Dedicated Practice</span>
+      {/* Breadcrumb */}
+      <div className="border-b border-white/[0.07] py-4 bg-surface/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-eyebrow text-prose-dim">
+            <Link href="/services" className="hover:text-prose-secondary transition-colors flex items-center gap-1.5">
+              <ArrowLeft className="w-3 h-3" />
+              <span>All Services</span>
+            </Link>
+            <ChevronRight className="w-3 h-3 text-prose-muted" />
+            <span className="text-prose-secondary">{service.title}</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-heading text-white tracking-editorial">
-            {service.title}
-          </h1>
-          <p className="text-base sm:text-lg text-zinc-300 font-light max-w-3xl leading-relaxed">
-            {service.tagline}
-          </p>
         </div>
+      </div>
 
-        {/* Detailed Breakdown */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-          {/* Main Content */}
-          <div className="lg:col-span-8 space-y-10">
-            <div className="space-y-4">
-              <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400">
-                Core Approach
-              </h2>
-              <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-light">
+      {/* Hero */}
+      <section className="relative py-16 sm:py-20 md:py-24 border-b border-white/[0.07] overflow-hidden">
+        <div className="absolute inset-0 ambient-bg pointer-events-none" />
+        <div className="absolute inset-0 orange-grid pointer-events-none opacity-50" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="lg:col-span-8 space-y-4">
+              <div className="flex items-center gap-3">
+                <span className="text-4xl sm:text-5xl font-display font-extrabold text-brand-orange/20 leading-none tracking-tightest">
+                  {service.index}
+                </span>
+                <span className="eyebrow">Practice Area</span>
+              </div>
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold text-prose-primary tracking-editorial leading-tight">
+                {service.title}
+              </h1>
+              <p className="text-base sm:text-lg text-prose-secondary font-light max-w-2xl leading-relaxed">
+                {service.tagline}
+              </p>
+              <p className="text-sm text-prose-dim max-w-2xl leading-relaxed">
                 {service.leadParagraph}
               </p>
             </div>
 
-            {/* Deliverables */}
-            <div className="p-6 bg-[#141619] border border-zinc-800 space-y-4">
-              <h2 className="text-xs font-mono uppercase tracking-wider text-studio-orange">
-                What We Deliver
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {service.deliverables.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
-                    <CheckCircle2 className="w-4 h-4 text-studio-orange shrink-0 mt-0.5" />
-                    <span>{item}</span>
+            {/* Quick action card */}
+            <div className="lg:col-span-4">
+              <div className="p-5 bg-surface border border-brand-orange/20 rounded-sm space-y-4">
+                <div className="text-[10px] font-mono uppercase tracking-eyebrow text-brand-orange border-b border-white/[0.07] pb-3">
+                  Engagement Overview
+                </div>
+                <div className="space-y-2 text-xs font-mono text-prose-dim">
+                  <div className="flex justify-between py-1 border-b border-white/[0.05]">
+                    <span>Turnaround</span>
+                    <span className="text-prose-secondary">2 – 6 Weeks Typ.</span>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Key Capabilities */}
-            <div className="space-y-4">
-              <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400">
-                Key Technical Capabilities
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {service.keyCapabilities.map((cap, idx) => (
-                  <div key={idx} className="p-3.5 bg-zinc-900/60 border border-zinc-800/80 font-mono text-xs text-zinc-300">
-                    <span className="text-studio-orange mr-2">&bull;</span>
-                    {cap}
+                  <div className="flex justify-between py-1 border-b border-white/[0.05]">
+                    <span>Methodology</span>
+                    <span className="text-prose-secondary">Fixed Scope / Sprint</span>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Use Cases */}
-            <div className="space-y-4">
-              <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400">
-                Target Client Scenarios
-              </h2>
-              <div className="space-y-3">
-                {service.useCases.map((uc, idx) => (
-                  <div key={idx} className="p-4 bg-[#141619] border border-zinc-800 space-y-1">
-                    <div className="text-sm font-bold text-white font-mono">{uc.title}</div>
-                    <div className="text-xs text-zinc-400 leading-relaxed font-light">{uc.desc}</div>
+                  <div className="flex justify-between py-1 border-b border-white/[0.05]">
+                    <span>Ownership</span>
+                    <span className="text-prose-secondary">100% IP Transfer</span>
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Sticky Sidebar Action */}
-          <div className="lg:col-span-4 space-y-6">
-            <div className="sticky top-28 p-6 bg-[#141619] border border-zinc-800 space-y-5">
-              <div className="text-xs font-mono uppercase tracking-widest text-zinc-400 pb-2 border-b border-zinc-800">
-                Project Intake
-              </div>
-              <p className="text-xs text-zinc-400 leading-relaxed font-light">
-                Ready to initiate a {service.title} engagement? Connect with our technical team to discuss architecture, milestones, and scope.
-              </p>
-              <div className="space-y-2.5">
+                </div>
                 <Link
                   href="/contact"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 bg-studio-orange text-white text-xs font-mono tracking-widest uppercase font-bold hover:bg-studio-orange-hover transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 bg-brand-orange text-white text-xs font-mono tracking-widest uppercase font-bold hover:bg-brand-hover transition-colors rounded-sm shadow-md shadow-brand-orange/20"
                 >
-                  <span>Start This Project</span>
-                  <ArrowUpRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="/work"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-mono tracking-widest uppercase hover:text-white hover:bg-zinc-800 transition-colors"
-                >
-                  <span>View Case Studies</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500" />
+                  <span>Inquire for {service.title.split(" ")[0]}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Main content grid */}
+      <section className="py-16 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+
+            {/* Left 8 cols: Deliverables + Capabilities + Use Cases */}
+            <div className="lg:col-span-8 space-y-14">
+
+              {/* Scope & Deliverables */}
+              <div className="space-y-6">
+                <div>
+                  <span className="eyebrow block mb-2">Detailed Scope</span>
+                  <h2 className="text-2xl sm:text-3xl font-display font-bold text-prose-primary tracking-tight">
+                    What We Engineer & Deliver.
+                  </h2>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {service.deliverables.map((d, idx) => (
+                    <div
+                      key={idx}
+                      className="p-4 bg-surface border border-white/[0.07] rounded-sm flex items-start gap-3"
+                    >
+                      <CheckCircle2 className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
+                      <span className="text-xs text-prose-secondary leading-relaxed">{d}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Key capabilities */}
+              <div className="space-y-6">
+                <div>
+                  <span className="eyebrow block mb-2">Technical Standards</span>
+                  <h2 className="text-2xl sm:text-3xl font-display font-bold text-prose-primary tracking-tight">
+                    Capabilities & Architecture.
+                  </h2>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {service.keyCapabilities.map((cap, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3.5 bg-surface border border-white/[0.07] rounded-sm font-mono text-xs text-prose-secondary hover:border-brand-orange/30 transition-colors"
+                    >
+                      <span className="text-brand-orange mr-2">▸</span>
+                      <span>{cap}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Use cases */}
+              <div className="space-y-6">
+                <div>
+                  <span className="eyebrow block mb-2">Application Scenarios</span>
+                  <h2 className="text-2xl sm:text-3xl font-display font-bold text-prose-primary tracking-tight">
+                    Who This Service Is Built For.
+                  </h2>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {service.useCases.map((uc, idx) => (
+                    <div
+                      key={idx}
+                      className="p-5 bg-surface border border-white/[0.07] rounded-sm space-y-2 hover:border-brand-orange/25 transition-colors group"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-mono text-brand-orange shrink-0 mt-0.5">
+                          [0{idx + 1}]
+                        </span>
+                        <div className="text-sm font-display font-semibold text-prose-primary group-hover:text-brand-orange transition-colors mb-1">
+                          {uc.title}
+                        </div>
+                      </div>
+                      <p className="text-xs text-prose-dim leading-relaxed font-light">
+                        {uc.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+
+            {/* Right 4 cols: Sticky Sidebar */}
+            <div className="lg:col-span-4 space-y-8">
+              {/* Other services */}
+              <div className="p-5 bg-surface border border-white/[0.07] rounded-sm space-y-3">
+                <div className="text-[10px] font-mono uppercase tracking-eyebrow text-prose-dim pb-2 border-b border-white/[0.06]">
+                  Other Practice Areas
+                </div>
+                <div className="space-y-1.5">
+                  {otherServices.map((s) => (
+                    <Link
+                      key={s.slug}
+                      href={`/services/${s.slug}`}
+                      className="flex items-center justify-between py-2.5 px-3 bg-raised border border-white/[0.05] hover:border-brand-orange/30 transition-colors rounded-sm group"
+                    >
+                      <div>
+                        <div className="text-[9px] font-mono text-brand-orange">SERVICE {s.index}</div>
+                        <div className="text-xs text-prose-secondary group-hover:text-prose-primary transition-colors font-medium">
+                          {s.title}
+                        </div>
+                      </div>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-prose-dim group-hover:text-brand-orange transition-colors" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Inquiry card */}
+              <div className="p-5 bg-brand-dim border border-brand-orange/20 rounded-sm space-y-3">
+                <div className="text-[10px] font-mono uppercase tracking-eyebrow text-brand-orange">Quick Inquiry</div>
+                <p className="text-xs text-prose-secondary font-light leading-relaxed">
+                  Have a project that spans multiple services? We routinely build comprehensive solutions combining web, custom SaaS, and automation.
+                </p>
+                <Link
+                  href="/contact"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 bg-brand-orange text-white text-xs font-mono tracking-widest uppercase font-bold hover:bg-brand-hover transition-colors rounded-sm"
+                >
+                  <span>Submit Inquiry Brief</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
     </main>
   );
 }
