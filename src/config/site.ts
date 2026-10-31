@@ -9,12 +9,12 @@ export const siteConfig = {
   links: {
     linkedin: "https://www.linkedin.com/in/tushar-kapoor-47a9a61b3",
     instagram: "https://www.instagram.com/ai.solution_tushar",
-    whatsapp: "https://wa.me/919667645518?text=Hello%20Tushar%20Labs%2C%20I%20would%20like%20to%20discuss%20a%20project.",
+    whatsapp: "https://wa.me/919315569638?text=Hello%20Tushar%20Labs%2C%20I%20would%20like%20to%20discuss%20a%20project.",
     github: "https://github.com",
   },
   contact: {
     email: "tusharkapoor756@gmail.com",
-    phone: "+91 9667645518",
+    phone: "+91 9315569638",
     whatsappNumber: "+91 9667645518",
     location: "New Delhi, India — Available Globally",
     operatingHours: "Mon — Fri / 09:00 — 18:00 IST",
