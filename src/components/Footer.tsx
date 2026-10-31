@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { TLMark } from "@/components/BrandLogo";
 
 const Footer = () => {
   return (
@@ -11,15 +12,14 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="space-y-4 max-w-xl">
-              {/* Brand */}
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 bg-brand-orange flex items-center justify-center rounded-sm shrink-0">
-                  <span className="text-white font-heading font-black text-sm leading-none">TL</span>
-                </div>
+              {/* Brand Logo with Interlocking TL Logo */}
+              <div className="flex items-center gap-3">
+                <TLMark className="w-9 h-8 shrink-0" />
                 <Link href="/" className="inline-block">
-                  <span className="font-display font-extrabold text-xl tracking-tight text-prose-primary uppercase hover:text-brand-orange transition-colors">
-                    Tushar Labs
-                  </span>
+                  <div className="font-heading font-black text-xl tracking-tight leading-none uppercase">
+                    <span className="text-white">Tushar</span>
+                    <span className="text-brand-orange">Labs</span>
+                  </div>
                 </Link>
               </div>
               <p className="text-sm text-prose-secondary font-light leading-relaxed">

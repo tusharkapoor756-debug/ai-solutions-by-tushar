@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/config/site";
+import { TLMark } from "@/components/BrandLogo";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,15 +42,13 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between">
 
-        {/* Brand Wordmark */}
-        <Link href="/" className="group flex items-center gap-2.5 shrink-0">
-          {/* Orange mark */}
-          <div className="w-7 h-7 bg-brand-orange flex items-center justify-center shrink-0 group-hover:bg-brand-bright transition-colors duration-200">
-            <span className="text-white font-heading font-black text-xs leading-none">TL</span>
+        {/* Brand Wordmark with Interlocking TL Logo */}
+        <Link href="/" className="group flex items-center gap-3 shrink-0">
+          <TLMark className="w-8 h-7 shrink-0 transition-transform duration-200 group-hover:scale-105" />
+          <div className="flex items-center tracking-tight leading-none font-black text-base sm:text-lg font-heading uppercase">
+            <span className="text-white group-hover:text-white transition-colors">Tushar</span>
+            <span className="text-brand-orange group-hover:text-brand-bright transition-colors">Labs</span>
           </div>
-          <span className="font-heading font-black text-base sm:text-lg tracking-tight text-prose-primary uppercase group-hover:text-brand-orange transition-colors duration-200">
-            Tushar Labs
-          </span>
           <span className="hidden sm:inline-block text-[9px] font-mono text-prose-dim uppercase tracking-widest pl-2.5 border-l border-white/10">
             Studio
           </span>

@@ -51,8 +51,10 @@ export const seoConfig = {
     creator: "@tusharlabs",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }, { url: '/favicon.ico' }],
+    apple: '/favicon.svg',
   },
 };
 
 export type SeoConfig = typeof seoConfig;
+
