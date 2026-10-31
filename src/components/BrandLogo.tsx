@@ -3,12 +3,12 @@ import Image from "next/image";
 
 export function TLMark({ className = "w-8 h-8" }: { className?: string }) {
   return (
-    <div className={`relative shrink-0 overflow-hidden rounded-[2px] ${className}`}>
+    <div className={`relative shrink-0 flex items-center justify-center ${className}`}>
       <Image
-        src="/tl-logo-exact.png"
+        src="/tl-logo-transparent.png"
         alt="Tushar Labs Logo"
-        width={100}
-        height={100}
+        width={120}
+        height={120}
         priority
         className="w-full h-full object-contain"
       />

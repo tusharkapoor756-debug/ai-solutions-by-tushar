@@ -15,14 +15,14 @@ export const siteConfig = {
   contact: {
     email: "tusharkapoor756@gmail.com",
     phone: "+91 9315569638",
-    whatsappNumber: "+91 9667645518",
+    whatsappNumber: "+91 9315569638",
     location: "New Delhi, India — Available Globally",
     operatingHours: "Mon — Fri / 09:00 — 18:00 IST",
   },
   cta: {
     startProject: "/contact",
     exploreWork: "/work",
-    whatsappDirect: "https://wa.me/919667645518?text=Hello%20Tushar%20Labs%2C%20I%20would%20like%20to%20start%20a%20project.",
+    whatsappDirect: "https://wa.me/919315569638?text=Hello%20Tushar%20Labs%2C%20I%20would%20like%20to%20start%20a%20project.",
   },
   navigation: [
     { name: "Services", href: "/services" },
