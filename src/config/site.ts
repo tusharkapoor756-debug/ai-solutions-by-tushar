@@ -4,7 +4,7 @@ export const siteConfig = {
   tagline: "Independent Digital Solutions & Technology Studio",
   description:
     "We design and build websites, custom software, and intelligent digital systems that help ambitious businesses move forward.",
-  url: "https://tusharlabs.vercel.app",
+  url: "https://www.tusharlabs.in",
   ogImage: "/og.jpg",
   links: {
     linkedin: "https://www.linkedin.com/in/tushar-kapoor-47a9a61b3",

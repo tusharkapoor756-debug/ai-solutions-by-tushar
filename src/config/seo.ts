@@ -1,7 +1,7 @@
 import { siteConfig } from "./site";
 
 export const seoConfig = {
-  metadataBase: new URL("https://tusharlabs.vercel.app"),
+  metadataBase: new URL("https://www.tusharlabs.in"),
   title: {
     default: "TUSHAR LABS — Web Development & AI Automation Studio Delhi, India",
     template: "%s | TUSHAR LABS",
@@ -45,7 +45,7 @@ export const seoConfig = {
     telephone: false,
   },
   alternates: {
-    canonical: "https://tusharlabs.vercel.app",
+    canonical: "https://www.tusharlabs.in",
   },
   openGraph: {
     type: "website",

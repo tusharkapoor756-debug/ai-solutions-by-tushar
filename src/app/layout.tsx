@@ -33,12 +33,12 @@ const structuredData = {
   "@graph": [
     {
       "@type": "ProfessionalService",
-      "@id": "https://tusharlabs.vercel.app/#organization",
+      "@id": "https://www.tusharlabs.in/#organization",
       name: "Tushar Labs",
       alternateName: "Tushar Labs Digital Studio",
-      url: "https://tusharlabs.vercel.app",
-      logo: "https://tusharlabs.vercel.app/tl-logo-transparent.png",
-      image: "https://tusharlabs.vercel.app/images/pages/capabilities/hero.png",
+      url: "https://www.tusharlabs.in",
+      logo: "https://www.tusharlabs.in/tl-logo-transparent.png",
+      image: "https://www.tusharlabs.in/images/pages/capabilities/hero.png",
       description:
         "Tushar Labs is an independent digital studio based in New Delhi, India specializing in custom website development, SaaS software, and AI workflow automation.",
       address: {
@@ -76,10 +76,10 @@ const structuredData = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://tusharlabs.vercel.app/#website",
-      url: "https://tusharlabs.vercel.app",
+      "@id": "https://www.tusharlabs.in/#website",
+      url: "https://www.tusharlabs.in",
       name: "Tushar Labs",
-      publisher: { "@id": "https://tusharlabs.vercel.app/#organization" },
+      publisher: { "@id": "https://www.tusharlabs.in/#organization" },
     },
   ],
 };

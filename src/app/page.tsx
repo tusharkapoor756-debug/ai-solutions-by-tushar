@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Tushar Labs — Independent Digital Studio",
     description:
       "We build digital systems that actually perform. Websites, custom software, and intelligent automation for ambitious businesses.",
-    url: "https://tusharlabs.vercel.app",
+    url: "https://www.tusharlabs.in",
     type: "website",
   },
 };
