@@ -393,19 +393,17 @@ export default function HomePage() {
       {/* ── TRANSPARENT PRICING ── */}
       <section style={{ background: "hsl(var(--secondary))" }} className="border-b border-border">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
-          <FadeUp className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-14">
-            <div>
-              <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-3">
-                {home.pricing.label}
-              </span>
-              <h2
-                className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                {home.pricing.heading}
-              </h2>
-            </div>
-            <p className="text-sm text-muted-foreground max-w-sm sm:text-right">
+          <FadeUp className="mb-12">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-3">
+              {home.pricing.label}
+            </span>
+            <h2
+              className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground mb-4"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {home.pricing.heading}
+            </h2>
+            <p className="font-mono text-xs italic text-muted-foreground/80 max-w-2xl leading-relaxed">
               {home.pricing.subheading}
             </p>
           </FadeUp>
