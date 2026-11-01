@@ -180,9 +180,9 @@ export const home = {
     plans: [
       {
         id: "starter",
-        name: "High-Converting Website",
+        name: "Website Design & Development",
         tagline: "For businesses wanting more leads & credibility",
-        price: "₹18,000 – ₹28,000*",
+        price: "Starting from ₹18,000*",
         timeline: "Delivered in 7–10 Days",
         features: [
           "Bespoke High-Speed Next.js Design",
@@ -196,9 +196,9 @@ export const home = {
       },
       {
         id: "growth",
-        name: "Full Custom Software / SaaS",
+        name: "Custom Software & SaaS",
         tagline: "For operational platforms, portals & custom tools",
-        price: "₹45,000 – ₹85,000*",
+        price: "Starting from ₹45,000*",
         timeline: "Delivered in 2–4 Weeks",
         features: [
           "Full-Stack TypeScript Architecture",
@@ -214,7 +214,7 @@ export const home = {
         id: "automation",
         name: "AI & Workflow Automation",
         tagline: "For businesses wasting hours on manual tasks",
-        price: "₹25,000 – ₹45,000*",
+        price: "Starting from ₹25,000*",
         timeline: "Delivered in 7–14 Days",
         features: [
           "Automated Lead Capture & Qualification",
@@ -224,6 +224,22 @@ export const home = {
           "Workflow Training & System Handover",
         ],
         cta: "Automate My Business →",
+        popular: false,
+      },
+      {
+        id: "branding",
+        name: "Branding & Digital Design",
+        tagline: "For companies establishing authority & premium identity",
+        price: "Starting from ₹15,000*",
+        timeline: "Delivered in 5–7 Days",
+        features: [
+          "Brand Strategy & Visual Direction",
+          "Full Logo System (SVG, PNG, Dark/Light)",
+          "Typography & Color Tokens Guide",
+          "Social Media Templates Package",
+          "Implementation-Ready Asset Suite",
+        ],
+        cta: "Build Brand Identity →",
         popular: false,
       },
     ],
@@ -301,14 +317,14 @@ export const services = {
       idealClient:
         "Startups, agencies, and businesses that need a professional web presence that converts — not just a brochure site.",
       cta: "Start a Website Project",
-      startingPrice: "Starting from ₹25,000",
+      startingPrice: "Starting from ₹18,000*",
       deliverables: [
         "Custom design (Figma to code)",
         "Responsive across all devices",
         "SEO-optimized structure",
         "CMS integration if needed",
         "Performance optimization",
-        "3 months post-launch support",
+        "Complete source code handover & deployment",
       ],
       stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Figma", "Vercel"],
       process: [
@@ -334,14 +350,14 @@ export const services = {
       idealClient:
         "Operations-heavy businesses, SaaS founders, and teams that need internal tools or customer-facing platforms built right.",
       cta: "Discuss Your Project",
-      startingPrice: "Starting from ₹75,000",
+      startingPrice: "Starting from ₹45,000*",
       deliverables: [
         "Full-stack web application",
         "Database architecture & API design",
         "Authentication & user management",
         "Admin dashboard",
-        "Documentation & deployment",
-        "6 months support",
+        "Production cloud deployment & documentation",
+        "Handover & operational walkthrough",
       ],
       stack: ["Next.js", "Node.js", "TypeScript", "PostgreSQL", "Supabase", "Stripe"],
       process: [
@@ -367,14 +383,14 @@ export const services = {
       idealClient:
         "Growing businesses with repetitive operational bottlenecks — lead handling, customer support, data processing, or fulfillment.",
       cta: "Automate Your Business",
-      startingPrice: "Starting from ₹35,000",
+      startingPrice: "Starting from ₹25,000*",
       deliverables: [
         "Workflow audit & automation map",
         "AI agent or automation build",
         "Integration with existing tools",
         "Testing & quality checks",
         "Documentation & training",
-        "Ongoing optimization",
+        "System handover & pipeline walkthrough",
       ],
       stack: ["n8n", "Make (Integromat)", "OpenAI", "Webhook APIs", "Python", "Zapier"],
       process: [
@@ -400,7 +416,7 @@ export const services = {
       idealClient:
         "Startups establishing their identity, and businesses ready to professionalize their visual presence.",
       cta: "Build Your Brand",
-      startingPrice: "Starting from ₹20,000",
+      startingPrice: "Starting from ₹15,000*",
       deliverables: [
         "Brand strategy & positioning",
         "Logo system (all variations)",
