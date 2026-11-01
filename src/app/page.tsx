@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import FadeUp from "@/components/FadeUp";
 import { home } from "@/lib/content";
@@ -14,6 +15,19 @@ export const metadata: Metadata = {
     url: "https://tusharlabs.vercel.app",
     type: "website",
   },
+};
+
+const serviceImages: Record<string, string> = {
+  web: "/images/pages/services/web-design-hero.png",
+  software: "/images/pages/services/custom-software-hero.png",
+  ai: "/images/pages/services/ai-automation-hero.png",
+  branding: "/images/pages/services/branding-design-hero.png",
+};
+
+const projectImages: Record<string, string> = {
+  kitchenzap: "/images/pages/work/kitchenzap-cover.png",
+  restroex: "/images/pages/work/restroex-cover.png",
+  safaronroads: "/images/pages/work/safaronroads-cover.png",
 };
 
 export default function HomePage() {
@@ -120,6 +134,36 @@ export default function HomePage() {
             </blockquote>
           </div>
         </div>
+
+        {/* Hero Visual Banner with Interactive Studio Depth */}
+        <FadeUp delay={120} className="mt-14">
+          <div className="relative overflow-hidden rounded-sm border border-border aspect-[21/9] w-full">
+            <Image
+              src="/images/pages/capabilities/hero.png"
+              alt="Tushar Labs Studio Visual — Designing and engineering high-impact digital products"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 1280px) 100vw, 1280px"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+            <div className="absolute top-0 left-0 w-10 h-0.5 bg-primary pointer-events-none" />
+            <div className="absolute top-0 left-0 w-0.5 h-10 bg-primary pointer-events-none" />
+            <div className="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pointer-events-none">
+              <div>
+                <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-1">
+                  Full-Stack Architecture
+                </span>
+                <p className="text-lg lg:text-xl font-bold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
+                  Engineered with mathematical precision. Delivered without bloat.
+                </p>
+              </div>
+              <span className="font-mono text-xs text-muted-foreground tracking-wide shrink-0">
+                Delhi / Remote
+              </span>
+            </div>
+          </div>
+        </FadeUp>
       </section>
 
       {/* Orange divider */}
@@ -176,24 +220,38 @@ export default function HomePage() {
             {home.disciplines.areas.map((area, i) => (
               <FadeUp key={area.id} delay={i * 80}>
                 <div
-                  className="group flex flex-col p-8 h-full transition-all duration-300 hover:-translate-y-1"
+                  className="group flex flex-col h-full transition-all duration-300 hover:-translate-y-1 overflow-hidden"
                   style={{ background: "hsl(var(--card))" }}
                 >
-                  <span className="font-mono text-3xl font-bold text-primary mb-6 block">
-                    {area.num}
-                  </span>
-                  <h3
-                    className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors"
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
-                    {area.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-6">
-                    {area.desc}
-                  </p>
-                  <Link href="/services" className="font-mono text-xs text-primary tracking-widest uppercase hover:opacity-80 transition-opacity mt-auto">
-                    {area.link}
-                  </Link>
+                  {/* Visual card header image */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border">
+                    <Image
+                      src={serviceImages[area.id] ?? "/images/pages/services/web-design-hero.png"}
+                      alt={area.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                    <span className="absolute top-4 left-4 font-mono text-2xl font-bold text-primary">
+                      {area.num}
+                    </span>
+                  </div>
+
+                  <div className="p-7 flex flex-col flex-1">
+                    <h3
+                      className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors"
+                      style={{ fontFamily: "var(--font-heading)" }}
+                    >
+                      {area.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-6">
+                      {area.desc}
+                    </p>
+                    <Link href="/services" className="font-mono text-xs text-primary tracking-widest uppercase hover:opacity-80 transition-opacity mt-auto">
+                      {area.link}
+                    </Link>
+                  </div>
                 </div>
               </FadeUp>
             ))}
@@ -225,39 +283,55 @@ export default function HomePage() {
             {home.projects.items.map((project, i) => (
               <FadeUp key={project.id} delay={i * 100}>
                 <div
-                  className="group flex flex-col p-8 h-full transition-all duration-300 hover:-translate-y-1 border-l-2 border-transparent hover:border-primary"
+                  className="group flex flex-col h-full transition-all duration-300 hover:-translate-y-1 border-l-2 border-transparent hover:border-primary overflow-hidden"
                   style={{ background: "hsl(var(--card))" }}
                 >
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="font-mono text-xs text-muted-foreground">
-                      {project.num} / {project.year}
-                    </span>
-                    <span className="font-mono text-xs px-2 py-0.5 rounded-sm border border-primary text-primary">
-                      {project.status}
-                    </span>
-                  </div>
-                  <span className="font-mono text-xs text-muted-foreground tracking-wide uppercase block mb-3">
-                    {project.category}
-                  </span>
-                  <h3
-                    className="text-2xl font-extrabold text-foreground mb-4 group-hover:text-primary transition-colors"
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-6">
-                    {project.desc}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="font-mono text-xs px-2 py-1 rounded-sm border border-border text-muted-foreground">
-                        {tag}
+                  {/* Project preview cover image */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border">
+                    <Image
+                      src={projectImages[project.id] ?? "/images/pages/work/kitchenzap-cover.png"}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                    <div className="absolute top-4 right-4">
+                      <span className="font-mono text-xs px-2 py-0.5 rounded-sm bg-primary text-primary-foreground font-semibold">
+                        {project.status}
                       </span>
-                    ))}
+                    </div>
                   </div>
-                  <Link href="/work" className="font-mono text-xs text-primary tracking-widest uppercase hover:opacity-80 transition-opacity mt-auto">
-                    {project.link}
-                  </Link>
+
+                  <div className="p-8 flex flex-col flex-1">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="font-mono text-xs text-muted-foreground">
+                        {project.num} / {project.year}
+                      </span>
+                    </div>
+                    <span className="font-mono text-xs text-muted-foreground tracking-wide uppercase block mb-2">
+                      {project.category}
+                    </span>
+                    <h3
+                      className="text-2xl font-extrabold text-foreground mb-4 group-hover:text-primary transition-colors"
+                      style={{ fontFamily: "var(--font-heading)" }}
+                    >
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-6">
+                      {project.desc}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tags.map((tag) => (
+                        <span key={tag} className="font-mono text-xs px-2 py-1 rounded-sm border border-border text-muted-foreground">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <Link href="/work" className="font-mono text-xs text-primary tracking-widest uppercase hover:opacity-80 transition-opacity mt-auto">
+                      {project.link}
+                    </Link>
+                  </div>
                 </div>
               </FadeUp>
             ))}
