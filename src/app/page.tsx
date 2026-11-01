@@ -390,6 +390,122 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── TRANSPARENT PRICING ── */}
+      <section style={{ background: "hsl(var(--secondary))" }} className="border-b border-border">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-14">
+            <div>
+              <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-3">
+                {home.pricing.label}
+              </span>
+              <h2
+                className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                {home.pricing.heading}
+              </h2>
+            </div>
+            <p className="text-sm text-muted-foreground max-w-sm sm:text-right">
+              {home.pricing.subheading}
+            </p>
+          </FadeUp>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {home.pricing.plans.map((plan, i) => (
+              <FadeUp key={plan.id} delay={i * 100}>
+                <div
+                  className={`flex flex-col h-full p-8 rounded-sm border transition-all duration-300 relative ${
+                    plan.popular
+                      ? "border-primary shadow-xl shadow-primary/10"
+                      : "border-border hover:border-primary/50"
+                  }`}
+                  style={{ background: "hsl(var(--card))" }}
+                >
+                  {plan.popular && (
+                    <span className="absolute -top-3 right-6 font-mono text-[10px] uppercase font-bold tracking-widest px-3 py-1 bg-primary text-primary-foreground rounded-full">
+                      Most Popular
+                    </span>
+                  )}
+
+                  <div className="mb-6">
+                    <h3 className="text-xl font-bold text-foreground mb-1" style={{ fontFamily: "var(--font-heading)" }}>
+                      {plan.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground font-mono mb-4">{plan.tagline}</p>
+                    <div className="pt-4 border-t border-border">
+                      <span className="text-2xl lg:text-3xl font-extrabold text-foreground">{plan.price}</span>
+                      <span className="block font-mono text-xs text-primary mt-1 font-semibold">{plan.timeline}</span>
+                    </div>
+                  </div>
+
+                  <ul className="space-y-3 mb-8 flex-1">
+                    {plan.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2.5 text-xs text-muted-foreground">
+                        <span className="text-primary font-mono font-bold mt-0.5">✓</span>
+                        <span className="text-foreground">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <a
+                    href="https://wa.me/919315569638?text=Hello%20Tushar%20Labs%2C%20I%20would%20like%20to%20discuss%20a%20project."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center justify-center w-full py-3 text-xs font-mono font-semibold rounded-sm transition-all uppercase tracking-wider ${
+                      plan.popular
+                        ? "bg-primary text-primary-foreground hover:opacity-90"
+                        : "border border-border text-foreground hover:border-primary hover:text-primary"
+                    }`}
+                  >
+                    {plan.cta}
+                  </a>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CLIENT TESTIMONIALS ── */}
+      <section className="bg-background border-b border-border">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp className="mb-14">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-3">
+              {home.testimonials.label}
+            </span>
+            <h2
+              className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {home.testimonials.heading}
+            </h2>
+          </FadeUp>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {home.testimonials.items.map((t, i) => (
+              <FadeUp key={t.id} delay={i * 100}>
+                <div
+                  className="flex flex-col h-full p-8 rounded-sm border border-border transition-all hover:border-primary/50 relative"
+                  style={{ background: "hsl(var(--card))" }}
+                >
+                  <span className="text-3xl text-primary font-serif mb-4 block leading-none">&ldquo;</span>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-6">
+                    {t.quote}
+                  </p>
+                  <div className="pt-4 border-t border-border">
+                    <p className="text-sm font-bold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
+                      {t.author}
+                    </p>
+                    <p className="text-xs text-primary font-mono">{t.role}</p>
+                    <p className="text-[10px] text-muted-foreground font-mono mt-0.5">{t.location}</p>
+                  </div>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA BAND ── */}
       <section style={{ background: "hsl(var(--secondary))" }} className="border-b border-border">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
@@ -407,14 +523,16 @@ export default function HomePage() {
               {home.cta.body}
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link
-                href="/contact"
+              <a
+                href="https://wa.me/919315569638?text=Hello%20Tushar%20Labs%2C%20I%20would%20like%20to%20start%20a%20project."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center px-7 py-3.5 text-sm font-semibold font-mono rounded-sm bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
               >
                 {home.cta.cta1}
-              </Link>
+              </a>
               <Link
-                href="/work"
+                href="/contact"
                 className="inline-flex items-center px-7 py-3.5 text-sm font-semibold font-mono rounded-sm border border-border text-foreground hover:border-primary hover:text-primary transition-colors"
               >
                 {home.cta.cta2}
