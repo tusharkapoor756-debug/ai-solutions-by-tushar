@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CookieBanner from "@/components/CookieBanner";
 import { seoConfig } from "@/config/seo";
 
 const inter = Inter({
@@ -109,6 +110,7 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
+        <CookieBanner />
       </body>
     </html>
   );

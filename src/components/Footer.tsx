@@ -159,13 +159,19 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-border">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <span className="font-mono text-xs text-muted-foreground tracking-wide">
-            {home.footer.copyright}
-          </span>
-          <span className="font-mono text-xs text-muted-foreground">
-            {home.footer.builtWith}
-          </span>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-4">
+            <span>{home.footer.copyright}</span>
+            <span className="text-border">·</span>
+            <Link href="/privacy" className="hover:text-primary transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="text-border">·</span>
+            <Link href="/terms" className="hover:text-primary transition-colors">
+              Terms of Service
+            </Link>
+          </div>
+          <span>{home.footer.builtWith}</span>
         </div>
       </div>
     </footer>
