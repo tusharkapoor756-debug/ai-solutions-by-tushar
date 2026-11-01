@@ -1,196 +1,403 @@
-import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
-import { ArrowUpRight } from "lucide-react";
-import { studioProjects } from "@/config/site";
+import FadeUp from "@/components/FadeUp";
+import { work } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Selected Work & Case Studies | TUSHAR LABS",
+  title: "Work — Tushar Labs | Selected Projects",
   description:
-    "Explore our full portfolio of live platforms, technical foundations, and concept architectures: KitchenZap, Restroex, Safaronroads, Agent-X, and Nexus.",
+    "Selected projects by Tushar Labs — KitchenZap, Restroex, Safaronroads, Agent-X, and Nexus.",
+};
+
+const coverImages: Record<string, string> = {
+  kitchenzap: "/images/pages/work/kitchenzap-cover.png",
+  restroex: "/images/pages/work/restroex-cover.png",
+  safaronroads: "/images/pages/work/safaronroads-cover.png",
+  agentx: "/images/pages/work/agentx-cover.png",
+  nexus: "/images/pages/work/nexus-cover.png",
+};
+
+const coverAlts: Record<string, string> = {
+  kitchenzap: "KitchenZap — restaurant management SaaS dashboard",
+  restroex: "Restroex — AI-powered restaurant ordering system",
+  safaronroads: "Safaronroads — adventure travel website",
+  agentx: "Agent-X — AI sales agent platform",
+  nexus: "Nexus — AI business operating system",
+};
+
+const statusBadge: Record<string, { label: string; cls: string }> = {
+  live: { label: "Live Product", cls: "bg-primary text-primary-foreground" },
+  development: { label: "In Development", cls: "border border-border text-muted-foreground" },
+  prototype: { label: "Prototype", cls: "border border-border text-muted-foreground" },
+  concept: { label: "Concept", cls: "border border-border text-muted-foreground" },
 };
 
 export default function WorkPage() {
   return (
-    <main className="min-h-screen bg-void">
+    <main>
+      {/* Orange accent line */}
+      <div className="h-0.5 w-full bg-primary" />
 
-      {/* Hero */}
-      <section className="relative py-20 sm:py-24 md:py-28 border-b border-white/[0.07] overflow-hidden">
-        <div className="absolute inset-0 ambient-bg pointer-events-none" />
-        <div className="absolute inset-0 editorial-grid pointer-events-none opacity-50" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 space-y-5">
-          <span className="eyebrow">Portfolio Inventory</span>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold text-prose-primary tracking-editorial leading-none">
-            Crafted Systems<br />
-            <span className="gradient-text">& Case Studies.</span>
-          </h1>
-          <p className="text-sm sm:text-base text-prose-secondary font-light max-w-2xl leading-relaxed">
-            Every project represents genuine engineering and design execution. We explicitly distinguish between live deployed products, technical foundation architectures, and concept prototypes.
-          </p>
-          {/* Status legend */}
-          <div className="flex flex-wrap gap-2.5 pt-2">
-            {[
-              "Live Product",
-              "Technical Foundation",
-              "Design & Planning",
-              "Concept / Architecture",
-            ].map((s) => (
-              <span key={s} className="text-[9px] font-mono uppercase px-3 py-1 border border-white/10 bg-white/[0.04] text-prose-secondary rounded-full tracking-widest font-semibold">
-                {s}
-              </span>
-            ))}
+      {/* ── HERO ── */}
+      <section className="pt-28 lg:pt-36 pb-16 lg:pb-20 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+          <div>
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-5">
+              {work.hero.label}
+            </span>
+            <h1
+              className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] text-foreground"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {work.hero.heading}
+            </h1>
           </div>
+          <p className="text-base text-muted-foreground leading-relaxed max-w-md lg:text-right">
+            {work.hero.subheading}
+          </p>
+        </div>
+
+        {/* Stats bar */}
+        <div className="flex flex-wrap items-center gap-6 mt-10 pt-10 border-t border-border">
+          <span className="font-mono text-xs text-muted-foreground tracking-wide">{work.hero.stat1}</span>
+          <span className="text-primary font-mono text-xs">·</span>
+          <span className="font-mono text-xs text-muted-foreground tracking-wide">{work.hero.stat2}</span>
+          <span className="text-primary font-mono text-xs">·</span>
+          <span className="font-mono text-xs text-muted-foreground tracking-wide">{work.hero.stat3}</span>
         </div>
       </section>
 
-      {/* Projects */}
-      <section className="py-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="divide-y divide-white/[0.07]">
-            {studioProjects.map((project, idx) => (
-              <div
-                key={project.id}
-                className="py-16 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center group"
-              >
-                {/* Visual card */}
-                <div className={`lg:col-span-7 ${idx % 2 === 1 ? "lg:order-2" : "lg:order-1"}`}>
-                  <div className="bg-surface border border-white/[0.07] rounded-sm p-5 sm:p-7 group-hover:border-brand-orange/30 transition-all duration-300 relative overflow-hidden">
-                    {/* Subtle glow */}
-                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-orange/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+      {/* ── FEATURED CASE STUDIES ── */}
+      {work.featured.map((project, idx) => {
+        const isEven = idx % 2 === 0;
+        const badge = statusBadge[project.statusType] ?? statusBadge.concept;
 
-                    {/* Top bar */}
-                    <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.07] font-mono text-[11px]">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-brand-orange/70" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
-                        <span className="ml-2 text-prose-secondary font-semibold tracking-wide">
-                          {project.id.toUpperCase()}.SYS
-                        </span>
-                      </div>
-                      <span className="px-2.5 py-0.5 border border-white/10 bg-white/[0.04] text-prose-secondary rounded-full text-[9px] uppercase font-semibold">
-                        {project.status}
+        return (
+          <section
+            key={project.id}
+            id={project.id}
+            className="border-t border-border"
+            style={{ background: isEven ? "hsl(var(--background))" : "hsl(var(--secondary))" }}
+          >
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+              {/* Number + divider + badges */}
+              <FadeUp className="flex items-center gap-4 mb-12">
+                <span className="font-mono text-4xl font-bold text-primary leading-none">
+                  {project.num}
+                </span>
+                <div className="h-px flex-1 bg-border" />
+                <span className="font-mono text-xs px-2.5 py-1 rounded-sm border border-primary text-primary">
+                  {project.category}
+                </span>
+                <span className={`font-mono text-xs px-2.5 py-1 rounded-sm ${badge.cls}`}>
+                  {badge.label}
+                </span>
+              </FadeUp>
+
+              {/* Cover image — full width */}
+              <FadeUp className="mb-12">
+                <div className="relative overflow-hidden rounded-sm border border-border aspect-video w-full">
+                  <Image
+                    src={coverImages[project.id] ?? ""}
+                    alt={coverAlts[project.id] ?? project.name}
+                    fill
+                    className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+                    loading={idx === 0 ? "eager" : "lazy"}
+                    priority={idx === 0}
+                    sizes="(max-width: 1280px) 100vw, 1280px"
+                  />
+                  {/* Orange corner accent */}
+                  <div className="absolute top-0 left-0 w-10 h-0.5 bg-primary pointer-events-none" />
+                  <div className="absolute top-0 left-0 w-0.5 h-10 bg-primary pointer-events-none" />
+                  {/* Name overlay */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 p-6 pointer-events-none"
+                    style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%)" }}
+                  >
+                    <p className="font-mono text-xs tracking-widest uppercase mb-1 text-white/60">
+                      {project.industry}
+                    </p>
+                    <h2
+                      className="text-2xl lg:text-3xl font-extrabold leading-tight text-white"
+                      style={{ fontFamily: "var(--font-heading)" }}
+                    >
+                      {project.name}
+                    </h2>
+                  </div>
+                </div>
+              </FadeUp>
+
+              {/* Two-column: overview + meta */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 mb-4">
+                {/* Left: tagline + overview + problem/solution + features */}
+                <div className="lg:col-span-2">
+                  <FadeUp>
+                    <p
+                      className="text-2xl lg:text-3xl font-bold text-foreground mb-6 leading-snug"
+                      style={{ fontFamily: "var(--font-heading)" }}
+                    >
+                      {project.tagline}
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-8">
+                      {project.overview}
+                    </p>
+                  </FadeUp>
+
+                  {/* Problem / Solution */}
+                  <FadeUp delay={80} className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                    <div
+                      className="rounded-sm border border-border p-5"
+                      style={{ background: isEven ? "hsl(var(--card))" : "hsl(var(--background))" }}
+                    >
+                      <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-3">
+                        The Problem
                       </span>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{project.problem}</p>
                     </div>
+                    <div
+                      className="rounded-sm border border-border p-5"
+                      style={{ background: isEven ? "hsl(var(--card))" : "hsl(var(--background))" }}
+                    >
+                      <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-3">
+                        The Solution
+                      </span>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{project.solution}</p>
+                    </div>
+                  </FadeUp>
 
-                    {/* Project blueprint */}
-                    <div className="bg-void border border-white/[0.07] rounded-sm p-5 sm:p-6 space-y-4">
-                      <div>
-                        <div className="text-[9px] font-mono text-brand-orange uppercase tracking-widest mb-1">
-                          {project.category}
+                  {/* Key features */}
+                  <FadeUp delay={120}>
+                    <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+                      Key Features
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {project.features.map((f) => (
+                        <div key={f} className="flex items-start gap-2.5 text-sm text-foreground">
+                          <span className="text-primary mt-0.5 shrink-0 font-mono text-xs">→</span>
+                          <span>{f}</span>
                         </div>
-                        <div className="text-2xl sm:text-3xl font-display font-extrabold text-prose-primary tracking-tight">
-                          {project.title}
-                        </div>
-                      </div>
+                      ))}
+                    </div>
+                  </FadeUp>
+                </div>
 
-                      <p className="text-xs sm:text-sm text-prose-secondary font-light leading-relaxed">
-                        {project.summary}
-                      </p>
-
-                      {/* Layer indicators */}
-                      <div className="grid grid-cols-3 gap-2 pt-1">
-                        {[
-                          { label: "Layer 01", value: "Frontend UI" },
-                          { label: "Layer 02", value: "API / Engine" },
-                          { label: "Layer 03", value: "Data Store" },
-                        ].map((layer) => (
-                          <div key={layer.label} className="p-2.5 bg-surface border border-white/[0.07] rounded-sm text-[10px] font-mono">
-                            <span className="text-prose-dim uppercase block">{layer.label}</span>
-                            <span className="text-prose-secondary font-bold">{layer.value}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="flex flex-wrap gap-1.5 pt-1">
-                        {project.tech.map((t) => (
+                {/* Right: meta panel */}
+                <FadeUp delay={60}>
+                  <div
+                    className="rounded-sm border border-border p-6 flex flex-col gap-6 h-fit sticky top-24"
+                    style={{ background: isEven ? "hsl(var(--card))" : "hsl(var(--background))" }}
+                  >
+                    <div>
+                      <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-2">
+                        Project Type
+                      </span>
+                      <p className="text-sm text-foreground font-medium">{project.projectType}</p>
+                    </div>
+                    <div>
+                      <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-2">
+                        My Role
+                      </span>
+                      <p className="text-sm text-foreground">{project.role}</p>
+                    </div>
+                    <div>
+                      <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-3">
+                        Tech Stack
+                      </span>
+                      <div className="flex flex-wrap gap-2">
+                        {project.stack.map((t) => (
                           <span
                             key={t}
-                            className="text-[9px] font-mono uppercase px-2 py-0.5 bg-raised text-prose-secondary border border-white/[0.07] rounded-sm"
+                            className="font-mono text-xs px-2 py-1 rounded-sm border border-border text-muted-foreground"
                           >
                             {t}
                           </span>
                         ))}
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                {/* Editorial details */}
-                <div className={`lg:col-span-5 space-y-5 ${idx % 2 === 1 ? "lg:order-1" : "lg:order-2"}`}>
-                  <div className="flex items-center gap-2.5 font-mono text-[11px] text-prose-dim">
-                    <span>0{idx + 1}</span>
-                    <span>/</span>
-                    <span className="text-brand-orange font-semibold">{project.year}</span>
-                    <span>/</span>
-                    <span className="uppercase">{project.status}</span>
-                  </div>
-
-                  <h2 className="text-2xl sm:text-3xl font-display font-bold text-prose-primary tracking-editorial leading-tight group-hover:text-brand-orange transition-colors">
-                    {project.title}
-                  </h2>
-
-                  <p className="text-sm text-prose-secondary font-light leading-relaxed">
-                    {project.problem}
-                  </p>
-
-                  <div className="pt-1">
-                    <div className="text-[10px] font-mono uppercase tracking-eyebrow text-prose-dim mb-2.5">
-                      Technologies
+                    <div>
+                      <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-2">
+                        Status
+                      </span>
+                      <span className={`font-mono text-xs px-2.5 py-1 rounded-sm inline-block ${badge.cls}`}>
+                        {badge.label}
+                      </span>
                     </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.tech.map((item) => (
-                        <span
-                          key={item}
-                          className="text-[11px] font-mono px-2.5 py-0.5 bg-surface text-prose-secondary border border-white/[0.07] rounded-sm"
-                        >
-                          {item}
+                    {project.outcomes && (
+                      <div>
+                        <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-2">
+                          Outcomes
                         </span>
-                      ))}
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {project.outcomes}
+                        </p>
+                      </div>
+                    )}
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-4 py-2.5 text-xs font-semibold font-mono rounded-sm bg-primary text-primary-foreground hover:opacity-90 transition-opacity mt-auto"
+                      >
+                        {project.liveLabel} ↗
+                      </a>
+                    )}
+                  </div>
+                </FadeUp>
+              </div>
+            </div>
+          </section>
+        );
+      })}
+
+      {/* ── COMPACT GRID — In the Lab ── */}
+      <section className="border-t border-border bg-background">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp className="mb-14">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+              EARLY STAGE / CONCEPTS
+            </span>
+            <h2
+              className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              In the Lab.
+            </h2>
+          </FadeUp>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
+            {work.compact.map((project, i) => {
+              const badge = statusBadge[project.statusType] ?? statusBadge.concept;
+
+              return (
+                <FadeUp key={project.id} delay={i * 100}>
+                  <div
+                    className="group flex flex-col h-full"
+                    style={{ background: "hsl(var(--card))" }}
+                  >
+                    {/* Cover image */}
+                    <div className="relative overflow-hidden aspect-video">
+                      <Image
+                        src={coverImages[project.id] ?? ""}
+                        alt={coverAlts[project.id] ?? project.name}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      <div className="absolute top-0 left-0 w-8 h-0.5 bg-primary pointer-events-none" />
+                      <div className="absolute top-0 left-0 w-0.5 h-8 bg-primary pointer-events-none" />
+                      <div className="absolute top-4 right-4 pointer-events-none">
+                        <span className={`font-mono text-xs px-2.5 py-1 rounded-sm ${badge.cls}`}>
+                          {badge.label}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex flex-col flex-1 p-7">
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="font-mono text-xs text-primary">{project.num}</span>
+                        <span className="font-mono text-xs px-2 py-0.5 rounded-sm border border-primary text-primary">
+                          {project.category}
+                        </span>
+                      </div>
+
+                      <h3
+                        className="text-2xl font-extrabold text-foreground mb-2 group-hover:text-primary transition-colors"
+                        style={{ fontFamily: "var(--font-heading)" }}
+                      >
+                        {project.name}
+                      </h3>
+                      <p className="font-mono text-xs text-muted-foreground mb-4">
+                        {project.tagline}
+                      </p>
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                        {project.overview}
+                      </p>
+
+                      {/* Top 4 features */}
+                      <div className="flex flex-col gap-2 mb-6">
+                        {project.features.slice(0, 4).map((f) => (
+                          <div key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
+                            <span className="text-primary shrink-0 mt-0.5">→</span>
+                            <span>{f}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Stack */}
+                      <div className="flex flex-wrap gap-1.5 mb-6">
+                        {project.stack.map((t) => (
+                          <span
+                            key={t}
+                            className="font-mono text-xs px-2 py-1 rounded-sm border border-border text-muted-foreground"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Role + status */}
+                      <div className="mt-auto pt-5 border-t border-border flex flex-col gap-3">
+                        <div>
+                          <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-1">
+                            Role
+                          </span>
+                          <p className="text-xs text-foreground">{project.role}</p>
+                        </div>
+                        {project.outcomes && (
+                          <div>
+                            <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-1">
+                              Current Status
+                            </span>
+                            <p className="text-xs text-muted-foreground">{project.outcomes}</p>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
-
-                  <div className="pt-2">
-                    <Link
-                      href={`/work/${project.id}`}
-                      className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest px-6 py-3.5 bg-brand-orange text-white font-bold hover:bg-brand-hover transition-colors rounded-sm shadow-md shadow-brand-orange/20"
-                    >
-                      <span>Read Detailed Case Study</span>
-                      <ArrowUpRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
+                </FadeUp>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="py-16 sm:py-20 border-t border-white/[0.07] bg-surface relative overflow-hidden">
-        <div className="absolute inset-0 ambient-bg pointer-events-none opacity-50" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
-            <div className="space-y-3">
-              <span className="eyebrow">Initiate Project</span>
-              <h2 className="text-2xl sm:text-4xl font-display font-extrabold text-prose-primary tracking-editorial">
-                Have a project idea?
-              </h2>
-              <p className="text-sm text-prose-secondary font-light max-w-sm">
-                Let&apos;s discuss your scope and how we can build something remarkable together.
-              </p>
-            </div>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-7 py-4 bg-brand-orange text-white text-xs font-mono tracking-widest uppercase font-bold hover:bg-brand-hover transition-colors rounded-sm shadow-lg shadow-brand-orange/20 shrink-0"
+      {/* ── CTA BAND ── */}
+      <section style={{ background: "hsl(var(--secondary))" }} className="border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
+          <FadeUp className="max-w-3xl">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-6">
+              {work.cta.label}
+            </span>
+            <h2
+              className="text-4xl lg:text-6xl font-extrabold tracking-tight text-foreground mb-8 leading-tight"
+              style={{ fontFamily: "var(--font-heading)" }}
             >
-              Start a Project
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
-          </div>
+              {work.cta.heading}
+            </h2>
+            <p className="text-base text-muted-foreground leading-relaxed mb-10 max-w-xl">
+              {work.cta.body}
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center px-7 py-3.5 text-sm font-semibold font-mono rounded-sm bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+              >
+                {work.cta.cta1}
+              </Link>
+              <Link
+                href="/services"
+                className="inline-flex items-center px-7 py-3.5 text-sm font-semibold font-mono rounded-sm border border-border text-foreground hover:border-primary hover:text-primary transition-colors"
+              >
+                {work.cta.cta2}
+              </Link>
+            </div>
+          </FadeUp>
         </div>
       </section>
-
     </main>
   );
 }

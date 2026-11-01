@@ -1,141 +1,333 @@
-import React from "react";
-import Link from "next/link";
-import type { Metadata } from "next";
-import { ArrowUpRight } from "lucide-react";
-import { studioServices } from "@/config/site";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Practices & Services | TUSHAR LABS",
-  description:
-    "Explore our four core disciplines: Website Design & Development, Custom Software Development, AI & Workflow Automation, and Branding & Digital Design.",
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import type { Metadata } from "next";
+import FadeUp from "@/components/FadeUp";
+import { services } from "@/lib/content";
+import { ChevronDown, ChevronUp } from "lucide-react";
+
+const serviceImages: Record<string, string> = {
+  "web-design": "/images/pages/services/web-design-hero.png",
+  "custom-software": "/images/pages/services/custom-software-hero.png",
+  "ai-automation": "/images/pages/services/ai-automation-hero.png",
+  "branding-design": "/images/pages/services/branding-design-hero.png",
+};
+
+const serviceImageAlts: Record<string, string> = {
+  "web-design": "Website design and development — editorial illustration",
+  "custom-software": "Custom software development — system architecture illustration",
+  "ai-automation": "AI and workflow automation — neural network illustration",
+  "branding-design": "Branding and digital design — brand identity illustration",
 };
 
 export default function ServicesPage() {
-  return (
-    <main className="min-h-screen bg-void">
+  const [openFaq, setOpenFaq] = useState<string | null>(null);
 
-      {/* Hero */}
-      <section className="relative py-20 sm:py-24 md:py-28 border-b border-white/[0.07] overflow-hidden">
-        <div className="absolute inset-0 ambient-bg pointer-events-none" />
-        <div className="absolute inset-0 editorial-grid pointer-events-none opacity-50" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 space-y-6">
-          <span className="eyebrow">Practice Overview</span>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold text-prose-primary tracking-editorial leading-none">
-            Disciplined Digital<br />
-            <span className="gradient-text">Services.</span>
-          </h1>
-          <p className="text-sm sm:text-base text-prose-secondary font-light max-w-2xl leading-relaxed">
-            We provide full-lifecycle technical and design execution. Every practice area is structured to deliver tangible business efficiency, brand prestige, and reliable production software.
+  return (
+    <main>
+      {/* Orange accent line */}
+      <div className="h-0.5 w-full bg-primary" />
+
+      {/* ── HERO ── */}
+      <section className="pt-28 lg:pt-36 pb-16 lg:pb-20 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+          <div>
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-5">
+              {services.hero.label}
+            </span>
+            <h1
+              className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] text-foreground"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {services.hero.heading}
+            </h1>
+          </div>
+          <p className="text-base text-muted-foreground leading-relaxed max-w-md lg:text-right">
+            {services.hero.subheading}
           </p>
+        </div>
+
+        {/* Stats bar */}
+        <div className="flex flex-wrap items-center gap-6 mt-10 pt-10 border-t border-border">
+          <span className="font-mono text-xs text-muted-foreground tracking-wide">{services.hero.stat1}</span>
+          <span className="text-primary font-mono text-xs">·</span>
+          <span className="font-mono text-xs text-muted-foreground tracking-wide">{services.hero.stat2}</span>
+          <span className="text-primary font-mono text-xs">·</span>
+          <span className="font-mono text-xs text-muted-foreground tracking-wide">{services.hero.stat3}</span>
         </div>
       </section>
 
-      {/* Services editorial rows (WebNxt-style) */}
-      <section className="py-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="divide-y divide-white/[0.07]">
-            {studioServices.map((service) => (
-              <div
-                key={service.slug}
-                className="py-14 sm:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 group"
-              >
-                {/* Index */}
-                <div className="lg:col-span-1">
-                  <span className="text-4xl sm:text-5xl font-display font-extrabold text-prose-muted/20 leading-none tracking-tightest group-hover:text-brand-orange/20 transition-colors">
-                    {service.index}
-                  </span>
-                </div>
+      {/* ── SERVICE SECTIONS ── */}
+      {services.services.map((svc, idx) => {
+        const isEven = idx % 2 === 0;
+        const imgSrc = serviceImages[svc.id] ?? "";
+        const imgAlt = serviceImageAlts[svc.id] ?? svc.label;
 
-                {/* Title + Description */}
-                <div className="lg:col-span-4 space-y-4">
-                  <div>
-                    <span className="eyebrow block mb-2">
-                      Service {service.index}
-                    </span>
-                    <h2 className="text-2xl sm:text-3xl font-display font-bold text-prose-primary group-hover:text-brand-orange transition-colors leading-tight">
-                      {service.title}
-                    </h2>
+        return (
+          <section
+            key={svc.id}
+            id={svc.slug}
+            className="border-t border-border"
+            style={{ background: isEven ? "hsl(var(--background))" : "hsl(var(--secondary))" }}
+          >
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+              {/* Service number + label */}
+              <FadeUp className="flex items-center gap-4 mb-12">
+                <span className="font-mono text-4xl font-bold text-primary leading-none">
+                  {svc.num}
+                </span>
+                <div className="h-px flex-1 bg-border" />
+                <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase">
+                  {svc.label}
+                </span>
+              </FadeUp>
+
+              {/* Image + Heading row */}
+              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16 ${!isEven ? "lg:[&>*:first-child]:order-2" : ""}`}>
+                {/* Image */}
+                <FadeUp delay={isEven ? 0 : 100}>
+                  <div className="relative overflow-hidden rounded-sm border border-border aspect-video">
+                    <Image
+                      src={imgSrc}
+                      alt={imgAlt}
+                      fill
+                      className="object-cover transition-transform duration-700 hover:scale-105"
+                      loading={idx === 0 ? "eager" : "lazy"}
+                      priority={idx === 0}
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                    {/* Orange corner accent */}
+                    <div className="absolute top-0 left-0 w-8 h-0.5 bg-primary pointer-events-none" />
+                    <div className="absolute top-0 left-0 w-0.5 h-8 bg-primary pointer-events-none" />
                   </div>
-                  <p className="text-sm text-prose-secondary font-light leading-relaxed">
-                    {service.tagline}
-                  </p>
-                  <p className="text-xs text-prose-dim leading-relaxed">
-                    {service.leadParagraph}
-                  </p>
-                  <Link
-                    href={`/services/${service.slug}`}
-                    className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-prose-secondary hover:text-brand-orange transition-colors font-semibold group/link"
+                </FadeUp>
+
+                {/* Heading + problem/approach */}
+                <FadeUp delay={isEven ? 100 : 0}>
+                  <h2
+                    className="text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground mb-6 leading-tight"
+                    style={{ fontFamily: "var(--font-heading)" }}
                   >
-                    <span>Explore Service Details</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-brand-orange group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-                  </Link>
-                </div>
+                    {svc.heading}
+                  </h2>
 
-                {/* Deliverables */}
-                <div className="lg:col-span-4 space-y-3">
-                  <div className="text-[10px] font-mono uppercase tracking-eyebrow text-prose-dim mb-3">
-                    Scope & Deliverables
-                  </div>
-                  <ul className="space-y-2">
-                    {service.deliverables.map((d, idx) => (
-                      <li key={idx} className="flex items-start gap-3 text-xs text-prose-secondary">
-                        <span className="w-1.5 h-1.5 bg-brand-orange rounded-full mt-1.5 shrink-0" />
-                        <span>{d}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Inquire */}
-                <div className="lg:col-span-3 flex flex-col gap-4 justify-start">
-                  <div className="text-[10px] font-mono uppercase tracking-eyebrow text-prose-dim mb-1">
-                    Ready to Start?
-                  </div>
-                  <div className="space-y-2">
-                    <Link
-                      href="/contact"
-                      className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-brand-orange text-white text-xs font-mono tracking-widest uppercase font-bold hover:bg-brand-hover transition-colors rounded-sm"
-                    >
-                      <span>Request Scope</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </Link>
-                    <div className="p-3 bg-surface border border-white/[0.07] rounded-sm">
-                      <div className="text-[9px] font-mono uppercase tracking-eyebrow text-brand-orange mb-1">Ideal For</div>
-                      <div className="text-xs text-prose-dim leading-tight">
-                        {service.useCases[0]?.title || "Early stage to enterprise brands"}
-                      </div>
+                  <div className="space-y-5 mb-8">
+                    <div>
+                      <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-2">
+                        The Problem
+                      </span>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{svc.problem}</p>
+                    </div>
+                    <div>
+                      <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-2">
+                        Our Approach
+                      </span>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{svc.approach}</p>
+                    </div>
+                    <div>
+                      <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-2">
+                        What Makes It Different
+                      </span>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{svc.differentiator}</p>
                     </div>
                   </div>
-                </div>
+
+                  {/* Ideal client */}
+                  <div
+                    className="rounded-sm border border-border p-4 mb-8"
+                    style={{ background: "hsl(var(--card))" }}
+                  >
+                    <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-2">
+                      Ideal For
+                    </span>
+                    <p className="text-sm text-foreground leading-relaxed">{svc.idealClient}</p>
+                  </div>
+
+                  {/* Price + CTA */}
+                  <div className="flex flex-wrap items-center gap-4">
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center px-5 py-2.5 text-sm font-semibold font-mono rounded-sm bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+                    >
+                      {svc.cta}
+                    </Link>
+                    <span className="font-mono text-xs text-muted-foreground">{svc.startingPrice}</span>
+                  </div>
+                </FadeUp>
               </div>
+
+              {/* Deliverables + Stack + Process grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+                {/* Deliverables */}
+                <FadeUp>
+                  <div
+                    className="p-7 h-full"
+                    style={{ background: isEven ? "hsl(var(--card))" : "hsl(var(--background))" }}
+                  >
+                    <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-5">
+                      What&apos;s Included
+                    </span>
+                    <ul className="flex flex-col gap-2.5">
+                      {svc.deliverables.map((d) => (
+                        <li key={d} className="flex items-start gap-2.5 text-sm text-foreground">
+                          <span className="text-primary mt-0.5 shrink-0 font-mono text-xs">→</span>
+                          <span>{d}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </FadeUp>
+
+                {/* Tech Stack */}
+                <FadeUp delay={80}>
+                  <div
+                    className="p-7 h-full"
+                    style={{ background: isEven ? "hsl(var(--card))" : "hsl(var(--background))" }}
+                  >
+                    <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-5">
+                      Tech Stack
+                    </span>
+                    <div className="flex flex-wrap gap-2">
+                      {svc.stack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="font-mono text-xs px-2.5 py-1.5 rounded-sm border border-border text-muted-foreground"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </FadeUp>
+
+                {/* Process */}
+                <FadeUp delay={160}>
+                  <div
+                    className="p-7 h-full"
+                    style={{ background: isEven ? "hsl(var(--card))" : "hsl(var(--background))" }}
+                  >
+                    <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-5">
+                      How It Works
+                    </span>
+                    <div className="flex flex-col gap-4">
+                      {svc.process.map((step, si) => (
+                        <div key={step.id} className="flex items-start gap-3">
+                          <span className="font-mono text-xs text-primary shrink-0 w-5">
+                            {String(si + 1).padStart(2, "0")}
+                          </span>
+                          <div>
+                            <span className="font-mono text-xs text-foreground font-semibold block">
+                              {step.phase}
+                            </span>
+                            <span className="text-xs text-muted-foreground">{step.desc}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </FadeUp>
+              </div>
+
+              {/* Related project link */}
+              <FadeUp delay={80} className="mt-6">
+                <div className="flex items-center gap-3">
+                  <span className="font-mono text-xs text-muted-foreground tracking-wide">
+                    Related project:
+                  </span>
+                  <Link
+                    href="/work"
+                    className="font-mono text-xs text-primary tracking-widest uppercase hover:opacity-80 transition-opacity"
+                  >
+                    {svc.relatedProject} →
+                  </Link>
+                </div>
+              </FadeUp>
+            </div>
+          </section>
+        );
+      })}
+
+      {/* ── FAQ ── */}
+      <section className="bg-background border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp className="mb-14">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+              {services.faq.label}
+            </span>
+            <h2
+              className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {services.faq.heading}
+            </h2>
+          </FadeUp>
+
+          <div className="max-w-3xl">
+            {services.faq.items.map((item, i) => (
+              <FadeUp key={item.id} delay={i * 50}>
+                <div className="border-b border-border">
+                  <button
+                    className="w-full flex items-start justify-between gap-4 py-5 text-left group"
+                    onClick={() => setOpenFaq(openFaq === item.id ? null : item.id)}
+                    aria-expanded={openFaq === item.id}
+                  >
+                    <span
+                      className="text-base font-semibold text-foreground group-hover:text-primary transition-colors"
+                      style={{ fontFamily: "var(--font-heading)" }}
+                    >
+                      {item.q}
+                    </span>
+                    <span className="text-primary shrink-0 mt-0.5">
+                      {openFaq === item.id ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                    </span>
+                  </button>
+                  {openFaq === item.id && (
+                    <div className="pb-5">
+                      <p className="text-sm text-muted-foreground leading-relaxed">{item.a}</p>
+                    </div>
+                  )}
+                </div>
+              </FadeUp>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="py-16 sm:py-20 border-t border-white/[0.07] bg-surface relative overflow-hidden">
-        <div className="absolute inset-0 ambient-bg pointer-events-none opacity-50" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 text-center space-y-6">
-          <span className="eyebrow">Project Planning</span>
-          <h2 className="text-3xl sm:text-5xl font-display font-extrabold text-prose-primary tracking-editorial">
-            Unsure which service matches your scope?
-          </h2>
-          <p className="text-sm sm:text-base text-prose-secondary font-light max-w-xl mx-auto leading-relaxed">
-            We provide complimentary technical scoping calls where we evaluate your requirements and suggest an architecture blueprint before you commit.
-          </p>
-          <div className="pt-2">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-brand-orange text-white text-xs font-mono tracking-widest uppercase font-bold hover:bg-brand-hover transition-colors rounded-sm shadow-lg shadow-brand-orange/20"
+      {/* ── CTA BAND ── */}
+      <section style={{ background: "hsl(var(--secondary))" }} className="border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
+          <FadeUp className="max-w-3xl">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-6">
+              {services.cta.label}
+            </span>
+            <h2
+              className="text-4xl lg:text-6xl font-extrabold tracking-tight text-foreground mb-8 leading-tight"
+              style={{ fontFamily: "var(--font-heading)" }}
             >
-              <span>Schedule a Scoping Call</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
-          </div>
+              {services.cta.heading}
+            </h2>
+            <p className="text-base text-muted-foreground leading-relaxed mb-10 max-w-xl">
+              {services.cta.body}
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center px-7 py-3.5 text-sm font-semibold font-mono rounded-sm bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+              >
+                {services.cta.cta1}
+              </Link>
+              <Link
+                href="/work"
+                className="inline-flex items-center px-7 py-3.5 text-sm font-semibold font-mono rounded-sm border border-border text-foreground hover:border-primary hover:text-primary transition-colors"
+              >
+                {services.cta.cta2}
+              </Link>
+            </div>
+          </FadeUp>
         </div>
       </section>
-
     </main>
   );
 }

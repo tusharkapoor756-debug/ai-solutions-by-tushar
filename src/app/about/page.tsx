@@ -1,172 +1,367 @@
-import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
-import { ArrowUpRight } from "lucide-react";
-import { siteConfig, studioProcess } from "@/config/site";
+import FadeUp from "@/components/FadeUp";
+import { about } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "About Studio & Philosophy | TUSHAR LABS",
+  title: "About — Tushar Labs | Developer, Designer & Builder",
   description:
-    "An independent digital solutions and technology studio. Discover our maker-led model, philosophy, and disciplined engineering approach.",
+    "Tushar is an independent developer, designer, and technology entrepreneur based in New Delhi, India. He runs Tushar Labs — a full-stack digital solutions studio.",
 };
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-void">
+    <main>
+      {/* Orange accent line */}
+      <div className="h-0.5 w-full bg-primary" />
 
-      {/* Hero */}
-      <section className="relative py-20 sm:py-24 md:py-28 border-b border-white/[0.07] overflow-hidden">
-        <div className="absolute inset-0 ambient-bg pointer-events-none" />
-        <div className="absolute inset-0 editorial-grid pointer-events-none opacity-50" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-8 space-y-5">
-              <span className="eyebrow">Studio Profile</span>
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold text-prose-primary tracking-editorial leading-none">
-                Craft, Code,{" "}
-                <span className="gradient-text">& Conviction.</span>
+      {/* ── HERO ── */}
+      <section className="pt-28 lg:pt-36 pb-20 lg:pb-28 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          {/* Left: text */}
+          <div>
+            <FadeUp>
+              <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-5">
+                {about.hero.label}
+              </span>
+              <h1
+                className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] text-foreground mb-8"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                {about.hero.heading}
               </h1>
-              <p className="text-sm sm:text-base text-prose-secondary font-light max-w-2xl leading-relaxed">
-                Tushar Labs is an independent digital studio based in New Delhi, operating globally. We bridge high-concept design with production-grade full-stack software and intelligent automation.
+              <p className="text-base text-muted-foreground leading-relaxed mb-10 max-w-md">
+                {about.hero.subheading}
               </p>
-            </div>
-            <div className="lg:col-span-4">
-              <div className="p-5 bg-surface border border-brand-orange/20 rounded-sm space-y-3 font-mono text-xs">
-                <div className="text-[10px] uppercase tracking-eyebrow text-brand-orange border-b border-white/[0.07] pb-3">
-                  Operating Facts
+              <div className="flex flex-wrap items-center gap-6 pt-8 border-t border-border">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                  <span className="font-mono text-xs text-muted-foreground tracking-wide">
+                    {about.hero.location}
+                  </span>
                 </div>
-                <div className="space-y-2.5 text-prose-secondary">
-                  {[
-                    "100% Maker-Led Execution",
-                    "Zero Outsourcing Bureaucracy",
-                    "Strict Technical Authenticity",
-                    "Direct Client Communication",
-                    "New Delhi · Available Globally",
-                  ].map((fact) => (
-                    <div key={fact} className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-brand-orange rounded-full shrink-0" />
-                      <span>{fact}</span>
-                    </div>
-                  ))}
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 animate-pulse" />
+                  <span className="font-mono text-xs text-primary tracking-wide">
+                    {about.hero.availability}
+                  </span>
                 </div>
               </div>
+            </FadeUp>
+          </div>
+
+          {/* Right: portrait */}
+          <FadeUp delay={120}>
+            <div className="relative">
+              <div className="relative overflow-hidden rounded-sm border border-border aspect-[3/4] w-full max-w-sm mx-auto lg:mx-0 lg:ml-auto">
+                <Image
+                  src="/images/pages/about/portrait.png"
+                  alt="Tushar — founder of Tushar Labs, independent developer and designer"
+                  fill
+                  className="object-cover"
+                  loading="eager"
+                  priority
+                  sizes="(max-width: 1024px) 384px, 384px"
+                />
+                {/* Orange corner accents */}
+                <div className="absolute top-0 left-0 w-10 h-0.5 bg-primary pointer-events-none" />
+                <div className="absolute top-0 left-0 w-0.5 h-10 bg-primary pointer-events-none" />
+                <div className="absolute bottom-0 right-0 w-10 h-0.5 bg-primary pointer-events-none" />
+                <div className="absolute bottom-0 right-0 w-0.5 h-10 bg-primary pointer-events-none" />
+              </div>
+              {/* Floating label */}
+              <div
+                className="absolute -bottom-4 -left-4 px-4 py-3 border border-border rounded-sm hidden lg:block"
+                style={{ background: "hsl(var(--card))" }}
+              >
+                <p className="font-mono text-xs text-primary">Tushar</p>
+                <p className="font-mono text-xs text-muted-foreground">Founder, Tushar Labs</p>
+              </div>
             </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* ── WHO I AM ── */}
+      <section className="border-t border-border" style={{ background: "hsl(var(--secondary))" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 lg:gap-24">
+            <FadeUp>
+              <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+                {about.intro.label}
+              </span>
+              <h2
+                className="text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground leading-tight"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                {about.intro.heading}
+              </h2>
+            </FadeUp>
+
+            <FadeUp delay={80} className="flex flex-col gap-6">
+              <p className="text-base text-foreground leading-relaxed">{about.intro.body1}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{about.intro.body2}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{about.intro.body3}</p>
+            </FadeUp>
           </div>
         </div>
       </section>
 
-      {/* Narrative Section */}
-      <section className="py-20 sm:py-24 md:py-28 border-b border-white/[0.07]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            <div className="lg:col-span-5 space-y-6">
-              <span className="eyebrow">Studio Manifesto</span>
-              <h2 className="text-3xl sm:text-4xl font-display font-bold text-prose-primary tracking-editorial leading-tight">
-                Why we reject the agency model.
-              </h2>
-              <div className="w-8 h-px bg-brand-orange mb-6" />
-              <p className="text-sm text-prose-secondary font-light leading-relaxed">
-                Traditional agencies build bloated account-management pyramids. You pitch to the senior partner, but your software is built by disconnected subcontractors juggling 10 accounts simultaneously.
-              </p>
-              <p className="text-sm text-prose-secondary font-light leading-relaxed">
-                Tushar Labs was formed as an antidote: a compact, high-conviction digital studio where you work directly with the people architecting your system and writing your code.
-              </p>
-            </div>
+      {/* ── PHILOSOPHY ── */}
+      <section className="border-t border-border" style={{ background: "hsl(var(--background))" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp className="mb-14">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+              {about.philosophy.label}
+            </span>
+            <h2
+              className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {about.philosophy.heading}
+            </h2>
+          </FadeUp>
 
-            <div className="lg:col-span-7 space-y-4">
-              {[
-                {
-                  title: "Direct Engineering Accountability",
-                  desc: "No middlemen account executives. Technical scoping and architecture decisions happen in direct conversation between you and the maker.",
-                },
-                {
-                  title: "Modern, Type-Safe Architecture",
-                  desc: "We write clean, typed codebases (TypeScript, Next.js, Supabase, Tailwind) that your internal engineering team can easily inherit and scale.",
-                },
-                {
-                  title: "Honest Delivery Timelines",
-                  desc: "We provide realistic, sprint-based scopes and deterministic milestones. No inflated hours or hidden change-order fees.",
-                },
-                {
-                  title: "100% IP & Asset Ownership",
-                  desc: "Upon final delivery, every repository, Figma design file, domain configuration, and cloud asset belongs unconditionally to you.",
-                },
-              ].map((item, i) => (
-                <div key={item.title} className="p-4 bg-void border border-white/[0.07] rounded-sm hover:border-brand-orange/30 transition-colors">
-                  <div className="flex items-start gap-4">
-                    <span className="text-xs font-mono text-brand-orange font-bold">0{i + 1}</span>
-                    <div className="space-y-1">
-                      <h3 className="text-sm font-display font-semibold text-prose-primary">{item.title}</h3>
-                      <p className="text-xs text-prose-secondary font-light leading-relaxed">{item.desc}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border">
+            {about.philosophy.values.map((val, i) => (
+              <FadeUp key={val.id} delay={i * 70}>
+                <div
+                  className="p-8 h-full group hover:border-l-2 hover:border-l-primary transition-all duration-200"
+                  style={{ background: "hsl(var(--card))" }}
+                >
+                  <span className="font-mono text-xs text-primary block mb-4">{val.num}</span>
+                  <h3
+                    className="text-lg font-bold text-foreground mb-3 leading-snug group-hover:text-primary transition-colors"
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                    {val.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{val.body}</p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TIMELINE ── */}
+      <section className="border-t border-border" style={{ background: "hsl(var(--secondary))" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp className="mb-14">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+              {about.timeline.label}
+            </span>
+            <h2
+              className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {about.timeline.heading}
+            </h2>
+          </FadeUp>
+
+          <div className="relative">
+            <div className="absolute left-[39px] top-0 bottom-0 w-px bg-border hidden lg:block" />
+            <div className="flex flex-col gap-px bg-border lg:bg-transparent lg:gap-0">
+              {about.timeline.events.map((event, i) => (
+                <FadeUp key={event.id} delay={i * 80}>
+                  <div
+                    className="grid grid-cols-1 lg:grid-cols-[80px_1fr] gap-6 lg:gap-12 items-start p-7 lg:p-0 lg:mb-10"
+                    style={{ background: i % 2 === 0 ? "hsl(var(--background))" : "hsl(var(--card))" }}
+                  >
+                    <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:pt-1">
+                      <div className="w-3 h-3 rounded-full bg-primary shrink-0 ring-4 ring-background z-10 hidden lg:block" />
+                      <span className="font-mono text-xs text-primary tracking-wide whitespace-nowrap">
+                        {event.year}
+                      </span>
+                    </div>
+                    <div className="lg:pb-10 lg:border-b lg:border-border">
+                      <h3
+                        className="text-base font-bold text-foreground mb-2"
+                        style={{ fontFamily: "var(--font-heading)" }}
+                      >
+                        {event.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{event.body}</p>
                     </div>
                   </div>
-                </div>
+                </FadeUp>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* 5-Step Process */}
-      <section className="py-20 sm:py-24 bg-surface border-b border-white/[0.07]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="pb-8 mb-10 border-b border-white/[0.07] flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div>
-              <span className="eyebrow block mb-2">Delivery Lifecycle</span>
-              <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-prose-primary tracking-editorial">
-                The 5-Stage Studio Process.
-              </h2>
+      {/* ── WORKSPACE IMAGE ── */}
+      <section className="border-t border-border" style={{ background: "hsl(var(--background))" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp>
+            <div className="relative overflow-hidden rounded-sm border border-border aspect-video w-full">
+              <Image
+                src="/images/pages/about/workspace.png"
+                alt="Tushar Labs workspace — design, build, ship, automate"
+                fill
+                className="object-cover"
+                loading="lazy"
+                sizes="(max-width: 1280px) 100vw, 1280px"
+              />
+              <div className="absolute top-0 left-0 w-10 h-0.5 bg-primary pointer-events-none" />
+              <div className="absolute top-0 left-0 w-0.5 h-10 bg-primary pointer-events-none" />
             </div>
-            <p className="text-xs font-mono uppercase tracking-widest text-prose-dim max-w-xs">
-              Every engagement follows our deterministic 5-stage blueprint.
-            </p>
-          </div>
+          </FadeUp>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {studioProcess.map((step) => (
-              <div key={step.step} className="p-5 bg-void border border-white/[0.07] rounded-sm space-y-3">
-                <div className="text-3xl font-display font-black text-prose-muted/30">
-                  {step.step}
+      {/* ── CURRENTLY WORKING ON ── */}
+      <section className="border-t border-border" style={{ background: "hsl(var(--secondary))" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp className="mb-14">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+              {about.current.label}
+            </span>
+            <h2
+              className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {about.current.heading}
+            </h2>
+          </FadeUp>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+            {about.current.items.map((item, i) => (
+              <FadeUp key={item.id} delay={i * 60}>
+                <div
+                  className="p-7 h-full flex flex-col"
+                  style={{ background: "hsl(var(--background))" }}
+                >
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-6 h-0.5 bg-primary" />
+                    <span className="font-mono text-xs px-2 py-1 rounded-sm border border-primary text-primary">
+                      {item.tag}
+                    </span>
+                  </div>
+                  <h3
+                    className="text-base font-bold text-foreground mb-3"
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{item.body}</p>
                 </div>
-                <div className="text-[9px] font-mono uppercase tracking-eyebrow text-brand-orange font-semibold">
-                  Stage: {step.name}
-                </div>
-                <h3 className="text-sm font-display font-bold text-prose-primary leading-snug">
-                  {step.headline}
-                </h3>
-                <p className="text-xs text-prose-dim leading-relaxed font-light">
-                  {step.description}
-                </p>
-              </div>
+              </FadeUp>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="py-16 sm:py-20 bg-void">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="p-8 sm:p-12 bg-raised border border-brand-orange/20 rounded-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-            <div className="space-y-2">
-              <span className="eyebrow">Ready to collaborate?</span>
-              <h2 className="text-2xl sm:text-3xl font-display font-bold text-prose-primary">
-                Let&apos;s build something exceptional together.
-              </h2>
-              <p className="text-xs sm:text-sm text-prose-secondary font-light max-w-lg">
-                Tell us about your project or schedule a call to explore fit and technical requirements.
-              </p>
-            </div>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-7 py-4 bg-brand-orange text-white text-xs font-mono tracking-widest uppercase font-bold hover:bg-brand-hover transition-colors shrink-0 rounded-sm shadow-lg shadow-brand-orange/20"
+      {/* ── SKILLS ── */}
+      <section className="border-t border-border" style={{ background: "hsl(var(--background))" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp className="mb-14">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+              {about.skills.label}
+            </span>
+            <h2
+              className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+              style={{ fontFamily: "var(--font-heading)" }}
             >
-              <span>Start a Project</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
+              {about.skills.heading}
+            </h2>
+          </FadeUp>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+            {about.skills.areas.map((area, i) => (
+              <FadeUp key={area.id} delay={i * 60}>
+                <div
+                  className="p-7 h-full"
+                  style={{ background: "hsl(var(--card))" }}
+                >
+                  <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-5">
+                    {area.area}
+                  </span>
+                  <div className="flex flex-col gap-2.5">
+                    {area.items.map((skill) => (
+                      <div key={skill} className="flex items-start gap-2 text-sm text-foreground">
+                        <span className="text-primary shrink-0 mt-0.5 font-mono text-xs">→</span>
+                        <span>{skill}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </FadeUp>
+            ))}
           </div>
         </div>
       </section>
 
+      {/* ── PERSONAL NOTE ── */}
+      <section className="border-t border-border" style={{ background: "hsl(var(--secondary))" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 lg:gap-24 items-start">
+            <FadeUp>
+              <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+                {about.personal.label}
+              </span>
+              <h2
+                className="text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground leading-tight"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                {about.personal.heading}
+              </h2>
+            </FadeUp>
+
+            <FadeUp delay={80}>
+              <p className="text-base text-muted-foreground leading-relaxed mb-8">
+                {about.personal.body}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {about.personal.interests.map((interest) => (
+                  <span
+                    key={interest}
+                    className="font-mono text-xs px-3 py-1.5 rounded-sm border border-border text-muted-foreground"
+                  >
+                    {interest}
+                  </span>
+                ))}
+              </div>
+            </FadeUp>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA BAND ── */}
+      <section style={{ background: "hsl(var(--background))" }} className="border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
+          <FadeUp className="max-w-3xl">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-6">
+              {about.cta.label}
+            </span>
+            <h2
+              className="text-4xl lg:text-6xl font-extrabold tracking-tight text-foreground mb-8 leading-tight"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {about.cta.heading}
+            </h2>
+            <p className="text-base text-muted-foreground leading-relaxed mb-10 max-w-xl">
+              {about.cta.body}
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center px-7 py-3.5 text-sm font-semibold font-mono rounded-sm bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+              >
+                {about.cta.cta1}
+              </Link>
+              <Link
+                href="/work"
+                className="inline-flex items-center px-7 py-3.5 text-sm font-semibold font-mono rounded-sm border border-border text-foreground hover:border-primary hover:text-primary transition-colors"
+              >
+                {about.cta.cta2}
+              </Link>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
     </main>
   );
 }

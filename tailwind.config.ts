@@ -15,6 +15,27 @@ const config: Config = {
         mono: ["JetBrains Mono", "SFMono-Regular", "Menlo", "monospace"],
       },
       colors: {
+        // Airo HSL token system (matches CSS variables)
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        border: "hsl(var(--border))",
+        ring: "hsl(var(--ring))",
         // Deep Charcoal / Black Backgrounds
         void: "#0C0D0E",
         surface: "#131518",
@@ -58,7 +79,6 @@ const config: Config = {
         },
 
         // Legacy studio mapping
-        background: "#0C0D0E",
         canvas: "#131518",
         paper: "#F7F5F0",
         ink: {

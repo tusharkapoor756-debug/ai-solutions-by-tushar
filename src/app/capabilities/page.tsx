@@ -1,196 +1,418 @@
-import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
-import { ArrowUpRight } from "lucide-react";
-import { studioCapabilities } from "@/config/site";
+import FadeUp from "@/components/FadeUp";
+import { capabilities } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Technical Capabilities & Stack | TUSHAR LABS",
+  title: "Capabilities — Tushar Labs | Independent Full-Stack Studio",
   description:
-    "An inventory of our technical disciplines: Frontend Engineering, Backend & Systems, Database & Architecture, AI & Automation, Design Systems, and Cloud Deployment.",
+    "Technical stack depth, working style, engagement models, and what makes Tushar Labs different from agencies and freelancers.",
 };
 
 export default function CapabilitiesPage() {
-  const capabilityGroups = [
-    {
-      title: "Frontend Engineering",
-      tagline: "Component architecture, performance, accessibility, and high-fidelity motion.",
-      items: studioCapabilities.frontend,
-      practices: [
-        "Server-Side Rendering (SSR) & Static Generation",
-        "Type-Safe Component Architecture (TypeScript)",
-        "Zero-Layout-Shift Responsive Breakpoints",
-        "Reduced Motion & WCAG 2.1 AA Compliance",
-      ],
-    },
-    {
-      title: "Backend & Systems",
-      tagline: "Robust APIs, event webhooks, and deterministic computational pipelines.",
-      items: studioCapabilities.backend,
-      practices: [
-        "RESTful & Microservice API Construction",
-        "Deterministic Data Ingestion & Sanitization",
-        "Webhook Event Routing & Failure Retries",
-        "Role-Based Access Control & JWT Sessions",
-      ],
-    },
-    {
-      title: "Database & Architecture",
-      tagline: "Relational modeling, migration integrity, and real-time synchronicity.",
-      items: studioCapabilities.database,
-      practices: [
-        "Relational Schema Design & Normalization",
-        "Row-Level Security (RLS) Implementation",
-        "Real-Time Database Subscriptions & Triggers",
-        "Automated Backup & Failover Strategies",
-      ],
-    },
-    {
-      title: "AI & Automation Pipelines",
-      tagline: "Practical LLM orchestration, WhatsApp integrations, and structured workflows.",
-      items: studioCapabilities.aiAutomation,
-      practices: [
-        "Multi-Model LLM Abstraction Layers",
-        "Deterministic Guardrails Against Hallucination",
-        "Official WhatsApp Cloud API Handlers",
-        "Visual n8n Enterprise Workflow Orchestration",
-      ],
-    },
-    {
-      title: "Design Systems & 3D",
-      tagline: "Swiss typography systems, interactive prototypes, and spatial visualization.",
-      items: studioCapabilities.design,
-      practices: [
-        "Modular Figma Auto-Layout Tokens",
-        "Harmonious Color & Spacing Token Models",
-        "Micro-Interaction & Prototype Crafting",
-        "Architectural 3D Perspective Modeling",
-      ],
-    },
-    {
-      title: "Cloud & Deployment",
-      tagline: "Edge networks, continuous integration, and scalable hosting foundations.",
-      items: studioCapabilities.deployment,
-      practices: [
-        "Vercel Edge Network Configuration",
-        "GitHub Actions CI/CD Automated Pipelines",
-        "DNS, SSL & Custom Domain Optimization",
-        "Cloudflare CDN & DDoS Mitigation",
-      ],
-    },
-  ];
-
   return (
-    <main className="min-h-screen bg-void">
+    <main>
+      {/* Orange accent line */}
+      <div className="h-0.5 w-full bg-primary" />
 
-      {/* Hero */}
-      <section className="relative py-20 sm:py-24 md:py-28 border-b border-white/[0.07] overflow-hidden">
-        <div className="absolute inset-0 ambient-bg pointer-events-none" />
-        <div className="absolute inset-0 orange-grid pointer-events-none opacity-60" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 space-y-5">
-          <span className="eyebrow">Technical Depth</span>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold text-prose-primary tracking-editorial leading-none">
-            Engineering<br />
-            <span className="gradient-text">Capabilities.</span>
-          </h1>
-          <p className="text-sm sm:text-base text-prose-secondary font-light max-w-2xl leading-relaxed">
-            We reject the vanity wall of floating corporate logos. Below is an honest, production-verified inventory of the tools, frameworks, and architecture patterns we employ to deliver real systems.
+      {/* ── HERO ── */}
+      <section className="pt-28 lg:pt-36 pb-0 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
+          <div>
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-5">
+              {capabilities.hero.label}
+            </span>
+            <h1
+              className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] text-foreground"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {capabilities.hero.heading}
+            </h1>
+          </div>
+          <p className="text-base text-muted-foreground leading-relaxed max-w-md lg:text-right">
+            {capabilities.hero.subheading}
           </p>
         </div>
+
+        {/* Stats bar */}
+        <div className="flex flex-wrap items-center gap-6 pt-10 border-t border-border mb-14">
+          <span className="font-mono text-xs text-muted-foreground tracking-wide">{capabilities.hero.stat1}</span>
+          <span className="text-primary font-mono text-xs">·</span>
+          <span className="font-mono text-xs text-muted-foreground tracking-wide">{capabilities.hero.stat2}</span>
+          <span className="text-primary font-mono text-xs">·</span>
+          <span className="font-mono text-xs text-muted-foreground tracking-wide">{capabilities.hero.stat3}</span>
+        </div>
+
+        {/* Hero image */}
+        <FadeUp>
+          <div className="relative overflow-hidden rounded-sm border border-border aspect-video w-full">
+            <Image
+              src="/images/pages/capabilities/hero.png"
+              alt="Tushar Labs — independent full-stack studio at work"
+              fill
+              className="object-cover"
+              loading="eager"
+              priority
+              sizes="(max-width: 1280px) 100vw, 1280px"
+            />
+            <div className="absolute top-0 left-0 w-10 h-0.5 bg-primary pointer-events-none" />
+            <div className="absolute top-0 left-0 w-0.5 h-10 bg-primary pointer-events-none" />
+          </div>
+        </FadeUp>
       </section>
 
-      {/* Capability Groups */}
-      <section className="py-14 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.05] border border-white/[0.05] rounded-sm overflow-hidden">
-            {capabilityGroups.map((group, idx) => (
-              <div
-                key={idx}
-                className="p-6 sm:p-8 bg-surface hover:bg-raised transition-colors flex flex-col justify-between space-y-5 relative group"
+      {/* ── HOW WE THINK — positioning pillars ── */}
+      <section className="border-t border-border mt-0" style={{ background: "hsl(var(--background))" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp className="mb-14">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+              {capabilities.positioning.label}
+            </span>
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+              <h2
+                className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+                style={{ fontFamily: "var(--font-heading)" }}
               >
-                {/* Orange top accent on hover */}
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-brand-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
+                {capabilities.positioning.heading}
+              </h2>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-sm lg:text-right">
+                {capabilities.positioning.body}
+              </p>
+            </div>
+          </FadeUp>
 
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between border-b border-white/[0.07] pb-3">
-                    <span className="text-[9px] font-mono text-brand-orange font-bold tracking-eyebrow uppercase">
-                      DOMAIN [0{idx + 1}]
-                    </span>
-                    <span className="text-[9px] font-mono uppercase text-prose-muted">
-                      Production Verified
-                    </span>
-                  </div>
-
-                  <h2 className="text-lg font-display font-bold text-prose-primary">
-                    {group.title}
-                  </h2>
-
-                  <p className="text-xs text-prose-dim font-light leading-relaxed">
-                    {group.tagline}
-                  </p>
-
-                  {/* Tech badges */}
-                  <div>
-                    <span className="text-[9px] font-mono uppercase tracking-eyebrow text-prose-muted block mb-2.5">
-                      Core Stack
-                    </span>
-                    <div className="flex flex-wrap gap-1.5">
-                      {group.items.map((tech, tIdx) => (
-                        <span
-                          key={tIdx}
-                          className="text-[10px] font-mono px-2.5 py-1 bg-void text-prose-secondary border border-white/[0.07] rounded-sm"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Practices */}
-                  <div>
-                    <span className="text-[9px] font-mono uppercase tracking-eyebrow text-prose-muted block mb-2.5">
-                      Standards & Practices
-                    </span>
-                    <ul className="space-y-1.5">
-                      {group.practices.map((p, pIdx) => (
-                        <li key={pIdx} className="flex items-start gap-2 text-[11px] text-prose-secondary font-mono">
-                          <span className="text-brand-orange mt-0.5">▸</span>
-                          <span>{p}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border">
+            {capabilities.positioning.pillars.map((pillar, i) => (
+              <FadeUp key={pillar.id} delay={i * 80}>
+                <div
+                  className="p-8 h-full group hover:border-l-2 hover:border-l-primary transition-all duration-200"
+                  style={{ background: "hsl(var(--card))" }}
+                >
+                  <span className="font-mono text-xs text-primary block mb-4">{pillar.num}</span>
+                  <h3
+                    className="text-lg font-bold text-foreground mb-3 leading-snug group-hover:text-primary transition-colors"
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                    {pillar.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{pillar.body}</p>
                 </div>
-              </div>
+              </FadeUp>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="py-12 sm:py-16 border-t border-white/[0.07] bg-surface relative overflow-hidden">
-        <div className="absolute inset-0 ambient-bg pointer-events-none opacity-50" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-          <div className="p-8 sm:p-10 bg-void border border-brand-orange/20 rounded-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-            <div className="space-y-2">
-              <h3 className="text-lg sm:text-xl font-display font-bold text-prose-primary">
-                Have unique architectural requirements?
-              </h3>
-              <p className="text-sm text-prose-secondary font-light">
-                We frequently integrate specialized APIs, self-hosted LLM endpoints, and legacy databases.
-              </p>
-            </div>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-7 py-4 bg-brand-orange text-white text-xs font-mono tracking-widest uppercase font-bold hover:bg-brand-hover transition-colors shrink-0 rounded-sm shadow-lg shadow-brand-orange/20"
+      {/* ── TECHNICAL STACK ── */}
+      <section className="border-t border-border" style={{ background: "hsl(var(--secondary))" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp className="mb-14">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+              {capabilities.stack.label}
+            </span>
+            <h2
+              className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+              style={{ fontFamily: "var(--font-heading)" }}
             >
-              <span>Discuss Architecture</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
+              {capabilities.stack.heading}
+            </h2>
+          </FadeUp>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+            {capabilities.stack.categories.map((cat, i) => (
+              <FadeUp key={cat.id} delay={i * 50}>
+                <div
+                  className="p-6 h-full"
+                  style={{ background: "hsl(var(--background))" }}
+                >
+                  <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+                    {cat.name}
+                  </span>
+                  <div className="flex flex-col gap-2">
+                    {cat.items.map((item) => (
+                      <span key={item} className="text-sm text-foreground leading-relaxed">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </FadeUp>
+            ))}
           </div>
         </div>
       </section>
 
+      {/* ── BUILD VS NOT ── */}
+      <section className="border-t border-border" style={{ background: "hsl(var(--background))" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp className="mb-14">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+              {capabilities.buildVsNot.label}
+            </span>
+            <h2
+              className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {capabilities.buildVsNot.heading}
+            </h2>
+          </FadeUp>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-border">
+            {/* We build */}
+            <FadeUp>
+              <div className="p-8 h-full" style={{ background: "hsl(var(--card))" }}>
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="w-2 h-2 rounded-full bg-primary shrink-0" />
+                  <span className="font-mono text-xs text-primary tracking-widest uppercase">
+                    We build
+                  </span>
+                </div>
+                <div className="flex flex-col gap-3">
+                  {capabilities.buildVsNot.builds.map((item) => (
+                    <div key={item} className="flex items-start gap-3 text-sm text-foreground">
+                      <span className="text-primary shrink-0 mt-0.5 font-mono text-xs">→</span>
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </FadeUp>
+
+            {/* We don't */}
+            <FadeUp delay={80}>
+              <div className="p-8 h-full" style={{ background: "hsl(var(--card))" }}>
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="w-2 h-2 rounded-full bg-muted-foreground shrink-0" />
+                  <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase">
+                    We don&apos;t
+                  </span>
+                </div>
+                <div className="flex flex-col gap-3">
+                  {capabilities.buildVsNot.doesNot.map((item) => (
+                    <div key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
+                      <span className="shrink-0 mt-0.5 font-mono text-xs">×</span>
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </FadeUp>
+          </div>
+        </div>
+      </section>
+
+      {/* ── HOW WE WORK ── */}
+      <section className="border-t border-border" style={{ background: "hsl(var(--secondary))" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp className="mb-14">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+              {capabilities.howWeWork.label}
+            </span>
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+              <h2
+                className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                {capabilities.howWeWork.heading}
+              </h2>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-sm lg:text-right">
+                {capabilities.howWeWork.body}
+              </p>
+            </div>
+          </FadeUp>
+
+          <div className="flex flex-col gap-px bg-border">
+            {capabilities.howWeWork.steps.map((step, i) => (
+              <FadeUp key={step.id} delay={i * 60}>
+                <div
+                  className="grid grid-cols-1 lg:grid-cols-[80px_200px_1fr] gap-6 lg:gap-12 items-start p-7 group hover:border-l-2 hover:border-l-primary transition-all duration-200"
+                  style={{ background: "hsl(var(--background))" }}
+                >
+                  <span className="font-mono text-3xl font-bold text-primary leading-none">
+                    {step.num}
+                  </span>
+                  <h3
+                    className="text-base font-bold text-foreground group-hover:text-primary transition-colors"
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                    {step.phase}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{step.body}</p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── THE STUDIO ── */}
+      <section className="border-t border-border" style={{ background: "hsl(var(--background))" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp className="mb-14">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+              {capabilities.studio.label}
+            </span>
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+              <h2
+                className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                {capabilities.studio.heading}
+              </h2>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-sm lg:text-right">
+                {capabilities.studio.body}
+              </p>
+            </div>
+          </FadeUp>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+            {capabilities.studio.facts.map((fact, i) => (
+              <FadeUp key={fact.id} delay={i * 70}>
+                <div
+                  className="p-7 h-full"
+                  style={{ background: "hsl(var(--card))" }}
+                >
+                  <div className="w-8 h-0.5 bg-primary mb-5" />
+                  <h3
+                    className="text-base font-bold text-foreground mb-3"
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                    {fact.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{fact.body}</p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── ENGAGEMENT MODELS ── */}
+      <section className="border-t border-border" style={{ background: "hsl(var(--secondary))" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp className="mb-14">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+              {capabilities.engagements.label}
+            </span>
+            <h2
+              className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {capabilities.engagements.heading}
+            </h2>
+          </FadeUp>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-border">
+            {capabilities.engagements.models.map((model, i) => (
+              <FadeUp key={model.id} delay={i * 80}>
+                <div
+                  className="p-8 h-full flex flex-col"
+                  style={{ background: "hsl(var(--background))" }}
+                >
+                  <div className="flex items-center gap-4 mb-6">
+                    <span className="font-mono text-3xl font-bold text-primary leading-none">
+                      {model.num}
+                    </span>
+                    <div className="h-px flex-1 bg-border" />
+                  </div>
+                  <h3
+                    className="text-xl font-extrabold text-foreground mb-2"
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                    {model.name}
+                  </h3>
+                  <p className="font-mono text-xs text-primary mb-5">{model.tagline}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">
+                    {model.body}
+                  </p>
+                  <div className="pt-5 border-t border-border">
+                    <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-2">
+                      Best for
+                    </span>
+                    <p className="text-xs text-foreground">{model.bestFor}</p>
+                  </div>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── INDUSTRIES ── */}
+      <section className="border-t border-border" style={{ background: "hsl(var(--background))" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+          <FadeUp className="mb-14">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+              {capabilities.industries.label}
+            </span>
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+              <h2
+                className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                {capabilities.industries.heading}
+              </h2>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-sm lg:text-right">
+                {capabilities.industries.body}
+              </p>
+            </div>
+          </FadeUp>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+            {capabilities.industries.list.map((industry, i) => (
+              <FadeUp key={industry.id} delay={i * 60}>
+                <div
+                  className="p-7 h-full group hover:border-l-2 hover:border-l-primary transition-all duration-200"
+                  style={{ background: "hsl(var(--card))" }}
+                >
+                  <h3
+                    className="text-base font-bold text-foreground mb-2 group-hover:text-primary transition-colors"
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                    {industry.name}
+                  </h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{industry.note}</p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA BAND ── */}
+      <section style={{ background: "hsl(var(--secondary))" }} className="border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
+          <FadeUp className="max-w-3xl">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-6">
+              {capabilities.cta.label}
+            </span>
+            <h2
+              className="text-4xl lg:text-6xl font-extrabold tracking-tight text-foreground mb-8 leading-tight"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {capabilities.cta.heading}
+            </h2>
+            <p className="text-base text-muted-foreground leading-relaxed mb-10 max-w-xl">
+              {capabilities.cta.body}
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center px-7 py-3.5 text-sm font-semibold font-mono rounded-sm bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+              >
+                {capabilities.cta.cta1}
+              </Link>
+              <Link
+                href="/work"
+                className="inline-flex items-center px-7 py-3.5 text-sm font-semibold font-mono rounded-sm border border-border text-foreground hover:border-primary hover:text-primary transition-colors"
+              >
+                {capabilities.cta.cta2}
+              </Link>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
     </main>
   );
 }
