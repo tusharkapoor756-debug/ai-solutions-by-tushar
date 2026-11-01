@@ -1,33 +1,84 @@
-import React from "react";
 import type { Metadata } from "next";
 import Contact from "@/components/Contact";
+import FadeUp from "@/components/FadeUp";
+import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Start a Project | Project Enquiry | TUSHAR LABS",
+  title: "Contact — Tushar Labs | Start a Project",
   description:
-    "Initiate your project brief with Tushar Labs. Support for INR, USD, GBP, EUR, AED with instant WhatsApp and email forwarding.",
+    "Direct engagement with Tushar Labs. Request a proposal, discuss custom software architecture, or connect directly on WhatsApp with our lead builder.",
 };
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-void">
-      {/* Hero header */}
-      <div className="relative border-b border-white/[0.07] py-16 sm:py-20 overflow-hidden">
-        <div className="absolute inset-0 ambient-bg pointer-events-none" />
-        <div className="absolute inset-0 editorial-grid pointer-events-none opacity-50" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 space-y-4">
-          <span className="eyebrow">Direct Engagement</span>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold text-prose-primary tracking-editorial leading-none">
-            Start a Project.
-          </h1>
-          <p className="text-sm sm:text-base text-prose-secondary font-light max-w-xl leading-relaxed">
-            Tell us about your objectives, timeline, and budget. Every brief is reviewed directly by our engineering leads with a response guaranteed within 24 hours.
-          </p>
-        </div>
-      </div>
+    <main>
+      {/* Orange accent line */}
+      <div className="h-0.5 w-full bg-primary" />
 
-      {/* Embedded Contact Component with Currency + Phone + WhatsApp */}
+      {/* ── HERO BANNER ── */}
+      <section className="pt-28 lg:pt-36 pb-12 lg:pb-16 px-6 lg:px-8 max-w-7xl mx-auto border-b border-border">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+          <div className="lg:col-span-8">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
+              Direct Engagement · Studio Inquiry
+            </span>
+            <h1
+              className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] text-foreground mb-6"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              Start a Project.
+            </h1>
+            <p className="text-base text-muted-foreground leading-relaxed max-w-2xl">
+              Tell us about your objectives, timeline, and tech requirements. Every brief is reviewed directly by our founder and engineering lead with a clear response and actionable roadmap within 24 hours.
+            </p>
+          </div>
+
+          <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-4 font-mono text-xs text-muted-foreground">
+            <div className="flex items-center gap-3 p-3.5 rounded-sm border border-border" style={{ background: "hsl(var(--card))" }}>
+              <span className="w-2 h-2 rounded-full bg-primary shrink-0 animate-pulse" />
+              <span>Response guaranteed within 24h</span>
+            </div>
+            <div className="flex items-center gap-3 p-3.5 rounded-sm border border-border" style={{ background: "hsl(var(--card))" }}>
+              <span className="text-primary font-bold">100%</span>
+              <span>Direct engineer &amp; designer collaboration</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── INTERACTIVE INQUIRY FORM & DETAILS ── */}
       <Contact />
+
+      {/* ── WORKSPACE SHOWCASE FOOTER ── */}
+      <section className="bg-background border-t border-border py-16 lg:py-20 px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <FadeUp className="relative overflow-hidden rounded-sm border border-border aspect-[21/9] w-full">
+            <Image
+              src="/images/pages/about/workspace.png"
+              alt="Tushar Labs Studio Environment"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1280px) 100vw, 1280px"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />
+            <div className="absolute top-0 left-0 w-8 h-0.5 bg-primary pointer-events-none" />
+            <div className="absolute top-0 left-0 w-0.5 h-8 bg-primary pointer-events-none" />
+            <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between pointer-events-none">
+              <div>
+                <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-1">
+                  Studio Standards
+                </span>
+                <p className="text-sm font-semibold text-foreground">
+                  Crafting resilient code, high-converting interfaces &amp; autonomous workflows.
+                </p>
+              </div>
+              <span className="hidden sm:inline-block font-mono text-xs text-muted-foreground">
+                Tushar Labs Studio
+              </span>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
     </main>
   );
 }
