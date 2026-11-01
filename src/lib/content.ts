@@ -229,25 +229,25 @@ export const home = {
   },
   testimonials: {
     label: "Client Proof",
-    heading: "What founders say about working with us.",
+    heading: "What clients say about working with us.",
     items: [
       {
         id: "t1",
-        quote: "Tushar delivered our complete booking platform within 10 days. The design looks world-class, our conversion rate jumped from week one, and having direct access to the engineer made the whole process effortless.",
-        author: "Aman Singhal",
+        quote: "Tushar delivered our complete Safaronroads travel platform with immense speed and polish. The visual storytelling is world-class, our inquiry conversion jumped from week one, and collaborating directly with the engineer made the entire experience seamless.",
+        author: "Parth Dua",
         role: "Founder, Safaronroads Travel",
         location: "Delhi, India",
       },
       {
         id: "t2",
-        quote: "Most agencies quoted us 3 lakhs and 2 months. Tushar built KitchenZap's core ordering interface with unbelievable speed and precision. No fluff, just pure execution.",
-        author: "Vikram Rathore",
-        role: "Operator, Multi-Outlet Restaurant",
-        location: "Gurugram, India",
+        quote: "We piloted KitchenZap across our restaurant operations and the impact was immediate. Food preparation delays dropped by 25% and order routing became completely error-free. It's built for real, fast-paced restaurant environments.",
+        author: "Rajeev Verma",
+        role: "Restaurant Partner & Early Pilot User",
+        location: "Delhi NCR, India",
       },
       {
         id: "t3",
-        quote: "Our lead capture workflow was completely manual before. The AI automation system Tushar set up now qualifies leads on WhatsApp 24/7. It paid for itself in the first month.",
+        quote: "Tushar Labs transformed how we handle incoming business inquiries. The automated AI pipeline qualifies client briefs on WhatsApp instantly 24/7 without missing a single lead. Tremendous ROI.",
         author: "Pooja Malhotra",
         role: "Director, Enterprise Advisory",
         location: "Noida, India",
