@@ -161,7 +161,7 @@ export default function Footer() {
       <div className="border-t border-border">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs text-muted-foreground">
           <div className="flex flex-wrap items-center gap-4">
-            <span>{home.footer.copyright}</span>
+            <span>© {new Date().getFullYear()} Tushar Labs. All rights reserved.</span>
             <span className="text-border">·</span>
             <Link href="/privacy" className="hover:text-primary transition-colors">
               Privacy Policy
