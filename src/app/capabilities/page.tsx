@@ -5,9 +5,19 @@ import FadeUp from "@/components/FadeUp";
 import { capabilities } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Capabilities — Tushar Labs | Independent Full-Stack Studio",
+  title: "Capabilities — Tushar Labs | Next.js, AI Agents, & Custom SaaS Architecture",
   description:
-    "Technical stack depth, working style, engagement models, and what makes Tushar Labs different from agencies and freelancers.",
+    "Explore our technical capabilities: Next.js 14, TypeScript, Tailwind CSS, Python LangGraph agents, n8n automation, and scalable cloud deployments engineered for enterprises in Delhi NCR and globally.",
+  keywords: [
+    "Next.js Development Capabilities",
+    "AI Agent Architecture India",
+    "LangGraph Multi-Agent Systems Delhi",
+    "Tailwind CSS Frontend Engineering",
+    "SaaS Architecture India",
+  ],
+  alternates: {
+    canonical: "https://www.tusharlabs.in/capabilities",
+  },
 };
 
 export default function CapabilitiesPage() {

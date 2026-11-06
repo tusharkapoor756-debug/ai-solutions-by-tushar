@@ -3,16 +3,29 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import FadeUp from "@/components/FadeUp";
 import NovaMarketShowcase from "@/components/NovaMarketShowcase";
+import EstoraShowcase from "@/components/EstoraShowcase";
 import { work } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Work — Tushar Labs | Selected Projects",
+  title: "Work — Tushar Labs | Selected Projects & Production Software",
   description:
-    "Selected projects by Tushar Labs — NOVA Market, KitchenZap, Restroex, Safaronroads, Agent-X, and Nexus.",
+    "Explore production-grade digital systems engineered by Tushar Labs in Delhi NCR — NOVA Market (e-commerce), ESTORA (real estate portal), KitchenZap (restaurant SaaS), Restroex (AI POS), and Safaronroads.",
+  keywords: [
+    "Web Development Portfolio Delhi",
+    "Next.js Project Showcase",
+    "NOVA Market E-commerce",
+    "ESTORA Real Estate Concept",
+    "KitchenZap Restaurant SaaS",
+    "Full Stack Developer Portfolio India",
+  ],
+  alternates: {
+    canonical: "https://www.tusharlabs.in/work",
+  },
 };
 
 const coverImages: Record<string, string> = {
   "nova-market": "/images/pages/work/nova-market-desktop-full.webp",
+  estora: "/images/pages/work/estora-desktop-full.webp",
   kitchenzap: "/images/pages/work/kitchenzap-cover.png",
   restroex: "/images/pages/work/restroex-cover.png",
   safaronroads: "/images/pages/work/safaronroads-cover.png",
@@ -22,6 +35,7 @@ const coverImages: Record<string, string> = {
 
 const coverAlts: Record<string, string> = {
   "nova-market": "NOVA Market — modern multi-category e-commerce marketplace",
+  estora: "ESTORA — premium real estate developer website concept",
   kitchenzap: "KitchenZap — restaurant management SaaS dashboard",
   restroex: "Restroex — AI-powered restaurant ordering system",
   safaronroads: "Safaronroads — adventure travel website",
@@ -98,10 +112,14 @@ export default function WorkPage() {
                 </span>
               </FadeUp>
 
-              {/* Showcase presentation: NOVA Market interactive dual-device showcase OR standard cover */}
+              {/* Showcase presentation: NOVA Market or ESTORA interactive dual-device showcase OR standard cover */}
               {project.id === "nova-market" ? (
                 <FadeUp className="mb-12">
                   <NovaMarketShowcase />
+                </FadeUp>
+              ) : project.id === "estora" ? (
+                <FadeUp className="mb-12">
+                  <EstoraShowcase />
                 </FadeUp>
               ) : (
                 <FadeUp className="mb-12">

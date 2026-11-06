@@ -32,20 +32,63 @@ const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "ProfessionalService",
+      "@type": "LocalBusiness",
       "@id": "https://www.tusharlabs.in/#organization",
       name: "Tushar Labs",
-      alternateName: "Tushar Labs Digital Studio",
+      alternateName: ["Tushar Labs Digital Studio", "Tushar Labs Web Development & AI Automation"],
       url: "https://www.tusharlabs.in",
       logo: "https://www.tusharlabs.in/tl-logo-transparent.png",
       image: "https://www.tusharlabs.in/images/pages/capabilities/hero.png",
       description:
-        "Tushar Labs is an independent digital studio based in New Delhi, India specializing in custom website development, SaaS software, and AI workflow automation.",
+        "Tushar Labs is a top-rated web development company and AI automation agency serving Delhi NCR, Noida, Gurgaon, and global businesses. We build high-converting websites, custom SaaS platforms, and intelligent agentic workflows.",
       address: {
         "@type": "PostalAddress",
+        streetAddress: "Connaught Place / South Delhi",
         addressLocality: "New Delhi",
-        addressRegion: "Delhi",
+        addressRegion: "Delhi NCR",
+        postalCode: "110001",
         addressCountry: "IN",
+      },
+      areaServed: [
+        { "@type": "City", name: "Delhi" },
+        { "@type": "City", name: "New Delhi" },
+        { "@type": "City", name: "Noida" },
+        { "@type": "City", name: "Gurugram" },
+        { "@type": "City", name: "Faridabad" },
+        { "@type": "City", name: "Ghaziabad" },
+        { "@type": "Country", name: "India" },
+        { "@type": "Country", name: "United States" },
+        { "@type": "Country", name: "United Kingdom" },
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Web Development & AI Automation Services",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Custom Website Design and Development",
+              description: "High-performance websites built with Next.js, React, Tailwind CSS and sub-second load speeds.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "AI Workflow & Agent Automation",
+              description: "Custom AI agents, n8n/Make pipelines, LLM integration, and autonomous business workflows.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Custom Software & SaaS Development",
+              description: "Full-stack SaaS application engineering from database architecture to production deployment.",
+            },
+          },
+        ],
       },
       geo: {
         "@type": "GeoCoordinates",
@@ -65,8 +108,8 @@ const structuredData = {
         {
           "@type": "OpeningHoursSpecification",
           dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          opens: "10:00",
-          closes: "19:00",
+          opens: "09:00",
+          closes: "20:00",
         },
       ],
       sameAs: [

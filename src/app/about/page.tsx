@@ -5,9 +5,19 @@ import FadeUp from "@/components/FadeUp";
 import { about } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "About — Tushar Labs | Developer, Designer & Builder",
+  title: "About — Tushar Labs | Full-Stack Engineer & AI Builder New Delhi",
   description:
-    "Tushar is an independent developer, designer, and technology entrepreneur based in New Delhi, India. He runs Tushar Labs — a full-stack digital solutions studio.",
+    "Meet Tushar Kapoor, founder and engineering lead at Tushar Labs, New Delhi. Engineering high-performance web applications, custom SaaS platforms, and autonomous AI agents for clients in Delhi NCR and worldwide.",
+  keywords: [
+    "Tushar Kapoor Web Developer",
+    "Full Stack Engineer Delhi",
+    "Independent Digital Studio India",
+    "Freelance Full Stack Developer Delhi NCR",
+    "Next.js Consultant Delhi",
+  ],
+  alternates: {
+    canonical: "https://www.tusharlabs.in/about",
+  },
 };
 
 export default function AboutPage() {

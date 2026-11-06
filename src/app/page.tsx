@@ -5,13 +5,25 @@ import FadeUp from "@/components/FadeUp";
 import { home } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Tushar Labs — Independent Digital Studio",
+  title: "Tushar Labs — Top Web Development Company & AI Automation Agency Delhi NCR",
   description:
-    "Tushar Labs is an independent digital solutions studio. We design and build websites, custom software, and intelligent automation systems for ambitious businesses.",
+    "Tushar Labs is an independent digital studio in New Delhi. We design and build ultra-fast websites, custom SaaS software, and intelligent AI automation systems for ambitious businesses across Delhi NCR, Noida, Gurgaon & globally.",
+  keywords: [
+    "Web Development Company Delhi",
+    "AI Automation Agency Delhi NCR",
+    "Website Design and Development Company Delhi",
+    "Custom Software Company Delhi",
+    "Next.js Developer Delhi",
+    "Top Web Development Company in Delhi",
+    "Full Stack Developer India",
+  ],
+  alternates: {
+    canonical: "https://www.tusharlabs.in",
+  },
   openGraph: {
-    title: "Tushar Labs — Independent Digital Studio",
+    title: "Tushar Labs — Top Web Development Company & AI Automation Agency Delhi NCR",
     description:
-      "We build digital systems that actually perform. Websites, custom software, and intelligent automation for ambitious businesses.",
+      "We build high-performance digital systems that actually perform. Websites, custom software, and intelligent AI automation for ambitious businesses.",
     url: "https://www.tusharlabs.in",
     type: "website",
   },
@@ -25,6 +37,8 @@ const serviceImages: Record<string, string> = {
 };
 
 const projectImages: Record<string, string> = {
+  "nova-market": "/images/pages/work/nova-market-desktop-full.webp",
+  estora: "/images/pages/work/estora-desktop-full.webp",
   kitchenzap: "/images/pages/work/kitchenzap-cover.png",
   restroex: "/images/pages/work/restroex-cover.png",
   safaronroads: "/images/pages/work/safaronroads-cover.png",
@@ -282,8 +296,9 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {home.projects.items.map((project, i) => (
               <FadeUp key={project.id} delay={i * 100}>
-                <div
-                  className="group flex flex-col h-full transition-all duration-300 hover:-translate-y-1 border-l-2 border-transparent hover:border-primary overflow-hidden"
+                <Link
+                  href={`/work#${project.id}`}
+                  className="group flex flex-col h-full transition-all duration-300 hover:-translate-y-1 border-l-2 border-transparent hover:border-primary overflow-hidden cursor-pointer"
                   style={{ background: "hsl(var(--card))" }}
                 >
                   {/* Project preview cover image */}
@@ -328,11 +343,11 @@ export default function HomePage() {
                         </span>
                       ))}
                     </div>
-                    <Link href="/work" className="font-mono text-xs text-primary tracking-widest uppercase hover:opacity-80 transition-opacity mt-auto">
-                      {project.link}
-                    </Link>
+                    <div className="font-mono text-xs text-primary tracking-widest uppercase group-hover:translate-x-1 transition-transform mt-auto flex items-center gap-1">
+                      <span>{project.link}</span>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </FadeUp>
             ))}
           </div>
