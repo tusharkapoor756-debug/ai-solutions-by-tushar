@@ -185,6 +185,58 @@ body {
   }
 }
 
+/* ─── NOVA Market Real Website Scroll Animation ───────────── */
+@keyframes novaScrollDesktop {
+  0%, 4% {
+    transform: translateY(0%);
+  }
+  46%, 54% {
+    /* Scroll smoothly down to the bottom of the page */
+    transform: translateY(calc(-100% + 560px));
+  }
+  96%, 100% {
+    /* Smoothly reset back to top and pause before repeating */
+    transform: translateY(0%);
+  }
+}
+
+@keyframes novaScrollMobile {
+  0%, 5% {
+    transform: translateY(0%);
+  }
+  48%, 55% {
+    /* Mobile scroll to bottom with natural cadence */
+    transform: translateY(calc(-100% + 460px));
+  }
+  95%, 100% {
+    transform: translateY(0%);
+  }
+}
+
+.nova-scroll-desktop {
+  animation: novaScrollDesktop 28s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.nova-scroll-mobile {
+  animation: novaScrollMobile 34s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+/* Pause animation on hover or when paused by user control */
+.group\/stage:hover .nova-scroll-desktop,
+.group\/stage:hover .nova-scroll-mobile,
+.animation-is-paused .nova-scroll-desktop,
+.animation-is-paused .nova-scroll-mobile {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nova-scroll-desktop,
+  .nova-scroll-mobile {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 /* ─── Custom Scrollbar ────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 5px;

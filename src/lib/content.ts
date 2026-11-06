@@ -481,14 +481,44 @@ export const work = {
     heading: "Systems built for real operations.",
     subheading:
       "A mix of live products, engineering projects, and early-stage concepts — each one a distinct problem worth solving.",
-    stat1: "5 Projects",
-    stat2: "3 Live Products",
-    stat3: "4 Industry Verticals",
+    stat1: "6 Projects",
+    stat2: "4 Live Products",
+    stat3: "5 Industry Verticals",
   },
   featured: [
     {
-      id: "kitchenzap",
+      id: "nova-market",
       num: "01",
+      name: "NOVA Market",
+      category: "E-Commerce / Marketplace",
+      industry: "Retail & E-Commerce",
+      statusType: "live",
+      tagline: "Modern multi-category marketplace engineered for high-velocity conversion.",
+      overview:
+        "NOVA Market is a high-performance modern multi-category e-commerce marketplace. Built with responsive editorial layouts, fluid category filtering, interactive product showcases, and a streamlined checkout experience across desktop and mobile devices.",
+      problem:
+        "Conventional marketplace storefronts frequently suffer from cluttered navigational hierarchies, sluggish rendering across mobile devices, and disjointed product discovery flows.",
+      solution:
+        "Engineered an end-to-end fluid marketplace frontend featuring modular category discovery, lightning-fast client hydration, responsive product grids, and mobile-optimized touch navigation.",
+      features: [
+        "Modern multi-category catalog navigation",
+        "Interactive product discovery & instant filtering",
+        "High-performance mobile-first responsive architecture",
+        "Curated brand spotlights & editorial collections",
+        "Real-time cart interaction and fluid checkout pathway",
+        "Sub-second page navigation and optimized image delivery",
+      ],
+      projectType: "Self-Initiated Concept Project",
+      role: "E-Commerce Architecture & Frontend Design",
+      stack: ["React", "TypeScript", "Tailwind CSS", "Cloudflare Pages", "Vite"],
+      outcomes:
+        "Deployed live on Cloudflare edge network with sub-second First Contentful Paint and fluid responsive scaling.",
+      liveUrl: "https://nova-market-5q9.pages.dev/",
+      liveLabel: "Explore Live Demo",
+    },
+    {
+      id: "kitchenzap",
+      num: "02",
       name: "KitchenZap",
       category: "Restaurant Tech / SaaS",
       industry: "Food & Beverage",
@@ -520,7 +550,7 @@ export const work = {
     },
     {
       id: "restroex",
-      num: "02",
+      num: "03",
       name: "Restroex",
       category: "AI / Restaurant Tech",
       industry: "Food & Beverage",
@@ -552,7 +582,7 @@ export const work = {
     },
     {
       id: "safaronroads",
-      num: "03",
+      num: "04",
       name: "Safaronroads",
       category: "Travel / Web Design",
       industry: "Travel & Tourism",
@@ -585,7 +615,7 @@ export const work = {
   compact: [
     {
       id: "agentx",
-      num: "04",
+      num: "05",
       name: "Agent-X",
       category: "AI / Automation",
       statusType: "development",
@@ -606,7 +636,7 @@ export const work = {
     },
     {
       id: "nexus",
-      num: "05",
+      num: "06",
       name: "Nexus",
       category: "AI / OS",
       statusType: "concept",

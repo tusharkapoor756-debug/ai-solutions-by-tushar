@@ -2,15 +2,17 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import FadeUp from "@/components/FadeUp";
+import NovaMarketShowcase from "@/components/NovaMarketShowcase";
 import { work } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Work — Tushar Labs | Selected Projects",
   description:
-    "Selected projects by Tushar Labs — KitchenZap, Restroex, Safaronroads, Agent-X, and Nexus.",
+    "Selected projects by Tushar Labs — NOVA Market, KitchenZap, Restroex, Safaronroads, Agent-X, and Nexus.",
 };
 
 const coverImages: Record<string, string> = {
+  "nova-market": "/images/pages/work/nova-market-desktop-full.webp",
   kitchenzap: "/images/pages/work/kitchenzap-cover.png",
   restroex: "/images/pages/work/restroex-cover.png",
   safaronroads: "/images/pages/work/safaronroads-cover.png",
@@ -19,6 +21,7 @@ const coverImages: Record<string, string> = {
 };
 
 const coverAlts: Record<string, string> = {
+  "nova-market": "NOVA Market — modern multi-category e-commerce marketplace",
   kitchenzap: "KitchenZap — restaurant management SaaS dashboard",
   restroex: "Restroex — AI-powered restaurant ordering system",
   safaronroads: "Safaronroads — adventure travel website",
@@ -95,38 +98,44 @@ export default function WorkPage() {
                 </span>
               </FadeUp>
 
-              {/* Cover image — full width */}
-              <FadeUp className="mb-12">
-                <div className="relative overflow-hidden rounded-sm border border-border aspect-video w-full">
-                  <Image
-                    src={coverImages[project.id] ?? ""}
-                    alt={coverAlts[project.id] ?? project.name}
-                    fill
-                    className="object-cover transition-transform duration-700 hover:scale-[1.03]"
-                    loading={idx === 0 ? "eager" : "lazy"}
-                    priority={idx === 0}
-                    sizes="(max-width: 1280px) 100vw, 1280px"
-                  />
-                  {/* Orange corner accent */}
-                  <div className="absolute top-0 left-0 w-10 h-0.5 bg-primary pointer-events-none" />
-                  <div className="absolute top-0 left-0 w-0.5 h-10 bg-primary pointer-events-none" />
-                  {/* Name overlay */}
-                  <div
-                    className="absolute bottom-0 left-0 right-0 p-6 pointer-events-none"
-                    style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%)" }}
-                  >
-                    <p className="font-mono text-xs tracking-widest uppercase mb-1 text-white/60">
-                      {project.industry}
-                    </p>
-                    <h2
-                      className="text-2xl lg:text-3xl font-extrabold leading-tight text-white"
-                      style={{ fontFamily: "var(--font-heading)" }}
+              {/* Showcase presentation: NOVA Market interactive dual-device showcase OR standard cover */}
+              {project.id === "nova-market" ? (
+                <FadeUp className="mb-12">
+                  <NovaMarketShowcase />
+                </FadeUp>
+              ) : (
+                <FadeUp className="mb-12">
+                  <div className="relative overflow-hidden rounded-sm border border-border aspect-video w-full">
+                    <Image
+                      src={coverImages[project.id] ?? ""}
+                      alt={coverAlts[project.id] ?? project.name}
+                      fill
+                      className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+                      loading={idx === 0 ? "eager" : "lazy"}
+                      priority={idx === 0}
+                      sizes="(max-width: 1280px) 100vw, 1280px"
+                    />
+                    {/* Orange corner accent */}
+                    <div className="absolute top-0 left-0 w-10 h-0.5 bg-primary pointer-events-none" />
+                    <div className="absolute top-0 left-0 w-0.5 h-10 bg-primary pointer-events-none" />
+                    {/* Name overlay */}
+                    <div
+                      className="absolute bottom-0 left-0 right-0 p-6 pointer-events-none"
+                      style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%)" }}
                     >
-                      {project.name}
-                    </h2>
+                      <p className="font-mono text-xs tracking-widest uppercase mb-1 text-white/60">
+                        {project.industry}
+                      </p>
+                      <h2
+                        className="text-2xl lg:text-3xl font-extrabold leading-tight text-white"
+                        style={{ fontFamily: "var(--font-heading)" }}
+                      >
+                        {project.name}
+                      </h2>
+                    </div>
                   </div>
-                </div>
-              </FadeUp>
+                </FadeUp>
+              )}
 
               {/* Two-column: overview + meta */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 mb-4">

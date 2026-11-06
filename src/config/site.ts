@@ -216,6 +216,35 @@ export interface ProjectDetail {
 
 export const studioProjects: ProjectDetail[] = [
   {
+    id: "nova-market",
+    title: "NOVA Market",
+    category: "Modern E-Commerce Marketplace",
+    year: "2024",
+    status: "Live Product",
+    statusColor: "text-emerald-400 bg-emerald-950/40 border-emerald-800/40",
+    summary:
+      "A high-velocity modern multi-category e-commerce marketplace featuring responsive catalog navigation, curated spotlights, and streamlined checkout.",
+    problem:
+      "Legacy online storefronts create customer fatigue with sluggish loading, disjointed product discovery, and clunky mobile navigation that limits conversion.",
+    solution:
+      "Designed and deployed NOVA Market as an ultra-responsive, modern multi-category shopping experience. Utilized modular catalog organization, fluid product filtering, responsive UI scaling, and mobile-first touch optimization.",
+    role: "E-Commerce Architecture, Frontend Engineering, Responsive Visual Systems.",
+    features: [
+      "Modern multi-category catalog navigation and instant search",
+      "Interactive product discovery with real-time category filtering",
+      "High-performance mobile-first responsive architecture",
+      "Curated brand spotlights & editorial collections",
+      "Real-time cart state and fluid checkout workflow",
+      "Edge-deployed static delivery with sub-second paint times",
+    ],
+    tech: ["React", "TypeScript", "Tailwind CSS", "Cloudflare Pages", "Vite"],
+    challenges:
+      "Maintaining instantaneous responsive interactions and fluid layout transitions across varying viewport widths from ultra-wide displays down to mobile.",
+    accent: "#3B82F6",
+    externalLink: "https://nova-market-5q9.pages.dev/",
+    nextProject: { id: "kitchenzap", title: "KitchenZap" },
+  },
+  {
     id: "kitchenzap",
     title: "KitchenZap",
     category: "Restaurant Operating Platform / SaaS",
