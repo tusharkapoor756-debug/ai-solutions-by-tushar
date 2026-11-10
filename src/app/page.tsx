@@ -2,7 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import FadeUp from "@/components/FadeUp";
+import EstoraShowcase from "@/components/EstoraShowcase";
 import { home } from "@/lib/content";
+import { ArrowUpRight, Check, MessageSquare } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Tushar Labs — Top Web Development Company & AI Automation Agency Delhi NCR",
@@ -36,41 +38,26 @@ const serviceImages: Record<string, string> = {
   branding: "/images/pages/services/branding-design-hero.png",
 };
 
-const projectImages: Record<string, string> = {
-  "nova-market": "/images/pages/work/nova-market-desktop-full.webp",
-  estora: "/images/pages/work/estora-desktop-full.webp",
-  kitchenzap: "/images/pages/work/kitchenzap-cover.png",
-  restroex: "/images/pages/work/restroex-cover.png",
-  safaronroads: "/images/pages/work/safaronroads-cover.png",
-};
-
 export default function HomePage() {
   return (
-    <main>
-      {/* Orange accent line */}
+    <main className="overflow-x-hidden">
+      {/* Orange accent top line */}
       <div className="h-0.5 w-full bg-primary" />
 
-      {/* ── HERO ── */}
-      <section className="pt-28 lg:pt-36 pb-16 lg:pb-24 px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
-          {/* Left */}
-          <div className="lg:col-span-3 flex flex-col">
-            <div className="flex items-start justify-between mb-10">
-              <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase">
-                {home.hero.label}
+      {/* ── 1. COMPACT HERO SECTION ── */}
+      <section className="pt-20 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* Main Headline & Pitch */}
+          <div className="lg:col-span-7 flex flex-col">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+              <span className="font-mono text-[11px] sm:text-xs text-primary font-medium tracking-widest uppercase">
+                New Delhi, India · Available for Projects
               </span>
-              <div className="hidden sm:flex flex-col items-end gap-1">
-                <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase">
-                  {home.hero.rightLabel1}
-                </span>
-                <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase">
-                  {home.hero.rightLabel2}
-                </span>
-              </div>
             </div>
 
             <h1
-              className="text-5xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight mb-8"
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] tracking-tight mb-5 text-foreground"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               <span>{home.hero.headline1} </span>
@@ -78,275 +65,189 @@ export default function HomePage() {
               <span> {home.hero.headline2} </span>
               <span className="italic">{home.hero.headlineItalic}</span>
               <span> {home.hero.headline3}</span>
-              <span
-                className="inline-block w-0.5 h-[0.85em] ml-1 bg-primary align-middle hero-cursor"
-              />
+              <span className="inline-block w-0.5 h-[0.8em] ml-1 bg-primary align-middle hero-cursor" />
             </h1>
 
-            <p className="text-base text-muted-foreground leading-relaxed mb-10 max-w-lg">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6 max-w-xl">
               {home.hero.body}
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-10">
-              <Link
-                href="/contact"
-                className="inline-flex items-center px-6 py-3 text-sm font-semibold font-mono rounded-sm bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+            {/* CTAs & Direct Contact */}
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6">
+              <a
+                href="https://wa.me/919315569638?text=Hello%20Tushar%20Labs%2C%20I%20would%20like%20to%20start%20a%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold font-mono rounded-sm bg-primary text-primary-foreground hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-primary/20"
               >
-                {home.hero.cta1}
-              </Link>
+                <MessageSquare className="w-4 h-4" />
+                <span>Start on WhatsApp</span>
+              </a>
               <Link
                 href="/work"
-                className="inline-flex items-center px-6 py-3 text-sm font-semibold font-mono rounded-sm border border-border text-foreground hover:border-primary hover:text-primary transition-colors"
+                className="inline-flex items-center gap-1.5 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold font-mono rounded-sm border border-border text-foreground hover:border-primary hover:text-primary active:scale-95 transition-all"
               >
-                {home.hero.cta2}
+                <span>View Portfolio</span>
+                <ArrowUpRight className="w-4 h-4" />
               </Link>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="font-mono text-xs text-muted-foreground tracking-wide">{home.hero.stat1}</span>
-              <span className="text-primary font-mono text-xs">·</span>
-              <span className="font-mono text-xs text-muted-foreground tracking-wide">{home.hero.stat2}</span>
-              <span className="text-primary font-mono text-xs">·</span>
-              <span className="font-mono text-xs text-muted-foreground tracking-wide">{home.hero.stat3}</span>
+            {/* Micro Stats Bar */}
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-mono text-muted-foreground pt-4 border-t border-border">
+              <span className="text-foreground font-medium">{home.hero.stat1}</span>
+              <span className="text-primary">·</span>
+              <span className="text-foreground font-medium">{home.hero.stat2}</span>
+              <span className="text-primary">·</span>
+              <span className="text-foreground font-medium">{home.hero.stat3}</span>
             </div>
           </div>
 
-          {/* Right — Practice Areas card */}
+          {/* Right — 4 Practice Areas Sleek Box */}
           <div
-            className="lg:col-span-2 rounded-sm border border-border p-6 flex flex-col"
+            className="lg:col-span-5 rounded-sm border border-border p-5 sm:p-6"
             style={{ background: "hsl(var(--card))" }}
           >
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-border">
               <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase">
-                {home.hero.cardLabel}
+                What We Engineer
               </span>
-              <Link href="/services" className="font-mono text-xs text-primary hover:opacity-80 transition-opacity tracking-widest">
-                {home.hero.cardLink}
+              <Link href="/services" className="font-mono text-xs text-primary hover:underline tracking-widest">
+                All Services →
               </Link>
             </div>
 
-            <div className="flex flex-col divide-y divide-border">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
               {home.hero.services.map((svc) => (
-                <div key={svc.id} className="py-4 group">
-                  <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-1">
-                    {svc.num}
-                  </span>
-                  <p className="text-sm font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
-                    {svc.title}
-                  </p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                <div key={svc.id} className="p-2.5 rounded-sm bg-background/50 border border-border/50 group hover:border-primary/50 transition-colors">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="font-mono text-[11px] text-primary font-bold">{svc.num}</span>
+                    <span className="text-xs sm:text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                      {svc.title}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-muted-foreground leading-snug">
                     {svc.desc}
                   </p>
                 </div>
               ))}
             </div>
-
-            <blockquote className="mt-6 pt-6 border-t border-border">
-              <p className="text-xs text-muted-foreground italic leading-relaxed">
-                &ldquo;{home.hero.quote}&rdquo;
-              </p>
-            </blockquote>
           </div>
         </div>
-
-        {/* Hero Visual Banner with Interactive Studio Depth */}
-        <FadeUp delay={120} className="mt-14">
-          <div className="relative overflow-hidden rounded-sm border border-border aspect-[21/9] w-full">
-            <Image
-              src="/images/pages/capabilities/hero.png"
-              alt="Tushar Labs Studio Visual — Designing and engineering high-impact digital products"
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 1280px) 100vw, 1280px"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-            <div className="absolute top-0 left-0 w-10 h-0.5 bg-primary pointer-events-none" />
-            <div className="absolute top-0 left-0 w-0.5 h-10 bg-primary pointer-events-none" />
-            <div className="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pointer-events-none">
-              <div>
-                <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-1">
-                  Full-Stack Architecture
-                </span>
-                <p className="text-lg lg:text-xl font-bold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
-                  Engineered with mathematical precision. Delivered without bloat.
-                </p>
-              </div>
-              <span className="font-mono text-xs text-muted-foreground tracking-wide shrink-0">
-                Delhi / Remote
-              </span>
-            </div>
-          </div>
-        </FadeUp>
       </section>
 
-      {/* Orange divider */}
-      <div className="h-px w-full bg-primary opacity-20" />
-
-      {/* ── PHILOSOPHY ── */}
-      <section style={{ background: "hsl(var(--secondary))" }} className="border-y border-border">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20 items-start">
-            <FadeUp className="lg:col-span-1">
-              <span className="font-mono text-xs text-primary tracking-widest uppercase leading-relaxed block">
-                {home.philosophy.label}
-              </span>
-            </FadeUp>
-            <FadeUp delay={100} className="lg:col-span-4">
-              <blockquote
-                className="text-3xl lg:text-5xl font-extrabold leading-tight tracking-tight text-foreground mb-8"
+      {/* ── 2. FLAGSHIP SHOWCASE: ESTORA LIVE INTERACTIVE SIMULATOR ── */}
+      <section className="py-12 sm:py-16 border-y border-border" style={{ background: "hsl(var(--secondary))" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="font-mono text-xs text-primary font-bold uppercase tracking-widest">
+                  Featured Interactive Showcase
+                </span>
+                <span className="font-mono text-[10px] px-2 py-0.5 rounded-sm bg-primary/20 text-primary border border-primary/30">
+                  Concept Architecture
+                </span>
+              </div>
+              <h2
+                className="text-2xl sm:text-4xl font-extrabold tracking-tight text-foreground"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
-                &ldquo;{home.philosophy.quote}&rdquo;
-              </blockquote>
-              <p className="text-base text-muted-foreground leading-relaxed mb-8 max-w-2xl">
-                {home.philosophy.body}
+                ESTORA — Spaces That Shape Tomorrow.
+              </h2>
+              <p className="text-xs sm:text-sm text-muted-foreground max-w-2xl mt-1">
+                Real estate developer experience concept. Experience the actual deployed website scrolling live below inside our interactive desktop &amp; mobile simulation frame.
               </p>
-              <Link href="/about" className="font-mono text-xs text-primary tracking-widest uppercase hover:opacity-80 transition-opacity">
-                {home.philosophy.link}
-              </Link>
-            </FadeUp>
+            </div>
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-1 font-mono text-xs text-primary tracking-widest uppercase hover:underline shrink-0"
+            >
+              <span>Explore All 7 Projects</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          </FadeUp>
+
+          {/* Interactive Simulator */}
+          <FadeUp delay={80}>
+            <EstoraShowcase />
+          </FadeUp>
+
+          {/* Quick Case Study Strip (NOVA Market & KitchenZap) */}
+          <div className="mt-8 pt-8 border-t border-border grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Link
+              href="/work#nova-market"
+              className="group p-4 rounded-sm border border-border bg-card/60 hover:border-primary transition-all flex items-center justify-between"
+            >
+              <div>
+                <span className="font-mono text-[10px] text-primary uppercase tracking-widest block mb-0.5">
+                  01 / Live Product · E-Commerce
+                </span>
+                <h3 className="text-sm sm:text-base font-bold text-foreground group-hover:text-primary transition-colors">
+                  NOVA Market — Multi-Category Marketplace
+                </h3>
+              </div>
+              <span className="font-mono text-xs text-primary group-hover:translate-x-1 transition-transform">
+                View →
+              </span>
+            </Link>
+
+            <Link
+              href="/work#kitchenzap"
+              className="group p-4 rounded-sm border border-border bg-card/60 hover:border-primary transition-all flex items-center justify-between"
+            >
+              <div>
+                <span className="font-mono text-[10px] text-primary uppercase tracking-widest block mb-0.5">
+                  03 / Live Product · Restaurant Tech
+                </span>
+                <h3 className="text-sm sm:text-base font-bold text-foreground group-hover:text-primary transition-colors">
+                  KitchenZap — Restaurant Kitchen SaaS OS
+                </h3>
+              </div>
+              <span className="font-mono text-xs text-primary group-hover:translate-x-1 transition-transform">
+                View →
+              </span>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ── DISCIPLINES ── */}
-      <section className="bg-background border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
-          <FadeUp className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-14">
+      {/* ── 3. FOUR FOCUSED DISCIPLINES (SLEEK COMPACT GRID) ── */}
+      <section className="py-12 sm:py-16 bg-background border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp className="flex items-end justify-between gap-4 mb-8">
             <div>
-              <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-3">
+              <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-1">
                 {home.disciplines.label}
               </span>
               <h2
-                className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+                className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
                 {home.disciplines.heading}
               </h2>
             </div>
-            <Link href="/services" className="font-mono text-xs text-primary tracking-widest uppercase hover:opacity-80 transition-opacity shrink-0">
+            <Link href="/services" className="font-mono text-xs text-primary tracking-widest uppercase hover:underline shrink-0">
               {home.disciplines.link}
             </Link>
           </FadeUp>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {home.disciplines.areas.map((area, i) => (
-              <FadeUp key={area.id} delay={i * 80}>
-                <div
-                  className="group flex flex-col h-full transition-all duration-300 hover:-translate-y-1 overflow-hidden"
-                  style={{ background: "hsl(var(--card))" }}
-                >
-                  {/* Visual card header image */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border">
-                    <Image
-                      src={serviceImages[area.id] ?? "/images/pages/services/web-design-hero.png"}
-                      alt={area.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
-                    <span className="absolute top-4 left-4 font-mono text-2xl font-bold text-primary">
-                      {area.num}
-                    </span>
-                  </div>
-
-                  <div className="p-7 flex flex-col flex-1">
-                    <h3
-                      className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors"
-                      style={{ fontFamily: "var(--font-heading)" }}
-                    >
-                      {area.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-6">
-                      {area.desc}
-                    </p>
-                    <Link href="/services" className="font-mono text-xs text-primary tracking-widest uppercase hover:opacity-80 transition-opacity mt-auto">
-                      {area.link}
-                    </Link>
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PROJECTS ── */}
-      <section style={{ background: "hsl(var(--secondary))" }} className="border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
-          <FadeUp className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-14">
-            <div>
-              <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-3">
-                {home.projects.label}
-              </span>
-              <h2
-                className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                {home.projects.heading}
-              </h2>
-            </div>
-            <Link href="/work" className="font-mono text-xs text-primary tracking-widest uppercase hover:opacity-80 transition-opacity shrink-0">
-              {home.projects.link}
-            </Link>
-          </FadeUp>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
-            {home.projects.items.map((project, i) => (
-              <FadeUp key={project.id} delay={i * 100}>
+              <FadeUp key={area.id} delay={i * 60}>
                 <Link
-                  href={`/work#${project.id}`}
-                  className="group flex flex-col h-full transition-all duration-300 hover:-translate-y-1 border-l-2 border-transparent hover:border-primary overflow-hidden cursor-pointer"
-                  style={{ background: "hsl(var(--card))" }}
+                  href="/services"
+                  className="group flex flex-col h-full rounded-sm border border-border p-5 hover:border-primary transition-all bg-card/40 hover:-translate-y-0.5"
                 >
-                  {/* Project preview cover image */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border">
-                    <Image
-                      src={projectImages[project.id] ?? "/images/pages/work/kitchenzap-cover.png"}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-                    <div className="absolute top-4 right-4">
-                      <span className="font-mono text-xs px-2 py-0.5 rounded-sm bg-primary text-primary-foreground font-semibold">
-                        {project.status}
-                      </span>
-                    </div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="font-mono text-xl font-bold text-primary">{area.num}</span>
+                    <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
                   </div>
-
-                  <div className="p-8 flex flex-col flex-1">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="font-mono text-xs text-muted-foreground">
-                        {project.num} / {project.year}
-                      </span>
-                    </div>
-                    <span className="font-mono text-xs text-muted-foreground tracking-wide uppercase block mb-2">
-                      {project.category}
-                    </span>
-                    <h3
-                      className="text-2xl font-extrabold text-foreground mb-4 group-hover:text-primary transition-colors"
-                      style={{ fontFamily: "var(--font-heading)" }}
-                    >
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-6">
-                      {project.desc}
-                    </p>
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.tags.map((tag) => (
-                        <span key={tag} className="font-mono text-xs px-2 py-1 rounded-sm border border-border text-muted-foreground">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="font-mono text-xs text-primary tracking-widest uppercase group-hover:translate-x-1 transition-transform mt-auto flex items-center gap-1">
-                      <span>{project.link}</span>
-                    </div>
-                  </div>
+                  <h3 className="text-sm sm:text-base font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                    {area.title}
+                  </h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed flex-1">
+                    {area.desc}
+                  </p>
                 </Link>
               </FadeUp>
             ))}
@@ -354,201 +255,185 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── METHODOLOGY ── */}
-      <section className="bg-background border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
-          <FadeUp className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-14">
+      {/* ── 4. HOW WE WORK (COMPACT 5-STEP TIMELINE STRIP) ── */}
+      <section className="py-12 sm:py-16 border-b border-border" style={{ background: "hsl(var(--secondary))" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-8">
             <div>
-              <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-3">
-                {home.methodology.label}
+              <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-1">
+                Execution Flow
               </span>
               <h2
-                className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+                className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
-                {home.methodology.heading}
+                From Problem to Live System in 5 Steps
               </h2>
             </div>
-            <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase max-w-xs text-right hidden sm:block">
-              {home.methodology.descriptor}
+            <span className="font-mono text-xs text-muted-foreground">
+              Average delivery: 7–14 days
             </span>
           </FadeUp>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-border">
-            {home.methodology.steps.map((step, i) => (
-              <FadeUp key={step.id} delay={i * 80}>
-                <div
-                  className="flex flex-col p-7 h-full"
-                  style={{ background: "hsl(var(--card))" }}
-                >
-                  <div className="flex items-center gap-2 mb-5">
-                    <span className="font-mono text-xs text-primary tracking-widest">
-                      {step.num}
-                    </span>
-                    <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase">
-                      {step.phase}
-                    </span>
-                  </div>
-                  <h3
-                    className="text-base font-bold text-foreground mb-3"
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {home.methodology.steps.map((step) => (
+              <div
+                key={step.id}
+                className="p-4 rounded-sm border border-border bg-card/60 flex flex-col justify-between"
+              >
+                <div>
+                  <span className="font-mono text-[10px] text-primary font-bold tracking-widest block mb-1">
+                    {step.num} · {step.phase}
+                  </span>
+                  <h3 className="text-xs sm:text-sm font-bold text-foreground mb-1.5">
                     {step.title}
                   </h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <p className="text-[11px] text-muted-foreground leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
-              </FadeUp>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── TRANSPARENT PRICING ── */}
-      <section style={{ background: "hsl(var(--secondary))" }} className="border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
-          <FadeUp className="mb-12">
-            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-3">
-              {home.pricing.label}
-            </span>
-            <h2
-              className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground mb-4"
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
-              {home.pricing.heading}
-            </h2>
-            <p className="font-mono text-xs italic text-muted-foreground/80 max-w-2xl leading-relaxed">
-              {home.pricing.subheading}
+      {/* ── 5. TRANSPARENT INVESTMENT (CLEAN 4-COLUMN CARDS) ── */}
+      <section className="py-12 sm:py-16 bg-background border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-1">
+                {home.pricing.label}
+              </span>
+              <h2
+                className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                Clear Estimates. Zero Agency Markup.
+              </h2>
+            </div>
+            <p className="font-mono text-[11px] text-muted-foreground">
+              Direct founder collaboration with fixed timelines.
             </p>
           </FadeUp>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {home.pricing.plans.map((plan, i) => (
-              <FadeUp key={plan.id} delay={i * 100}>
-                <div
-                  className={`flex flex-col h-full p-8 rounded-sm border transition-all duration-300 relative ${
-                    plan.popular
-                      ? "border-primary shadow-xl shadow-primary/10"
-                      : "border-border hover:border-primary/50"
-                  }`}
-                  style={{ background: "hsl(var(--card))" }}
-                >
-                  {plan.popular && (
-                    <span className="absolute -top-3 right-6 font-mono text-[10px] uppercase font-bold tracking-widest px-3 py-1 bg-primary text-primary-foreground rounded-full">
-                      Most Popular
-                    </span>
-                  )}
-
-                  <div className="mb-6">
-                    <h3 className="text-xl font-bold text-foreground mb-1" style={{ fontFamily: "var(--font-heading)" }}>
-                      {plan.name}
-                    </h3>
-                    <p className="text-xs text-muted-foreground font-mono mb-4">{plan.tagline}</p>
-                    <div className="pt-4 border-t border-border">
-                      <span className="text-2xl lg:text-3xl font-extrabold text-foreground">{plan.price}</span>
-                      <span className="block font-mono text-xs text-primary mt-1 font-semibold">{plan.timeline}</span>
-                    </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {home.pricing.plans.map((plan) => (
+              <div
+                key={plan.id}
+                className={`p-5 rounded-sm border flex flex-col justify-between transition-all ${
+                  plan.popular ? "border-primary bg-primary/5" : "border-border bg-card/40"
+                }`}
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="text-sm font-bold text-foreground">{plan.name}</h3>
+                    {plan.popular && (
+                      <span className="font-mono text-[9px] px-2 py-0.5 rounded-full bg-primary text-primary-foreground font-bold uppercase">
+                        Popular
+                      </span>
+                    )}
                   </div>
+                  <p className="text-lg sm:text-xl font-extrabold text-foreground mb-1">{plan.price}</p>
+                  <p className="font-mono text-[10px] text-primary mb-4">{plan.timeline}</p>
 
-                  <ul className="space-y-3 mb-8 flex-1">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2.5 text-xs text-muted-foreground">
-                        <span className="text-primary font-mono font-bold mt-0.5">✓</span>
-                        <span className="text-foreground">{f}</span>
+                  <ul className="space-y-1.5 mb-6 border-t border-border/60 pt-3">
+                    {plan.features.slice(0, 4).map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-[11px] text-muted-foreground">
+                        <Check className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                        <span>{f}</span>
                       </li>
                     ))}
                   </ul>
-
-                  <a
-                    href="https://wa.me/919315569638?text=Hello%20Tushar%20Labs%2C%20I%20would%20like%20to%20discuss%20a%20project."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center justify-center w-full py-3 text-xs font-mono font-semibold rounded-sm transition-all uppercase tracking-wider ${
-                      plan.popular
-                        ? "bg-primary text-primary-foreground hover:opacity-90"
-                        : "border border-border text-foreground hover:border-primary hover:text-primary"
-                    }`}
-                  >
-                    {plan.cta}
-                  </a>
                 </div>
-              </FadeUp>
+
+                <a
+                  href="https://wa.me/919315569638?text=Hello%20Tushar%20Labs%2C%20I%20would%20like%20to%20discuss%20a%20project."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full py-2 text-center text-xs font-mono font-semibold rounded-sm transition-all ${
+                    plan.popular
+                      ? "bg-primary text-primary-foreground hover:opacity-90"
+                      : "border border-border text-foreground hover:border-primary hover:text-primary"
+                  }`}
+                >
+                  Book Slot →
+                </a>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── CLIENT TESTIMONIALS ── */}
-      <section className="bg-background border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
-          <FadeUp className="mb-14">
-            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-3">
-              {home.testimonials.label}
+      {/* ── 6. COMPACT CLIENT PROOF ── */}
+      <section className="py-12 sm:py-16 border-b border-border" style={{ background: "hsl(var(--secondary))" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp className="mb-6">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-1">
+              Client Feedback
             </span>
             <h2
-              className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
+              className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground"
               style={{ fontFamily: "var(--font-heading)" }}
             >
-              {home.testimonials.heading}
+              Built for Real Operational Results
             </h2>
           </FadeUp>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {home.testimonials.items.map((t, i) => (
-              <FadeUp key={t.id} delay={i * 100}>
-                <div
-                  className="flex flex-col h-full p-8 rounded-sm border border-border transition-all hover:border-primary/50 relative"
-                  style={{ background: "hsl(var(--card))" }}
-                >
-                  <span className="text-3xl text-primary font-serif mb-4 block leading-none">&ldquo;</span>
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-6">
-                    {t.quote}
-                  </p>
-                  <div className="pt-4 border-t border-border">
-                    <p className="text-sm font-bold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
-                      {t.author}
-                    </p>
-                    <p className="text-xs text-primary font-mono">{t.role}</p>
-                    <p className="text-[10px] text-muted-foreground font-mono mt-0.5">{t.location}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {home.testimonials.items.map((t) => (
+              <div
+                key={t.id}
+                className="p-5 rounded-sm border border-border bg-card/60 flex flex-col justify-between"
+              >
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-4 italic">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div className="pt-3 border-t border-border flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-bold text-foreground">{t.author}</p>
+                    <p className="text-[10px] text-muted-foreground font-mono">{t.role}</p>
                   </div>
+                  <span className="font-mono text-[10px] text-primary">{t.location}</span>
                 </div>
-              </FadeUp>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── CTA BAND ── */}
-      <section style={{ background: "hsl(var(--secondary))" }} className="border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
-          <FadeUp className="max-w-3xl">
-            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-6">
-              {home.cta.label}
+      {/* ── 7. COMPACT FINAL CTA ── */}
+      <section className="py-12 sm:py-16 bg-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <FadeUp>
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-3">
+              Direct Access
             </span>
             <h2
-              className="text-4xl lg:text-6xl font-extrabold tracking-tight text-foreground mb-8 leading-tight"
+              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground mb-4"
               style={{ fontFamily: "var(--font-heading)" }}
             >
-              {home.cta.heading}
+              Ready to scale your business with serious digital systems?
             </h2>
-            <p className="text-base text-muted-foreground leading-relaxed mb-10 max-w-xl">
-              {home.cta.body}
+            <p className="text-xs sm:text-sm text-muted-foreground max-w-lg mx-auto mb-6">
+              Skip endless sales calls. Share your requirements directly with our founder on WhatsApp or request a proposal roadmap within 24 hours.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-3">
               <a
                 href="https://wa.me/919315569638?text=Hello%20Tushar%20Labs%2C%20I%20would%20like%20to%20start%20a%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-7 py-3.5 text-sm font-semibold font-mono rounded-sm bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-semibold font-mono rounded-sm bg-primary text-primary-foreground hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-primary/20"
               >
-                {home.cta.cta1}
+                <MessageSquare className="w-4 h-4" />
+                <span>Chat on WhatsApp Directly →</span>
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center px-7 py-3.5 text-sm font-semibold font-mono rounded-sm border border-border text-foreground hover:border-primary hover:text-primary transition-colors"
+                className="inline-flex items-center px-6 py-3 text-xs sm:text-sm font-semibold font-mono rounded-sm border border-border text-foreground hover:border-primary hover:text-primary active:scale-95 transition-all"
               >
-                {home.cta.cta2}
+                Submit Project Brief
               </Link>
             </div>
           </FadeUp>

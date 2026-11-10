@@ -31,26 +31,26 @@ export default function ServicesPage() {
       <div className="h-0.5 w-full bg-primary" />
 
       {/* ── HERO ── */}
-      <section className="pt-28 lg:pt-36 pb-16 lg:pb-20 px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+      <section className="pt-20 lg:pt-28 pb-10 lg:pb-14 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
           <div>
-            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-5">
+            <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-3">
               {services.hero.label}
             </span>
             <h1
-              className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] text-foreground"
+              className="text-4xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] text-foreground"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               {services.hero.heading}
             </h1>
           </div>
-          <p className="text-base text-muted-foreground leading-relaxed max-w-md lg:text-right">
+          <p className="text-sm lg:text-base text-muted-foreground leading-relaxed max-w-md lg:text-right">
             {services.hero.subheading}
           </p>
         </div>
 
         {/* Stats bar */}
-        <div className="flex flex-wrap items-center gap-6 mt-10 pt-10 border-t border-border">
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6 mt-8 pt-6 border-t border-border">
           <span className="font-mono text-xs text-muted-foreground tracking-wide">{services.hero.stat1}</span>
           <span className="text-primary font-mono text-xs">·</span>
           <span className="font-mono text-xs text-muted-foreground tracking-wide">{services.hero.stat2}</span>
@@ -72,10 +72,10 @@ export default function ServicesPage() {
             className="border-t border-border"
             style={{ background: isEven ? "hsl(var(--background))" : "hsl(var(--secondary))" }}
           >
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
               {/* Service number + label */}
-              <FadeUp className="flex items-center gap-4 mb-12">
-                <span className="font-mono text-4xl font-bold text-primary leading-none">
+              <FadeUp className="flex items-center gap-3 mb-8">
+                <span className="font-mono text-2xl lg:text-3xl font-bold text-primary leading-none">
                   {svc.num}
                 </span>
                 <div className="h-px flex-1 bg-border" />
@@ -85,10 +85,10 @@ export default function ServicesPage() {
               </FadeUp>
 
               {/* Image + Heading row */}
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16 ${!isEven ? "lg:[&>*:first-child]:order-2" : ""}`}>
+              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-10 ${!isEven ? "lg:[&>*:first-child]:order-2" : ""}`}>
                 {/* Image */}
-                <FadeUp delay={isEven ? 0 : 100}>
-                  <div className="relative overflow-hidden rounded-sm border border-border aspect-video">
+                <FadeUp delay={isEven ? 0 : 80}>
+                  <div className="relative overflow-hidden rounded-sm border border-border aspect-video max-h-[300px]">
                     <Image
                       src={imgSrc}
                       alt={imgAlt}
@@ -105,51 +105,45 @@ export default function ServicesPage() {
                 </FadeUp>
 
                 {/* Heading + problem/approach */}
-                <FadeUp delay={isEven ? 100 : 0}>
+                <FadeUp delay={isEven ? 80 : 0}>
                   <h2
-                    className="text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground mb-6 leading-tight"
+                    className="text-2xl lg:text-3xl font-extrabold tracking-tight text-foreground mb-4 leading-tight"
                     style={{ fontFamily: "var(--font-heading)" }}
                   >
                     {svc.heading}
                   </h2>
 
-                  <div className="space-y-5 mb-8">
+                  <div className="space-y-3 mb-6">
                     <div>
-                      <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-2">
-                        The Problem
+                      <span className="font-mono text-[11px] text-primary tracking-widest uppercase block mb-1">
+                        The Challenge & Approach
                       </span>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{svc.problem}</p>
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{svc.approach}</p>
                     </div>
                     <div>
-                      <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-2">
-                        Our Approach
-                      </span>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{svc.approach}</p>
-                    </div>
-                    <div>
-                      <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-2">
+                      <span className="font-mono text-[11px] text-primary tracking-widest uppercase block mb-1">
                         What Makes It Different
                       </span>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{svc.differentiator}</p>
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{svc.differentiator}</p>
                     </div>
                   </div>
 
                   {/* Ideal client */}
                   <div
-                    className="rounded-sm border border-border p-4 mb-8"
+                    className="rounded-sm border border-border p-3.5 mb-6"
                     style={{ background: "hsl(var(--card))" }}
                   >
-                    <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-2">
+                    <span className="font-mono text-[10px] text-muted-foreground tracking-widest uppercase block mb-1">
                       Ideal For
                     </span>
-                    <p className="text-sm text-foreground leading-relaxed">{svc.idealClient}</p>
+                    <p className="text-xs sm:text-sm text-foreground leading-relaxed">{svc.idealClient}</p>
                   </div>
 
                   {/* Price + CTA */}
                   <div className="flex flex-wrap items-center gap-4">
                     <Link
                       href="/contact"
-                      className="inline-flex items-center px-5 py-2.5 text-sm font-semibold font-mono rounded-sm bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+                      className="inline-flex items-center px-5 py-2.5 text-xs sm:text-sm font-semibold font-mono rounded-sm bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
                     >
                       {svc.cta}
                     </Link>
@@ -163,15 +157,15 @@ export default function ServicesPage() {
                 {/* Deliverables */}
                 <FadeUp>
                   <div
-                    className="p-7 h-full"
+                    className="p-5 sm:p-6 h-full"
                     style={{ background: isEven ? "hsl(var(--card))" : "hsl(var(--background))" }}
                   >
-                    <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-5">
+                    <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
                       What&apos;s Included
                     </span>
-                    <ul className="flex flex-col gap-2.5">
+                    <ul className="flex flex-col gap-2">
                       {svc.deliverables.map((d) => (
-                        <li key={d} className="flex items-start gap-2.5 text-sm text-foreground">
+                        <li key={d} className="flex items-start gap-2 text-xs sm:text-sm text-foreground">
                           <span className="text-primary mt-0.5 shrink-0 font-mono text-xs">→</span>
                           <span>{d}</span>
                         </li>
@@ -181,19 +175,19 @@ export default function ServicesPage() {
                 </FadeUp>
 
                 {/* Tech Stack */}
-                <FadeUp delay={80}>
+                <FadeUp delay={60}>
                   <div
-                    className="p-7 h-full"
+                    className="p-5 sm:p-6 h-full"
                     style={{ background: isEven ? "hsl(var(--card))" : "hsl(var(--background))" }}
                   >
-                    <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-5">
+                    <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
                       Tech Stack
                     </span>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5">
                       {svc.stack.map((tech) => (
                         <span
                           key={tech}
-                          className="font-mono text-xs px-2.5 py-1.5 rounded-sm border border-border text-muted-foreground"
+                          className="font-mono text-xs px-2 py-1 rounded-sm border border-border text-muted-foreground"
                         >
                           {tech}
                         </span>
@@ -203,18 +197,18 @@ export default function ServicesPage() {
                 </FadeUp>
 
                 {/* Process */}
-                <FadeUp delay={160}>
+                <FadeUp delay={120}>
                   <div
-                    className="p-7 h-full"
+                    className="p-5 sm:p-6 h-full"
                     style={{ background: isEven ? "hsl(var(--card))" : "hsl(var(--background))" }}
                   >
-                    <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-5">
+                    <span className="font-mono text-xs text-primary tracking-widest uppercase block mb-4">
                       How It Works
                     </span>
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-3">
                       {svc.process.map((step, si) => (
-                        <div key={step.id} className="flex items-start gap-3">
-                          <span className="font-mono text-xs text-primary shrink-0 w-5">
+                        <div key={step.id} className="flex items-start gap-2.5">
+                          <span className="font-mono text-xs text-primary shrink-0 w-4 font-bold">
                             {String(si + 1).padStart(2, "0")}
                           </span>
                           <div>
@@ -231,14 +225,14 @@ export default function ServicesPage() {
               </div>
 
               {/* Related project link */}
-              <FadeUp delay={80} className="mt-6">
-                <div className="flex items-center gap-3">
+              <FadeUp delay={60} className="mt-5">
+                <div className="flex items-center gap-2.5">
                   <span className="font-mono text-xs text-muted-foreground tracking-wide">
-                    Related project:
+                    Live Demo:
                   </span>
                   <Link
                     href="/work"
-                    className="font-mono text-xs text-primary tracking-widest uppercase hover:opacity-80 transition-opacity"
+                    className="font-mono text-xs text-primary tracking-widest uppercase hover:underline"
                   >
                     {svc.relatedProject} →
                   </Link>

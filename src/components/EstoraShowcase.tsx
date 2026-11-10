@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { ExternalLink, Play, Pause, RotateCcw } from "lucide-react";
+import { ExternalLink, Play, Pause, RotateCcw, Smartphone, Laptop } from "lucide-react";
 
 interface EstoraShowcaseProps {
   className?: string;
@@ -22,8 +22,8 @@ export default function EstoraShowcase({ className = "" }: EstoraShowcaseProps) 
   };
 
   return (
-    <div className={`relative w-full overflow-hidden rounded-xl border border-white/10 bg-[#07090E] p-4 sm:p-8 lg:p-12 shadow-2xl ${className}`}>
-      {/* ── Ambient cinematic lighting & background effects (Warm architectural & amber tones matching Estora & Tushar Labs) ── */}
+    <div className={`relative w-full overflow-hidden rounded-xl border border-white/10 bg-[#07090E] p-3 sm:p-6 lg:p-10 shadow-2xl ${className}`}>
+      {/* ── Ambient cinematic lighting & background effects ── */}
       <div
         className="pointer-events-none absolute inset-0 z-0 opacity-80"
         style={{
@@ -48,28 +48,28 @@ export default function EstoraShowcase({ className = "" }: EstoraShowcaseProps) 
       />
 
       {/* ── Header control bar for live showcase status ── */}
-      <div className="relative z-10 mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-white/5 pb-4">
-        <div className="flex items-center gap-3">
-          <span className="relative flex h-2.5 w-2.5">
+      <div className="relative z-10 mb-4 sm:mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-white/5 pb-3">
+        <div className="flex items-center gap-2.5">
+          <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
           </span>
-          <span className="font-mono text-xs uppercase tracking-wider text-white/70">
+          <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-white/70">
             Real Website Scroll Simulation
           </span>
           <span className="hidden sm:inline-block text-xs text-white/20">•</span>
-          <span className="hidden sm:inline-block font-mono text-xs text-white/40">
+          <span className="hidden sm:inline-block font-mono text-[11px] text-white/40">
             Desktop (1440px) &amp; Mobile (414px)
           </span>
         </div>
 
         {/* Play/Pause & Reset interactive controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <button
             type="button"
             onClick={togglePlayPause}
             aria-label={isPaused ? "Play scrolling animation" : "Pause scrolling animation"}
-            className="group flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] text-white/80 backdrop-blur-md transition-colors hover:border-white/30 hover:bg-white/10"
+            className="group flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[10px] sm:text-[11px] text-white/80 backdrop-blur-md transition-colors hover:border-white/30 hover:bg-white/10"
           >
             {isPaused ? (
               <>
@@ -89,7 +89,7 @@ export default function EstoraShowcase({ className = "" }: EstoraShowcaseProps) 
             onClick={resetAnimation}
             title="Reset scroll to top"
             aria-label="Reset scroll to top"
-            className="flex items-center justify-center rounded-full border border-white/10 bg-white/5 p-1.5 text-white/70 backdrop-blur-md transition-colors hover:border-white/30 hover:bg-white/10 hover:text-white"
+            className="flex items-center justify-center rounded-full border border-white/10 bg-white/5 p-1 text-white/70 backdrop-blur-md transition-colors hover:border-white/30 hover:bg-white/10 hover:text-white"
           >
             <RotateCcw className="h-3 w-3" />
           </button>
@@ -98,18 +98,62 @@ export default function EstoraShowcase({ className = "" }: EstoraShowcaseProps) 
             href="https://estora-18s.pages.dev/"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-1 inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 font-mono text-[11px] font-medium text-primary backdrop-blur-md transition-all hover:bg-primary hover:text-white"
+            className="ml-1 inline-flex items-center gap-1 rounded-full border border-primary/40 bg-primary/10 px-2.5 py-1 font-mono text-[10px] sm:text-[11px] font-medium text-primary backdrop-blur-md transition-all hover:bg-primary hover:text-white"
           >
             <span>Live Site</span>
-            <ExternalLink className="h-3 w-3" />
+            <ExternalLink className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
           </a>
         </div>
       </div>
 
-      {/* ── Mockup Composition: Centered Laptop with Overlapping Phone on Right ── */}
+      {/* ── 1. MOBILE-ONLY LUXURY PRESENTATION (Crystal clear, perfect width, zero squish) ── */}
+      <div className="block sm:hidden relative z-10 w-full py-2">
+        <div
+          key={`mobile-${resetKey}`}
+          className={`mx-auto w-[82%] max-w-[280px] transition-transform duration-500 ${
+            isPaused ? "animation-is-paused" : ""
+          }`}
+        >
+          {/* Mobile Chassis Frame */}
+          <div className="relative rounded-[32px] border-[4px] border-[#383D48] bg-[#0E1015] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.95),0_0_35px_rgba(255,107,0,0.2)]">
+            {/* Dynamic Island Pill */}
+            <div className="absolute top-2.5 left-1/2 z-40 h-3.5 w-18 -translate-x-1/2 rounded-full bg-black flex items-center justify-end pr-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#1b233d] border border-white/20" />
+            </div>
+
+            {/* Viewport Screen */}
+            <div className="relative aspect-[9/19] w-full overflow-hidden rounded-[26px] bg-[#07090D] shadow-inner select-none">
+              <div
+                className="pointer-events-none absolute inset-0 z-20"
+                style={{
+                  background:
+                    "linear-gradient(125deg, rgba(255, 255, 255, 0.08) 0%, transparent 40%, rgba(255, 255, 255, 0.02) 100%)",
+                }}
+              />
+
+              {/* Scrolling Mobile Capture */}
+              <div className="estora-scroll-mobile w-full will-change-transform">
+                <Image
+                  src="/images/pages/work/estora-mobile-full.webp"
+                  alt="ESTORA Live Website Mobile View"
+                  width={450}
+                  height={12332}
+                  priority
+                  className="w-full h-auto block"
+                />
+              </div>
+
+              {/* Home indicator bar */}
+              <div className="pointer-events-none absolute bottom-1.5 left-1/2 z-30 h-1 w-16 -translate-x-1/2 rounded-full bg-white/40 backdrop-blur-sm" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── 2. TABLET & DESKTOP DUAL MOCKUP (Laptop + Overlapping Phone) ── */}
       <div
-        key={resetKey}
-        className={`group/stage relative z-10 mx-auto flex w-full max-w-5xl items-center justify-center pt-2 pb-6 lg:pb-10 ${
+        key={`desktop-${resetKey}`}
+        className={`hidden sm:flex group/stage relative z-10 mx-auto w-full max-w-5xl items-center justify-center pt-2 pb-4 lg:pb-8 ${
           isPaused ? "animation-is-paused" : ""
         }`}
       >
@@ -120,7 +164,7 @@ export default function EstoraShowcase({ className = "" }: EstoraShowcaseProps) 
         <div className="relative w-full max-w-4xl transition-transform duration-500 ease-out">
           {/* Laptop Lid / Bezel Frame */}
           <div className="relative mx-auto w-[92%] sm:w-[88%] lg:w-[86%] rounded-t-2xl sm:rounded-t-[22px] border-[3px] sm:border-[4px] border-[#2E333D] bg-[#12141A] p-2 sm:p-3 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_40px_rgba(255,107,0,0.12)]">
-            {/* Top Webcam Notch / Camera Dot */}
+            {/* Top Webcam Notch */}
             <div className="relative z-20 mb-1.5 sm:mb-2 flex items-center justify-center">
               <div className="flex items-center gap-1.5 rounded-full bg-black/60 px-2 py-0.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#1e2330] border border-white/20" />
@@ -128,9 +172,8 @@ export default function EstoraShowcase({ className = "" }: EstoraShowcaseProps) 
               </div>
             </div>
 
-            {/* Laptop Display Screen (Viewport with Real Content Scrolling) */}
+            {/* Laptop Display Screen */}
             <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-[#08090C] shadow-inner select-none">
-              {/* Screen Glare & Vignette Overlay */}
               <div
                 className="pointer-events-none absolute inset-0 z-20"
                 style={{
@@ -141,7 +184,7 @@ export default function EstoraShowcase({ className = "" }: EstoraShowcaseProps) 
                 }}
               />
 
-              {/* Real Full-Page Desktop Capture with Smooth Scroll Animation */}
+              {/* Scrolling Desktop Capture */}
               <div className="estora-scroll-desktop w-full will-change-transform">
                 <Image
                   src="/images/pages/work/estora-desktop-full.webp"
@@ -157,25 +200,19 @@ export default function EstoraShowcase({ className = "" }: EstoraShowcaseProps) 
 
           {/* Laptop Base & Hinge */}
           <div className="relative mx-auto h-3 sm:h-4 w-full rounded-b-xl border-t border-[#3a404d] bg-gradient-to-b from-[#262A33] via-[#1A1D24] to-[#12141A] shadow-[0_15px_30px_rgba(0,0,0,0.8)]">
-            {/* Display opener notch in center */}
             <div className="absolute top-0 left-1/2 h-1.5 w-16 sm:w-24 -translate-x-1/2 rounded-b-md bg-[#0F1116] border-b border-white/10" />
           </div>
-          {/* Laptop Bottom Lip / Shadow Foot */}
           <div className="mx-auto h-1.5 w-[96%] rounded-b-2xl bg-black/60 blur-[1px]" />
         </div>
 
         {/* ── SMARTPHONE MOCKUP (Overlapping Laptop on the Right) ── */}
         <div className="absolute -bottom-2 sm:bottom-0 right-2 sm:right-6 lg:right-12 z-30 w-[30%] sm:w-[24%] lg:w-[21%] max-w-[240px] min-w-[130px] transition-transform duration-500 ease-out hover:-translate-y-1">
-          {/* Phone Outer Body Frame (Titanium / Graphite Finish) */}
           <div className="relative rounded-[28px] sm:rounded-[36px] border-[3px] sm:border-[4px] border-[#383D48] bg-[#0E1015] p-1.5 sm:p-2 shadow-[0_20px_50px_rgba(0,0,0,0.95),0_0_35px_rgba(255,107,0,0.18)]">
-            {/* Dynamic Island / Speaker Pill */}
             <div className="absolute top-3 sm:top-3.5 left-1/2 z-40 h-3 sm:h-4 w-14 sm:w-20 -translate-x-1/2 rounded-full bg-black flex items-center justify-end pr-2">
               <span className="h-1.5 w-1.5 rounded-full bg-[#1b233d] border border-white/20" />
             </div>
 
-            {/* Phone Screen Viewport */}
             <div className="relative aspect-[9/19.5] w-full overflow-hidden rounded-[22px] sm:rounded-[30px] bg-[#07090D] shadow-inner select-none">
-              {/* Phone Glass Glare Reflection */}
               <div
                 className="pointer-events-none absolute inset-0 z-20"
                 style={{
@@ -184,7 +221,6 @@ export default function EstoraShowcase({ className = "" }: EstoraShowcaseProps) 
                 }}
               />
 
-              {/* Real Full-Page Mobile Capture with Smooth Scroll Animation */}
               <div className="estora-scroll-mobile w-full will-change-transform">
                 <Image
                   src="/images/pages/work/estora-mobile-full.webp"
@@ -196,7 +232,6 @@ export default function EstoraShowcase({ className = "" }: EstoraShowcaseProps) 
                 />
               </div>
 
-              {/* Bottom Home Indicator Bar */}
               <div className="pointer-events-none absolute bottom-1.5 left-1/2 z-30 h-1 w-16 -translate-x-1/2 rounded-full bg-white/40 backdrop-blur-sm" />
             </div>
           </div>
@@ -204,11 +239,10 @@ export default function EstoraShowcase({ className = "" }: EstoraShowcaseProps) 
       </div>
 
       {/* ── Interactive Caption / Reduced Motion Hint ── */}
-      <div className="relative z-10 mt-2 flex flex-wrap items-center justify-between gap-2 border-t border-white/5 pt-3 text-[11px] font-mono text-white/40">
-        <span>Hover devices to pause scroll inspect</span>
-        <span>Independent natural scroll timing</span>
+      <div className="relative z-10 mt-2 flex flex-wrap items-center justify-between gap-2 border-t border-white/5 pt-2 text-[10px] sm:text-[11px] font-mono text-white/40">
+        <span>Tap/Hover to pause inspect</span>
+        <span>Independent natural cadence</span>
       </div>
     </div>
   );
 }
-

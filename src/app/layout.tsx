@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
+import MobileQuickBar from "@/components/MobileQuickBar";
 import { seoConfig } from "@/config/seo";
 
 const inter = Inter({
@@ -154,6 +155,7 @@ export default function RootLayout({
         </div>
         <Footer />
         <CookieBanner />
+        <MobileQuickBar />
       </body>
     </html>
   );
