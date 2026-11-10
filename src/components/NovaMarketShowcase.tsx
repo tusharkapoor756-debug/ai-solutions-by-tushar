@@ -106,10 +106,54 @@ export default function NovaMarketShowcase({ className = "" }: NovaShowcaseProps
         </div>
       </div>
 
-      {/* ── Mockup Composition: Centered Laptop with Overlapping Phone on Right ── */}
+      {/* ── 1. MOBILE-ONLY LUXURY PRESENTATION (Desktop pe hide, mobile pe crystal clear full-screen phone) ── */}
+      <div className="block sm:hidden relative z-10 w-full py-2">
+        <div
+          key={`mobile-${resetKey}`}
+          className={`mx-auto w-[82%] max-w-[280px] transition-transform duration-500 ${
+            isPaused ? "animation-is-paused" : ""
+          }`}
+        >
+          {/* Mobile Chassis Frame */}
+          <div className="relative rounded-[32px] border-[4px] border-[#383D48] bg-[#0E1015] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.95),0_0_35px_rgba(59,130,246,0.2)]">
+            {/* Dynamic Island Pill */}
+            <div className="absolute top-2.5 left-1/2 z-40 h-3.5 w-18 -translate-x-1/2 rounded-full bg-black flex items-center justify-end pr-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#1b233d] border border-white/20" />
+            </div>
+
+            {/* Viewport Screen */}
+            <div className="relative aspect-[9/19] w-full overflow-hidden rounded-[26px] bg-[#07090D] shadow-inner select-none">
+              <div
+                className="pointer-events-none absolute inset-0 z-20"
+                style={{
+                  background:
+                    "linear-gradient(125deg, rgba(255, 255, 255, 0.08) 0%, transparent 40%, rgba(255, 255, 255, 0.02) 100%)",
+                }}
+              />
+
+              {/* Scrolling Mobile Capture */}
+              <div className="nova-scroll-mobile w-full will-change-transform">
+                <Image
+                  src="/images/pages/work/nova-market-mobile-full.webp"
+                  alt="NOVA Market Live Website Mobile View"
+                  width={450}
+                  height={14293}
+                  priority
+                  className="w-full h-auto block"
+                />
+              </div>
+
+              {/* Home Indicator */}
+              <div className="pointer-events-none absolute bottom-1.5 left-1/2 z-30 h-1 w-16 -translate-x-1/2 rounded-full bg-white/40 backdrop-blur-sm" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── 2. TABLET & DESKTOP DUAL MOCKUP (Laptop + Overlapping Phone) ── */}
       <div
-        key={resetKey}
-        className={`group/stage relative z-10 mx-auto flex w-full max-w-5xl items-center justify-center pt-2 pb-6 lg:pb-10 ${
+        key={`desktop-${resetKey}`}
+        className={`hidden sm:flex group/stage relative z-10 mx-auto w-full max-w-5xl items-center justify-center pt-2 pb-6 lg:pb-10 ${
           isPaused ? "animation-is-paused" : ""
         }`}
       >
