@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { ArrowUpRight, CheckCircle2, AlertCircle, Sparkles, MessageSquare, Clock, Globe } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import FadeUp from "@/components/FadeUp";
+import { trackFormSubmit } from "@/lib/gtm";
 
 type CurrencyCode = "INR" | "USD" | "GBP" | "EUR" | "AED";
 
@@ -166,6 +167,15 @@ const Contact = () => {
     const text = encodeURIComponent(
       `Hello Tushar Labs,\n\nProject Brief Submission:\n- Name: ${formData.name}\n- Email: ${formData.email}\n- Phone: ${fullPhoneNumber} (${selectedCountry.country})\n- Company: ${formData.businessName || "Independent"}\n- Service: ${formData.service}\n- Currency: ${activeCurrency.code} (${activeCurrency.symbol})\n- Estimated Budget: ${budget}\n- Scope Details: ${formData.message}`
     );
+
+    trackFormSubmit({
+      form_id: "contact_brief_form",
+      form_name: "Project Brief Submission",
+      service: formData.service,
+      currency: activeCurrency.code,
+      budget: budget,
+      country: selectedCountry.country,
+    });
 
     const waUrl = `https://wa.me/919315569638?text=${text}`;
     window.open(waUrl, "_blank");
