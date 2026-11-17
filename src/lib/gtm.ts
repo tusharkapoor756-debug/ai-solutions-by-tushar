@@ -5,7 +5,7 @@ declare global {
   }
 }
 
-export const GTM_ID = "GTM-KNX47FH7";
+export const GTM_ID = "GTM-PG3JTF6T";
 
 /**
  * Push generic events to GTM dataLayer safely
