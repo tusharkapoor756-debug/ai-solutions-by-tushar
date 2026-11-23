@@ -1,11 +1,13 @@
 import { MetadataRoute } from "next";
 import { siteConfig, studioServices, studioProjects } from "@/config/site";
+import { studioArticles } from "@/config/articles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",
     "/services",
     "/work",
+    "/insights",
     "/capabilities",
     "/about",
     "/contact",
@@ -30,5 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...routes, ...serviceRoutes, ...projectRoutes];
+  const insightRoutes = studioArticles.map((article) => ({
+    url: `${siteConfig.url}/insights/${article.slug}`,
+    lastModified: new Date().toISOString().split("T")[0],
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [...routes, ...serviceRoutes, ...projectRoutes, ...insightRoutes];
 }
