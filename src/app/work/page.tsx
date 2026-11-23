@@ -7,16 +7,14 @@ import EstoraShowcase from "@/components/EstoraShowcase";
 import { work } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Work — Tushar Labs | Selected Projects & Production Software",
+  title: "Work — Tushar Labs | Selected Projects & Software",
   description:
-    "Explore production-grade digital systems engineered by Tushar Labs in Delhi NCR — NOVA Market (e-commerce), ESTORA (real estate portal), KitchenZap (restaurant SaaS), Restroex (AI POS), and Safaronroads.",
+    "Explore digital systems and web applications engineered by Tushar Labs — including NOVA Market, ESTORA, KitchenZap SaaS, and Restroex.",
   keywords: [
-    "Web Development Portfolio Delhi",
-    "Next.js Project Showcase",
-    "NOVA Market E-commerce",
-    "ESTORA Real Estate Concept",
-    "KitchenZap Restaurant SaaS",
-    "Full Stack Developer Portfolio India",
+    "Tushar Labs Work",
+    "Web Development Projects",
+    "Next.js Projects",
+    "SaaS Applications",
   ],
   alternates: {
     canonical: "https://www.tusharlabs.in/work",

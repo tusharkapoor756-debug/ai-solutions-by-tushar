@@ -4,15 +4,14 @@ import FadeUp from "@/components/FadeUp";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Contact — Tushar Labs | Hire Top Web Developers & AI Agency Delhi",
+  title: "Contact — Tushar Labs | Get in Touch",
   description:
-    "Direct engagement with Tushar Labs in New Delhi. Request a proposal for custom website development, AI agent automation, or SaaS engineering. 24h response guaranteed.",
+    "Direct engagement with Tushar Labs in New Delhi. Request a proposal for custom website development, AI workflow automation, or SaaS engineering. 24h response guaranteed.",
   keywords: [
+    "Contact Tushar Labs",
     "Hire Web Developers Delhi",
-    "Contact AI Automation Agency Delhi",
-    "Website Development Cost Delhi",
-    "Hire Next.js Developer Delhi NCR",
-    "Tushar Labs Contact",
+    "AI Automation Studio Delhi NCR",
+    "Next.js Development Studio",
   ],
   alternates: {
     canonical: "https://www.tusharlabs.in/contact",

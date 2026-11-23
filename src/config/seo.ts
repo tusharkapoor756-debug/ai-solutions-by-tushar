@@ -3,49 +3,18 @@ import { siteConfig } from "./site";
 export const seoConfig = {
   metadataBase: new URL("https://www.tusharlabs.in"),
   title: {
-    default: "TUSHAR LABS — Web Development Company & AI Automation Agency Delhi NCR",
-    template: "%s | TUSHAR LABS",
+    default: "Tushar Labs — Web Development Studio & AI Automation Delhi NCR",
+    template: "%s | Tushar Labs",
   },
   description:
-    "Top Web Development Company & AI Automation Agency in Delhi NCR, Noida & Gurgaon. We build high-converting websites, custom SaaS platforms, and intelligent AI agents for growing businesses.",
+    "Independent digital studio in New Delhi engineering high-conversion websites, custom SaaS platforms, and intelligent AI automation workflows for ambitious businesses.",
   keywords: [
-    // Top-Tier Delhi NCR Commercial Intent
-    "Web Development Company Delhi",
-    "Web Development Agency in Delhi NCR",
-    "Website Design and Development Company Delhi",
-    "Top Web Development Company in Delhi",
-    "Custom Web Development Company Delhi",
-    "Web Design Agency in Gurugram Gurgaon",
-    "Web Development Company in Noida Sector 62",
-    "Website Development Company South Delhi",
-    
-    // AI Agents & Automation (High-Value Intent)
-    "AI Automation Agency Delhi",
-    "AI Agent Development Company in Delhi NCR",
-    "Custom AI Solutions Provider Delhi",
-    "LangGraph AI Agents Development India",
-    "AI Workflow Automation Agency Noida Gurugram",
-    "n8n and Make.com AI Automation Expert",
-    "Enterprise RAG Implementation Services Delhi",
-    "WhatsApp Business API AI Automation Agency",
-    "AI Voice Bot Development Hindi Hinglish",
-
-    // Tech Stack & Engineering Pedigree
-    "Next.js Developer Delhi",
-    "Full Stack Developer India",
-    "React TypeScript Developer Delhi NCR",
-    "SaaS Development Studio India",
-    "Custom Software Company Delhi",
-    "Freelance Web Developer India",
-    "E-commerce Web Development Company Delhi",
-
-    // Brand & Studio Authority
+    "Web Development Delhi",
+    "AI Automation Studio Delhi NCR",
+    "Next.js Developer India",
+    "Custom SaaS Development",
+    "Workflow Automation Agency",
     "Tushar Labs",
-    "Tushar Labs Digital Studio",
-    "Tushar Kapoor Web Developer",
-    "KitchenZap SaaS",
-    "NOVA Market Marketplace",
-    "ESTORA Real Estate Platform",
   ],
   authors: [
     {

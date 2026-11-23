@@ -5,15 +5,14 @@ import FadeUp from "@/components/FadeUp";
 import { about } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "About — Tushar Labs | Full-Stack Engineer & AI Builder New Delhi",
+  title: "About — Tushar Labs | Independent Digital Studio New Delhi",
   description:
-    "Meet Tushar Kapoor, founder and engineering lead at Tushar Labs, New Delhi. Engineering high-performance web applications, custom SaaS platforms, and autonomous AI agents for clients in Delhi NCR and worldwide.",
+    "Meet Tushar Kapoor, founder and engineering lead at Tushar Labs. Designing and engineering high-performance websites, SaaS platforms, and AI automation for clients in Delhi NCR and globally.",
   keywords: [
-    "Tushar Kapoor Web Developer",
+    "Tushar Kapoor",
+    "Tushar Labs About",
     "Full Stack Engineer Delhi",
-    "Independent Digital Studio India",
-    "Freelance Full Stack Developer Delhi NCR",
-    "Next.js Consultant Delhi",
+    "Independent Digital Studio",
   ],
   alternates: {
     canonical: "https://www.tusharlabs.in/about",
